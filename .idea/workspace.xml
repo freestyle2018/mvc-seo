@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4b9589d-8ffa-42b1-b29d-a44b7f6e8d2b" name="Default Changelist" comment="" />
+    <list default="true" id="c4b9589d-8ffa-42b1-b29d-a44b7f6e8d2b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/model_sape.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Filter.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Filter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Sape.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/sape.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/sape/add_razdel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/add_razdel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/sape/edit_razdel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/edit_razdel.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +22,9 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -80,6 +93,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1ac4KL3AphVpOYuHrBvradMRTXx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -87,6 +101,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RecentsManager">
@@ -110,7 +125,10 @@
       <workItem from="1587121616850" duration="8191000" />
       <workItem from="1587149618024" duration="3471000" />
       <workItem from="1587153573543" duration="436000" />
-      <workItem from="1587193821088" duration="17386000" />
+      <workItem from="1587193821088" duration="23986000" />
+      <workItem from="1587371777448" duration="8991000" />
+      <workItem from="1587392445608" duration="18439000" />
+      <workItem from="1587443285552" duration="736000" />
     </task>
     <servers />
   </component>
@@ -122,14 +140,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="454" y="177" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1587208879611" />
-    <state x="518" y="286" key="NewPhpFileDialog" timestamp="1587213596899">
+    <state x="518" y="286" key="NewPhpFileDialog" timestamp="1587231175154">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="518" y="286" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1587213596899" />
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1587193821401">
+    <state x="518" y="286" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1587231175154" />
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1587447705508">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1587193821401" />
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1587447705508" />
+    <state x="424" y="5" key="refactoring.ChangeSignatureDialog" timestamp="1587232294243">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="424" y="5" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1587232294243" />
     <state x="339" y="157" key="run.anything.popup" timestamp="1587126961005">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

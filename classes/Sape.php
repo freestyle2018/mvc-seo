@@ -107,7 +107,9 @@ Class Sape {
         );
 
         //(int) sape.project_add( (string) name[, (array) options = array()] )
-        self::$client->call('sape.project_add', array($name, $options));
+        $result = self::$client->call('sape.project_add', array($name, $options));
+
+        return $result;
     }
 
 

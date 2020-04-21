@@ -10,6 +10,7 @@ Class Controller_Sape Extends Controller_Base {
     static $auth;
     static $authentication;
     static $sape;
+    static $sape_model;
     static $filter;
     static $status;
 
@@ -18,6 +19,7 @@ Class Controller_Sape Extends Controller_Base {
         self::$authentication = self::$auth->index();
         self::$sape = new Sape();
         self::$filter = new Filter();
+        self::$sape_model = new Model_Sape();
 
         $status = self::$authentication["status"];
 
@@ -42,15 +44,22 @@ Class Controller_Sape Extends Controller_Base {
     function edit_razdel()
     {
         $name_project = self::$filter->out('string',(empty($_POST['name_project']) ? '' : $_POST['name_project']));
+        $zapusk = self::$filter->out('string',(empty($_POST['zapusk']) ? '' : $_POST['zapusk']));
+        $date_next = self::$filter->out('date',(empty($_POST['date_next']) ? '' : $_POST['date_next']));
+        $shag_time = self::$filter->out('int',(empty($_POST['shag_time']) ? '' : $_POST['shag_time']));
+        $kolichestvo_urls = self::$filter->out('int',(empty($_POST['kolichestvo_urls']) ? '' : $_POST['kolichestvo_urls']));
         $id_project = self::$filter->out('int',(empty($_POST['id_project']) ? $_GET['id_project'] : $_POST['id_project']));
 
         //if(self::$authentication["auth"] === true && self::$status == "admin"){
             if($name_project != ""){
                 self::$sape->project_update($id_project, $name_project);
+                self::$sape_model->update_Razdel_2($id_project, $name_project, $date_next, $kolichestvo_urls, null, null, $shag_time, 120, 'static', SAPE_FOLDER_ID, $zapusk);
                 $this->index();
             }
             else{
                 $project = self::$sape->get_project($id_project);
+                $info_db = self::$sape_model->show_Razdel($id_project);
+                $this->template->vars('info_db', $info_db);
                 $this->template->vars('name_project', $project["name"]);
                 $this->template->vars('id_project', $id_project);
                 $this->template->view('edit_razdel');
@@ -63,14 +72,17 @@ Class Controller_Sape Extends Controller_Base {
     {
 
         $name_project = self::$filter->out('string',(empty($_POST['name_project']) ? '' : $_POST['name_project']));
+        $kolichestvo_urls = self::$filter->out('string',(empty($_POST['kolichestvo_urls']) ? '' : $_POST['kolichestvo_urls']));
 
         //if(self::$authentication["auth"] === true && self::$status == "admin"){
             if($name_project != ""){
                 $project_id = self::$sape->project_add($name_project);
+                self::$sape_model->add_Razdel($project_id, $name_project, date("Y-m-d H:i:s"), $kolichestvo_urls);
                 $this->index();
             }
             else{
                 $this->template->vars('name_project', $name_project);
+                $this->template->vars('kolichestvo_urls', $kolichestvo_urls);
                 $this->template->view('add_razdel');
             }
         //}
@@ -83,6 +95,7 @@ Class Controller_Sape Extends Controller_Base {
 
         //if(self::$authentication["auth"] === true && self::$status == "admin"){
             self::$sape->project_delete($id_project);
+            self::$sape_model->delete_Razdel($id_project);
             $this->index();
         //}
     }
@@ -98,9 +111,9 @@ Class Controller_Sape Extends Controller_Base {
             if($id_project != ""){
                 $project = self::$sape->get_project($id_project);
                 $info = self::$sape->get_urls($id_project);
+
                 $this->template->vars('project', $project);
                 $this->template->vars('info', $info);
-
                 $this->template->view('show_project');
             }
         //}

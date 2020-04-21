@@ -13,7 +13,11 @@ class Filter
             }
         }
         else if($datchik == 'string'){
-            $value = preg_replace('/[^a-zA-Zа-яА-Я0-9 ]/ui','',$parametr);
+            $value = preg_replace('/[0-9]{4}\-[0-9]{2}\-[0-9]{2} \d{2}:\d{2}:\d{2}/i','',$parametr);
+            return $value;
+        }
+        else if($datchik == 'date'){
+            $value = preg_replace('/[^a-zA-Zа-яА-Я0-9 \-\:]/ui','',$parametr);
             return $value;
         }
         else if($datchik == 'email'){
