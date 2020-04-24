@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4b9589d-8ffa-42b1-b29d-a44b7f6e8d2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/model_sape.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/Cron.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controllers/cron.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/cron/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Filter.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Filter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Sape.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/sape.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/sape/add_razdel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/add_razdel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/model_sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/model_sape.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/sape/edit_razdel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/edit_razdel.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +129,9 @@
       <workItem from="1587193821088" duration="23986000" />
       <workItem from="1587371777448" duration="8991000" />
       <workItem from="1587392445608" duration="18439000" />
-      <workItem from="1587443285552" duration="736000" />
+      <workItem from="1587443285552" duration="11837000" />
+      <workItem from="1587533316201" duration="5376000" />
+      <workItem from="1587558674617" duration="9003000" />
     </task>
     <servers />
   </component>
@@ -140,14 +143,14 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="454" y="177" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1587208879611" />
-    <state x="518" y="286" key="NewPhpFileDialog" timestamp="1587231175154">
+    <state x="518" y="286" key="NewPhpFileDialog" timestamp="1587453634233">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="518" y="286" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1587231175154" />
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1587447705508">
+    <state x="518" y="286" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1587453634233" />
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1587714353681">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1587447705508" />
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1587714353681" />
     <state x="424" y="5" key="refactoring.ChangeSignatureDialog" timestamp="1587232294243">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

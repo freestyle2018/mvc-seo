@@ -48,12 +48,20 @@ Class Controller_Sape Extends Controller_Base {
         $date_next = self::$filter->out('date',(empty($_POST['date_next']) ? '' : $_POST['date_next']));
         $shag_time = self::$filter->out('int',(empty($_POST['shag_time']) ? '' : $_POST['shag_time']));
         $kolichestvo_urls = self::$filter->out('int',(empty($_POST['kolichestvo_urls']) ? '' : $_POST['kolichestvo_urls']));
+        $nomer = self::$filter->out('int',(empty($_POST['nomer']) ? '' : $_POST['nomer']));
         $id_project = self::$filter->out('int',(empty($_POST['id_project']) ? $_GET['id_project'] : $_POST['id_project']));
+
 
         //if(self::$authentication["auth"] === true && self::$status == "admin"){
             if($name_project != ""){
                 self::$sape->project_update($id_project, $name_project);
-                self::$sape_model->update_Razdel_2($id_project, $name_project, $date_next, $kolichestvo_urls, null, null, $shag_time, 120, 'static', SAPE_FOLDER_ID, $zapusk);
+
+                //echo "nomer = ".$nomer; $nomer = 0;
+
+                $razdel_info = array("id_razdel" => $id_project, "name_razdel" => $name_project, "date_next" => $date_next, "kolichestvo_urls" => $kolichestvo_urls, "date_start" => null, "date_end" => null, "shag_time" => $shag_time, "koef_time" => 120, "prirost" => 'static', "id_project" => SAPE_FOLDER_ID, "zapusk" => $zapusk, "nomer" => $nomer);
+
+                self::$sape_model->update_Razdel($razdel_info);
+
                 $this->index();
             }
             else{
@@ -134,7 +142,10 @@ Class Controller_Sape Extends Controller_Base {
 
             if($urls != ""){
                 //Записываем Urls
-                self::$sape->urls_add($urls, $id_project);
+                $id_urls = self::$sape->urls_add($urls, $id_project);
+                print_r($id_urls);
+
+                self::$sape_model->urls_add($id_urls, $urls, $id_project);
 
                 // Отображаем ссылки проект
                 $info = self::$sape->get_urls($id_project);

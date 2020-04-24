@@ -7,7 +7,7 @@ class Filter
     /*  фильтруем входящие данные  */
     function out($datchik, $parametr) {
         if($datchik == 'int'){
-            if(preg_match("/^[0-9]+$/", $parametr)){
+            if(preg_match("/[0-9]+$/", $parametr)){
                 $value = $parametr;
                 return $value;
             }

@@ -42,19 +42,22 @@ Class Sape {
 
     function urls_add($urls, $id_project) {
         $urls_array = explode("\r\n", $urls);
+        $id_urls = array();
 
         $i = 0;
         while ($i < sizeof($urls_array)){
-            $this->url_add($id_project, $urls_array[$i]);
+            $id_urls[$i] = $this->url_add($id_project, $urls_array[$i]);
             $i++;
         }
+
+        return $id_urls;
     }
 
     function url_add($id_project, $url) {
         // (int) sape.url_add( (int) projectId, (string) url[, (string) name[, (int|string) keyword]] )
         $result = self::$client->call('sape.url_add', array($id_project, $url));
 
-
+        return $result;
     }
 
     function project_update($id_project, $name_project) {
@@ -125,8 +128,8 @@ Class Sape {
     }
 
 
-    //function new_url($id_url, $name_url) {
-    function pokupka_url() {
+    function new_url($id_url, $name_url) {
+    //function pokupka_url() {
         $urlId = SAPE_ID_URL;
 
         $filter = array(
