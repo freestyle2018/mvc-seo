@@ -16,3 +16,6 @@ define('SAPE_TOKEN', 'e068b8f255f021175995b05a1aeeecec36bc52d9e16be77cf561c1a182
 define('SAPE_ID_URL', '115319434'); // id рабочей ссылки
 define('SAPE_FOLDER_ID', '2020546'); // id раздела
 
+define('PR_CY_KEY', 'vRzJ4elVsK2ZUL1ZGZ0lUU1BrYmtpND0');
+define('PR_CY_URL', 'https://a.pr-cy.ru/api/v1.1.0');
+

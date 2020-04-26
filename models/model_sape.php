@@ -3,11 +3,6 @@
 // модель
 Class Model_Sape{
 
-    //static $db;
-
-
-
-
     public static function getConnection()
     {
         // Устанавливаем соединение
@@ -66,9 +61,6 @@ Class Model_Sape{
                                     nomer = :nomer 
                                     
                                     where id_razdel = :id_razdel");
-        print_r($razdel);
-
-        echo $razdel["shag_time"];
 
         $stmt->bindParam(':name_razdel', $razdel["name_razdel"]);
         $stmt->bindParam(':date_next', $razdel["date_next"]);
@@ -157,6 +149,41 @@ Class Model_Sape{
 
         return $row;
     }
+
+
+    public function get_urls_in_razdel($id_razdel, $nomer){
+        $stmt = $this->getConnection()->prepare("SELECT * FROM sape_url WHERE id_razdel = :id_razdel ORDER BY id_url ASC LIMIT :nomer");
+
+        $stmt->bindParam(':id_razdel', $id_razdel);
+        $stmt->bindParam(':nomer', $nomer);
+
+        $stmt->execute();
+
+        foreach ($stmt->fetchAll(PDO::FETCH_NAMED) as $key => $value) {
+            $row[$key] = $value;
+        }
+
+        return $row;
+    }
+
+
+
+    public function get_url($id_url){
+
+        $stmt = $this->getConnection()->prepare("SELECT * FROM sape_url WHERE id_url = :id_url");
+
+        $stmt->bindParam(':id_url', $id_url);
+
+        $stmt->execute();
+
+        foreach ($stmt->fetch() as $key => $value) {
+            $row[$key] = $value;
+        }
+
+        return $row;
+
+    }
+
 
 
 

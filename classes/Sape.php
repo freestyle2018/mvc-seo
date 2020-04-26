@@ -25,11 +25,9 @@ Class Sape {
         return $result;
     }
 
-    function get_url($id_url) {
-        // (array) sape.get_url( (int) urlId[, (boolean) showDeleted = false] )
-        $result = self::$client->call('sape.get_url', array($id_url));
-
-        return $result;
+    function delete_url($id_url) {
+        //(int) sape.placements_delete_url( (int) urlId[, (string) status = null] )
+        $result = self::$client->call('sape.placements_delete_url', array($id_url));
     }
 
     function get_urls($id_project) {

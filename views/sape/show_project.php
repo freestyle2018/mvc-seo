@@ -4,8 +4,8 @@
 
 <?php //if($authentication === true){ ?>
 
-<div style="font-size:46px; float:left; padding-right: 7px;">
-    <?php echo $project["name"]; ?>
+<div >
+    <?php echo "<a style=\"font-size:46px; float:left; padding-right: 7px;\" href='/sape/edit_razdel?id_project=".$project["id"]."'>" . $project["name"]."</a>"; ?>
 </div>
 <div style="font-size:16px; padding-top: 28px;">
     <?php echo  "- <a href='/sape/add_urls?id_project=".$project["id"]."'>(добавить urls списком)</a>"; ?>
