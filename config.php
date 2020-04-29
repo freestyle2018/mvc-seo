@@ -6,8 +6,8 @@ $sitePath = realpath(dirname(__FILE__) . DS);
 define ('SITE_PATH', $sitePath); // путь к корневой папке сайта
 
 // для подключения к бд
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_USER', 'mysql');
+define('DB_PASS', 'mysql');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'mvc_project');
 

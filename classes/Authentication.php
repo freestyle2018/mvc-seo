@@ -26,7 +26,7 @@ Class Authentication  extends \PHPUnit\Framework\TestCase
     function __construct() {
         if(!isset($_SESSION)) session_start();
 
-        self::$dbh = new PDO("mysql:host=localhost;dbname=phpauthtest", "root", "");
+        self::$dbh = new PDO("mysql:host=localhost;dbname=phpauthtest", "mysql", "mysql");
         self::$config = new PHPAuth\Config(self::$dbh);
         self::$auth   = new PHPAuth\Auth(self::$dbh, self::$config);
         self::$sess_email = !isset($_SESSION["email"]) ? '' : $_SESSION["email"];

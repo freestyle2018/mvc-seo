@@ -79,7 +79,7 @@
         if(proverka === true) {}
         else{
             if(auth == 0 && (proverka === false)) {
-               window.location.replace("/user/login/?error=go");
+               //window.location.replace("/user/login/?error=go");
             }
         }
     });
