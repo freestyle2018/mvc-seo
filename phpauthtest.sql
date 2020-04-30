@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Хост: localhost
--- Время создания: Апр 09 2020 г., 12:11
--- Версия сервера: 5.7.28
--- Версия PHP: 7.4.4
+-- Хост: 127.0.0.1:3306
+-- Время создания: Апр 30 2020 г., 11:40
+-- Версия сервера: 5.7.29
+-- Версия PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,7 +71,7 @@ INSERT INTO `phpauth_config` (`setting`, `value`) VALUES
 ('recaptcha_site_key', ''),
 ('request_key_expiration', '+10 minutes'),
 ('site_activation_page', 'activate'),
-('site_email', 'no-reply@phpauth.cuonic.com'),
+('site_email', 'anufriy.samsonovich@mail.ru'),
 ('site_key', 'fghuior.)/!/jdUkd8s2!7HVHG7777ghg'),
 ('site_language', 'en_GB'),
 ('site_name', 'PHPAuth'),
@@ -81,11 +81,11 @@ INSERT INTO `phpauth_config` (`setting`, `value`) VALUES
 ('smtp', '0'),
 ('smtp_auth', '1'),
 ('smtp_debug', '0'),
-('smtp_host', 'smtp.example.com'),
-('smtp_password', 'password'),
-('smtp_port', '25'),
-('smtp_security', NULL),
-('smtp_username', 'email@example.com'),
+('smtp_host', 'smtp.mail.ru'),
+('smtp_password', 'dac6756qF'),
+('smtp_port', '465'),
+('smtp_security', 'ssl'),
+('smtp_username', 'anufriy.samsonovich@mail.ru'),
 ('table_attempts', 'phpauth_attempts'),
 ('table_emails_banned', 'phpauth_emails_banned'),
 ('table_requests', 'phpauth_requests'),
@@ -123,6 +123,15 @@ CREATE TABLE `phpauth_requests` (
   `type` enum('activation','reset') CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Дамп данных таблицы `phpauth_requests`
+--
+
+INSERT INTO `phpauth_requests` (`id`, `uid`, `token`, `expire`, `type`) VALUES
+(3, 7, '33d3HY5VVeOTW3u99T83', '2020-04-28 11:22:13', 'reset'),
+(4, 8, '6E13K9n40583798v642v', '2020-04-28 11:47:57', 'activation'),
+(5, 9, '61yA52S7K1MiS9G5E9iq', '2020-04-28 11:48:35', 'activation');
+
 -- --------------------------------------------------------
 
 --
@@ -157,20 +166,22 @@ CREATE TABLE `phpauth_users` (
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
   `isactive` tinyint(1) NOT NULL DEFAULT '0',
-  `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `auth` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `phpauth_users`
 --
 
-INSERT INTO `phpauth_users` (`id`, `email`, `password`, `isactive`, `dt`) VALUES
-(1, 'test@email.com', '$2y$10$LyzA4EwBwmikHvZmZcJwheyT3W.dh.xta7ssZD0qBTuPwDQ09r1eS', 1, '2020-04-06 07:30:02'),
-(2, 'te22st@email.com', '$2y$10$QVIgrwvGl8xtbxvh2.8FL.OYLi2lrNRJLNMeuKdH2HNaf80nGG9uS', 1, '2020-04-06 08:03:45'),
-(3, 'svarv@fg.ru', '$2y$10$r.gswKtJ.RvffHcVbn0EKeye59AggP/PFxP8q3oVlpB8J9BlnwJRK', 1, '2020-04-08 10:00:09'),
-(4, 'svarv@2fg.ru', '$2y$10$yGn1l2OLCQsyrEl/kL/9tO8zWj8YLZy7MxIdgb47E/KhxsxB4zuWu', 1, '2020-04-08 10:00:54'),
-(5, 'qqs@mail.ru', '$2y$10$B2RkvpEe7w9PeNBFKuQMLuqrd2/vLvgnc5Y2FfPe.Jt4u4rdx8IMW', 1, '2020-04-08 10:16:27'),
-(6, 'cafwegf@nm.ru', '$2y$10$Kiv08y1T4yDUTybuNXTPluuacoq0qwYMIthq72QVooWUQQ87Iruz.', 1, '2020-04-09 06:22:40');
+INSERT INTO `phpauth_users` (`id`, `email`, `password`, `isactive`, `dt`, `auth`) VALUES
+(1, 'test@email.com', '$2y$10$LyzA4EwBwmikHvZmZcJwheyT3W.dh.xta7ssZD0qBTuPwDQ09r1eS', 1, '2020-04-06 07:30:02', ''),
+(2, 'te22st@email.com', '$2y$10$QVIgrwvGl8xtbxvh2.8FL.OYLi2lrNRJLNMeuKdH2HNaf80nGG9uS', 1, '2020-04-06 08:03:45', ''),
+(3, 'svarv@fg.ru', '$2y$10$r.gswKtJ.RvffHcVbn0EKeye59AggP/PFxP8q3oVlpB8J9BlnwJRK', 1, '2020-04-08 10:00:09', ''),
+(4, 'svarv@2fg.ru', '$2y$10$yGn1l2OLCQsyrEl/kL/9tO8zWj8YLZy7MxIdgb47E/KhxsxB4zuWu', 1, '2020-04-08 10:00:54', ''),
+(5, 'qqs@mail.ru', '$2y$10$B2RkvpEe7w9PeNBFKuQMLuqrd2/vLvgnc5Y2FfPe.Jt4u4rdx8IMW', 1, '2020-04-08 10:16:27', ''),
+(6, 'cafwegf@nm.ru', '$2y$10$Kiv08y1T4yDUTybuNXTPluuacoq0qwYMIthq72QVooWUQQ87Iruz.', 1, '2020-04-09 06:22:40', ''),
+(9, 'troinfo@yandex.ru', '$2y$10$LeETq1NGLfF6.Uyynj8dM.D9jf1h4z1rZ8UeWKc333DnX/PtammFW', 0, '2020-04-28 09:38:35', '');
 
 --
 -- Индексы сохранённых таблиц
@@ -225,7 +236,7 @@ ALTER TABLE `phpauth_users`
 -- AUTO_INCREMENT для таблицы `phpauth_attempts`
 --
 ALTER TABLE `phpauth_attempts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `phpauth_emails_banned`
@@ -237,19 +248,19 @@ ALTER TABLE `phpauth_emails_banned`
 -- AUTO_INCREMENT для таблицы `phpauth_requests`
 --
 ALTER TABLE `phpauth_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `phpauth_sessions`
 --
 ALTER TABLE `phpauth_sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `phpauth_users`
 --
 ALTER TABLE `phpauth_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
