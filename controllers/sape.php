@@ -32,10 +32,10 @@ Class Controller_Sape Extends Controller_Base {
     // экшен
     function index()
     {
-        //if(self::$authentication["auth"] === true && self::$status == "admin"){
+        if(self::$authentication["auth"] === true && self::$status == "admin"){
             $info = self::$sape->index();
             $this->template->vars('projects', $info["projects"]);
-        //}
+        }
 
         $this->template->view('index');
     }

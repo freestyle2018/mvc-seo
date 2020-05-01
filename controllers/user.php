@@ -11,43 +11,12 @@ Class Controller_User Extends Controller_Base {
 
     // экшен
     function index() {
-        $info = "ИВАН";
+        $info = "";
 
         $this->template->vars('info', $info);
         $this->template->view('index');
     }
 
-    function mail() {
-        $mail = new PHPMailer();
-        $mail->isSMTP();                     // Set mailer to use SMTP
-        //$mail->SMTPDebug = 1;
-        $mail->Port = 465;  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;
-        $mail->IsHTML(true);
-        // Enable SMTP authentication
-        $mail->SMTPSecure = 'ssl';// TCP port to connect to
-        $mail->CharSet=  'utf-8';
-
-        //$mail->Host = 'smtp.yandex.ru';
-        //$mail->Username = 'troinfo@yandex.ru';
-        //$mail->Password = 'melissa666';
-
-        $mail->Host = 'smtp.mail.ru';
-        $mail->Username = 'anufriy.samsonovich@mail.ru';
-        $mail->Password = 'dac6756qF';
-
-        $mail->setFrom('anufriy.samsonovich@mail.ru');
-        $mail->addAddress('troinfo@yandex.ru');
-        $mail->Subject = 'Here is the subject';
-        $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-
-        if(!$mail->send()) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        } else {
-            echo 'Message has been sent';
-        }
-    }
 
     function regist() {
         $filter = new Filter();
