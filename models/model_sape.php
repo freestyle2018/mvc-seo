@@ -45,6 +45,13 @@ Class Model_Sape{
     }
 
 
+    public function delete_all_urls_in_Razdel($id_razdel){
+        $stmt = $this->getConnection()->prepare("DELETE FROM sape_url WHERE id_razdel = :id_razdel");
+        $stmt->bindParam(':id_razdel', $id_razdel);
+        $stmt->execute();
+    }
+
+
     public function update_Razdel($razdel){
 
         $stmt = $this->getConnection()->prepare("UPDATE sape_razdel set 

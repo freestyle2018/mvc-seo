@@ -28,7 +28,7 @@ Class Cron {
                 $name_url = $url_for_zakupka["name_url"];
 
                 // закупаем ссылку в Sape
-                $sape->new_url($id_url, $name_url);
+                $sape->new_url($id_url, $name_url, 1);
 
                 // Получаем данные о razdel
                 $razdel_info = $sape_model->show_Razdel($row[$i]["id_razdel"]);

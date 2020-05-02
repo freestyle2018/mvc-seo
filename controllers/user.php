@@ -59,6 +59,7 @@ Class Controller_User Extends Controller_Base {
 
             if($data["error"] != 1) {
                 $_SESSION["email"] = $email;
+                $authentication = $auth->index();
             }
 
             $this->template->vars('message', $data["message"]);
@@ -217,7 +218,7 @@ Class Controller_User Extends Controller_Base {
         $auth = new Authentication();
         $authentication = $auth->out();
 
-        $this->template->vars('authentication', $authentication);
+        $this->template->vars('authentication', false);
         $this->template->view('out');
     }
 

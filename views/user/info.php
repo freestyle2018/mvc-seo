@@ -15,7 +15,3 @@
         </div>
     <?php endforeach;?>
 <?php } ?>
-
-<?php
-    echo "<a href='/user/add/'>Add</a>";
-?>

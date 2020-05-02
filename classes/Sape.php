@@ -126,38 +126,41 @@ Class Sape {
     }
 
 
-    function new_url($id_url, $name_url) {
-    //function pokupka_url() {
-        $urlId = SAPE_ID_URL;
+    function new_url($id_url, $name_url, $step) {
+        $x=1;
+        while ($x <= $step)
+        {
+            $urlId = SAPE_ID_URL;
 
-        $filter = array(
-            "cy_from" => 10,
-            "price_2" => 7,
-            "domain_level" => 2,
-            "no_double_in_folder" => 1,
-            "level_from" => 1,
-            "level_2" => 1
-        );
+            $filter = array(
+                "cy_from" => 10,
+                "price_2" => 7,
+                "domain_level" => 2,
+                "no_double_in_folder" => 1,
+                "level_from" => 1,
+                "level_2" => 1
+            );
 
-        $pn = rand(0, 2);
-        $ps = 100;
+            $pn = rand(0, 2);
+            $ps = 100;
 
-        // (array) sape.search( (int) urlId, (array) filter[, (int) pn[, (int) ps = 100]] )
-        $result = self::$client->call('sape.search', array($urlId, $filter, $pn, $ps));
-        $id = array();
+            // (array) sape.search( (int) urlId, (array) filter[, (int) pn[, (int) ps = 100]] )
+            $result = self::$client->call('sape.search', array($urlId, $filter, $pn, $ps));
+            $id = array();
 
 
-        $i = 0;
-        while ($i <= 99){
-            $id[$i] = $result[$i]["pages"][0]["id"];
-            $i++;
+            $i = 0;
+            while ($i <= 99){
+                $id[$i] = $result[$i]["pages"][0]["id"];
+                $i++;
+            }
+
+            $nomer_plojadki = rand(0, 99);
+            $id_plojadki = $id[$nomer_plojadki];
+
+            //self::$client->call('sape.placement_create', array($id_plojadki, $id_url, $name_url));
+            self::$client->call('sape.placement_create', array($id_plojadki, $id_url, $name_url));
         }
-
-        $nomer_plojadki = rand(0, 99);
-        $id_plojadki = $id[$nomer_plojadki];
-
-        //self::$client->call('sape.placement_create', array($id_plojadki, $id_url, $name_url));
-        self::$client->call('sape.placement_create', array($id_plojadki, $id_url, $name_url));
     }
 
 

@@ -8,25 +8,27 @@
     <title>Задание</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body>
 
     <div class="reg"><a href="/user/regist/">Регистрация</a></div>
     <div class="login"><a href="/user/login/">Авторизация</a></div>
-    <div class="login"><a href="/user/info">Информация</a></div>
+
+
 
     <?php
-        if($authentication == true){
+        if($authentication === true){
+            echo "<div class=\"login\"><a href=\"/sape/\">SAPE</a></div>";
+            echo "<div class=\"login\"><a href=\"/magazin/\">Загрузка товара</a></div>";
             echo "<div class=\"reg\"><a href=\"/user/out\">Выйти</a></div>";
         }
     ?>
 
     <div class="container-fluid">
         <div class="container">
-            <h1>Тестовое задание</h1>
             <?php
                 include ($contentPage);
             ?>
@@ -40,7 +42,7 @@
 </body>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
 

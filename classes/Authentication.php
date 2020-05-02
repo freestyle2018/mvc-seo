@@ -26,14 +26,14 @@ Class Authentication  extends \PHPUnit\Framework\TestCase
     function __construct() {
         if(!isset($_SESSION)) session_start();
 
-        self::$dbh = new PDO("mysql:host=localhost;dbname=phpauthtest", DB_USER, DB_PASS);
+        self::$dbh = new PDO("mysql:host=localhost;dbname=".DB_NAME_2, DB_USER, DB_PASS);
         self::$config = new PHPAuth\Config(self::$dbh);
         self::$auth   = new PHPAuth\Auth(self::$dbh, self::$config);
-        self::$sess_email = !isset($_SESSION["email"]) ? '' : $_SESSION["email"];
     }
 
     function index() {
         $result = array();
+        self::$sess_email = !isset($_SESSION["email"]) ? '' : $_SESSION["email"];
 
         if(isset(self::$sess_email) && self::$sess_email != '') {
             $hash = self::$dbh->query("SELECT hash FROM phpauth_sessions WHERE uid = (SELECT id FROM phpauth_users WHERE email = '".self::$sess_email."');", PDO::FETCH_ASSOC)->fetch()['hash'];

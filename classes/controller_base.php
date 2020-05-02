@@ -33,7 +33,7 @@ Abstract Class Controller_Base extends \PHPUnit\Framework\TestCase {
     // в конструкторе подключаем шаблоны
     function __construct($registry) {
 
-        self::$dbh = new PDO("mysql:host=localhost;dbname=phpauthtest", DB_USER, DB_PASS);
+        self::$dbh = new PDO("mysql:host=localhost;dbname=".DB_NAME_2, DB_USER, DB_PASS);
         self::$config = new PHPAuth\Config(self::$dbh);
         self::$auth   = new PHPAuth\Auth(self::$dbh, self::$config);
 

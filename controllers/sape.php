@@ -32,7 +32,7 @@ Class Controller_Sape Extends Controller_Base {
     // экшен
     function index()
     {
-        if(self::$authentication["auth"] === true && self::$status == "admin"){
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
             $info = self::$sape->index();
             $this->template->vars('projects', $info["projects"]);
         }
@@ -104,6 +104,7 @@ Class Controller_Sape Extends Controller_Base {
         if(self::$authentication["auth"] === true && self::$status == "admin"){
             self::$sape->project_delete($id_project);
             self::$sape_model->delete_Razdel($id_project);
+            self::$sape_model->delete_all_urls_in_Razdel($id_project);
             $this->index();
         }
     }
