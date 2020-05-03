@@ -5,7 +5,7 @@
 // контролер
 Class Controller_Sape Extends Controller_Base {
     // шаблон
-    public $layouts = "sape";
+    public $layouts = "first_layouts";
 
     static $auth;
     static $authentication;
@@ -33,8 +33,10 @@ Class Controller_Sape Extends Controller_Base {
     function index()
     {
         if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
-            $info = self::$sape->index();
-            $this->template->vars('projects', $info["projects"]);
+            //$info = self::$sape->index();
+            $info = self::$sape_model->show_Razdels();
+
+            $this->template->vars('projects', $info);
         }
 
         $this->template->view('index');

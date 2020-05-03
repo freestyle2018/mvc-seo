@@ -12,12 +12,20 @@ class Filter
                 return $value;
             }
         }
-        else if($datchik == 'string'){
-            $value = preg_replace('/[0-9]{4}\-[0-9]{2}\-[0-9]{2} \d{2}:\d{2}:\d{2}/i','',$parametr);
-            return $value;
-        }
         else if($datchik == 'date'){
-            $value = preg_replace('/[^a-zA-Zа-яА-Я0-9 \-\:]/ui','',$parametr);
+            if(preg_match('/[0-9]{4}\-[0-9]{2}\-[0-9]{2} \d{2}:\d{2}:\d{2}/i', $parametr)){
+                $value = $parametr;
+                return $value;
+            }
+        }
+        else if($datchik == 'string'){
+            if(preg_match('/[^a-zA-Zа-яА-Я0-9 \-\:]/ui', $parametr)){
+                $value = $parametr;
+                return $value;
+            }
+        }
+        else if($datchik == 'xpath'){
+            $value = htmlspecialchars($parametr);
             return $value;
         }
         else if($datchik == 'email'){

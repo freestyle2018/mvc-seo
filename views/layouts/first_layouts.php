@@ -21,6 +21,7 @@
 
     <?php
         if($authentication === true){
+            echo "<div class=\"login\"><a href=\"/xpath/\">XPath</a></div>";
             echo "<div class=\"login\"><a href=\"/sape/\">SAPE</a></div>";
             echo "<div class=\"login\"><a href=\"/magazin/\">Загрузка товара</a></div>";
             echo "<div class=\"reg\"><a href=\"/user/out\">Выйти</a></div>";

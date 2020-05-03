@@ -25,7 +25,7 @@ Class Controller_Index Extends Controller_Base {
         $total = $news->getCountNews();
         $pagination = new Pagination($total, $page, $news::SHOW_BY_DEFAULT, '');
 
-        $this->template->vars('authentication', $authentication);
+        $this->template->vars('authentication', $authentication["auth"]);
         $this->template->vars('page', $page);
         $this->template->vars('sortirovka', $sortirovka);
         $this->template->vars('NewsList', $NewsList);

@@ -1,0 +1,24 @@
+.boxer {
+    display: table;
+    border-collapse: collapse;
+}
+
+.boxer .box-row {
+    display: table-row;
+}
+
+.boxer .box {
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+p.bold {
+    font-weight:bold;
+}
+
+.title {
+    font-size:28px;
+}
