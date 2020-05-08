@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 30 2020 г., 11:40
+-- Время создания: Май 07 2020 г., 13:57
 -- Версия сервера: 5.7.29
 -- Версия PHP: 7.1.33
 
@@ -60,7 +60,7 @@ INSERT INTO `phpauth_config` (`setting`, `value`) VALUES
 ('cookie_name', 'phpauth_session_cookie'),
 ('cookie_path', '/'),
 ('cookie_remember', '+1 month'),
-('cookie_renew', '+100 minutes'),
+('cookie_renew', '+30 minutes'),
 ('cookie_secure', '0'),
 ('emailmessage_suppress_activation', '0'),
 ('emailmessage_suppress_reset', '0'),
@@ -153,7 +153,8 @@ CREATE TABLE `phpauth_sessions` (
 --
 
 INSERT INTO `phpauth_sessions` (`id`, `uid`, `hash`, `expiredate`, `ip`, `agent`, `cookie_crc`) VALUES
-(3, 5, '28c5c00aca0e37a1e4c994c01047f292e3b44ebd', '2020-04-08 13:35:25', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0', '0e4790906d711803f9d51f8fdaac0c89e9468707');
+(3, 5, '28c5c00aca0e37a1e4c994c01047f292e3b44ebd', '2020-04-08 13:35:25', '::1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:74.0) Gecko/20100101 Firefox/74.0', '0e4790906d711803f9d51f8fdaac0c89e9468707'),
+(2762, 9, 'a1bfec99e7838fe3ebf2aa73ea95ad6f0a6ee5c4', '2020-05-07 13:24:34', '127.0.0.1', 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36', 'c8aa7be743de875b84c2445ad649cfa5331836ac');
 
 -- --------------------------------------------------------
 
@@ -181,7 +182,7 @@ INSERT INTO `phpauth_users` (`id`, `email`, `password`, `isactive`, `dt`, `auth`
 (4, 'svarv@2fg.ru', '$2y$10$yGn1l2OLCQsyrEl/kL/9tO8zWj8YLZy7MxIdgb47E/KhxsxB4zuWu', 1, '2020-04-08 10:00:54', ''),
 (5, 'qqs@mail.ru', '$2y$10$B2RkvpEe7w9PeNBFKuQMLuqrd2/vLvgnc5Y2FfPe.Jt4u4rdx8IMW', 1, '2020-04-08 10:16:27', ''),
 (6, 'cafwegf@nm.ru', '$2y$10$Kiv08y1T4yDUTybuNXTPluuacoq0qwYMIthq72QVooWUQQ87Iruz.', 1, '2020-04-09 06:22:40', ''),
-(9, 'troinfo@yandex.ru', '$2y$10$LeETq1NGLfF6.Uyynj8dM.D9jf1h4z1rZ8UeWKc333DnX/PtammFW', 0, '2020-04-28 09:38:35', '');
+(9, 'troinfo@yandex.ru', '$2y$10$IF5UQlu.AdcUg1sTbNitXeL8ydXRufPIvknJdppyU/A768zL3qED6', 1, '2020-04-28 09:38:35', 'admin');
 
 --
 -- Индексы сохранённых таблиц
@@ -236,7 +237,7 @@ ALTER TABLE `phpauth_users`
 -- AUTO_INCREMENT для таблицы `phpauth_attempts`
 --
 ALTER TABLE `phpauth_attempts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `phpauth_emails_banned`
@@ -254,7 +255,7 @@ ALTER TABLE `phpauth_requests`
 -- AUTO_INCREMENT для таблицы `phpauth_sessions`
 --
 ALTER TABLE `phpauth_sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2763;
 
 --
 -- AUTO_INCREMENT для таблицы `phpauth_users`

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 30 2020 г., 11:40
+-- Время создания: Май 08 2020 г., 14:55
 -- Версия сервера: 5.7.29
 -- Версия PHP: 7.1.33
 
@@ -20,6 +20,57 @@ SET time_zone = "+00:00";
 --
 -- База данных: `mvc_project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `opencart_category`
+--
+
+CREATE TABLE `opencart_category` (
+  `id_category` int(15) NOT NULL,
+  `glav_category` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `name_category` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `attribute_group_category` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `url_category` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `catalog_category` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `nazvanie_papki_category` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `schet_category` int(15) NOT NULL,
+  `schet_max_category` int(15) NOT NULL,
+  `id_magazin` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `opencart_category`
+--
+
+INSERT INTO `opencart_category` (`id_category`, `glav_category`, `name_category`, `attribute_group_category`, `url_category`, `catalog_category`, `nazvanie_papki_category`, `schet_category`, `schet_max_category`, `id_magazin`) VALUES
+(4, '', 'Тельферы серии Т', 'электрические тали', '/catalog/telfery/type-t', 'telferu', 'telfery-serii-t', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `opencart_magazin`
+--
+
+CREATE TABLE `opencart_magazin` (
+  `id_magazin` int(15) NOT NULL,
+  `domain_magazin` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `url_skachivania_1_magazin` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `url_skachivania_2_magazin` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name_product_magazin` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `url_image_product_magazin` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `cena_product_magazin` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `atribute_key_product_magazin` varchar(1000) COLLATE utf8_unicode_ci NOT NULL,
+  `atribute_value_product_magazin` varchar(1000) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `opencart_magazin`
+--
+
+INSERT INTO `opencart_magazin` (`id_magazin`, `domain_magazin`, `url_skachivania_1_magazin`, `url_skachivania_2_magazin`, `name_product_magazin`, `url_image_product_magazin`, `cena_product_magazin`, `atribute_key_product_magazin`, `atribute_value_product_magazin`) VALUES
+(1, 'https://kranimport.ru', '//div[@class=&quot;wrap-page-goods&quot;]//div[@class=&quot;col-lg-6 col-md-6 col-sm-12 col-xs-12&quot;]//div[@class=&quot;col-lg-8 col-md-8 col-sm-9 col-xs-9&quot;]//a/@href', '', '//div[@class=&quot;page-slider&quot;]/h1[@class=&quot;page-title2&quot;]/text()', '//div[@class=&quot;page-slider&quot;]//li[@class=&quot;active-slide&quot;]/img/@src', '', '//div[@class=&quot;page-descr&quot;]//h3[position()&gt;1]/text()', '//div[@class=&quot;page-descr&quot;]//p/text()');
 
 -- --------------------------------------------------------
 
@@ -60,14 +111,6 @@ CREATE TABLE `sape_razdel` (
   `zapusk` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `nomer` int(5) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Дамп данных таблицы `sape_razdel`
---
-
-INSERT INTO `sape_razdel` (`id_razdel`, `name_razdel`, `date_next`, `date_start`, `date_end`, `shag_time`, `koef_time`, `kolichestvo_urls`, `prirost`, `id_project`, `zapusk`, `nomer`) VALUES
-(3399466, 'тельфер болгария2', '2020-04-25 17:54:45', NULL, NULL, 43, 120, 200, 'static', 2020546, 'on', 2),
-(3399467, 'тельфер цена', '2020-04-21 09:52:51', NULL, NULL, 4, 120, 12, 'static', 2020546, '', 1);
 
 -- --------------------------------------------------------
 
@@ -133,6 +176,18 @@ INSERT INTO `zadacha` (`zadacha_id`, `zadacha_user`, `zadacha_email`, `zadacha_t
 --
 
 --
+-- Индексы таблицы `opencart_category`
+--
+ALTER TABLE `opencart_category`
+  ADD UNIQUE KEY `id_category` (`id_category`);
+
+--
+-- Индексы таблицы `opencart_magazin`
+--
+ALTER TABLE `opencart_magazin`
+  ADD UNIQUE KEY `id_magazin` (`id_magazin`);
+
+--
 -- Индексы таблицы `sape_project`
 --
 ALTER TABLE `sape_project`
@@ -160,6 +215,18 @@ ALTER TABLE `zadacha`
 --
 -- AUTO_INCREMENT для сохранённых таблиц
 --
+
+--
+-- AUTO_INCREMENT для таблицы `opencart_category`
+--
+ALTER TABLE `opencart_category`
+  MODIFY `id_category` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `opencart_magazin`
+--
+ALTER TABLE `opencart_magazin`
+  MODIFY `id_magazin` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `sape_project`

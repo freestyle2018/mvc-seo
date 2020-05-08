@@ -3,25 +3,26 @@
 // Загрузка классов "на лету"
 spl_autoload_register(function ($className) {
 
-    $filename = strtolower($className) . '.php';
+    //$filename = strtolower($className) . '.php';
+    $filename = $className . '.php';
     // определяем класс и находим для него путь
     $expArr = explode('_', $className);
 
 
     if(empty($expArr[1]) OR $expArr[1] == 'Base'){
-        $folder = '\classes';
+        $folder = '/classes';
     }else{
         switch(strtolower($expArr[0])){
             case 'controller':
-                $folder = '\controllers';
+                $folder = '/controllers';
                 break;
 
             case 'model':
-                $folder = '\models';
+                $folder = '/models';
                 break;
 
             default:
-                $folder = '\classes';
+                $folder = '/classes';
                 break;
         }
     }

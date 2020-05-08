@@ -11,6 +11,11 @@ if (isset($elements)) {
 
 ?>
 
+<?php if(isset($url)){ ?>
+    <a target="_blank" href="/image/xpath.html">HTML</a>
+<?php } ?>
+
+
 <form method="post" action="/xpath/index">
     <p><b>Тестируем XPath:</b></p>
     <p>
@@ -23,6 +28,11 @@ if (isset($elements)) {
             <div class="box">Правило</div>
             <div class="box"><input type="text" size="120" name="pravilo" value="<?php if(isset($pravilo)) {echo htmlspecialchars($pravilo);} ?>"><br></div>
         </div>
+        <div class="box-row">
+            <div class="box">Curl</div>
+            <div class="box"><input type="checkbox" name="zapros" value="1"><br></div>
+        </div>
+
     </div>
 
     </p>

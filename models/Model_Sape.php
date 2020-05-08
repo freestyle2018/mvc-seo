@@ -111,7 +111,9 @@ Class Model_Sape{
             $row[$key] = $value;
         }
 
-        return $row;
+        if(isset($row)){
+            return $row;
+        }
     }
 
 

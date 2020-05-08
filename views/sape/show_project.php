@@ -1,8 +1,5 @@
 
-
-
-
-<?php //if($authentication === true){ ?>
+<div><a href="/sape">Разделы</a> - <a href="/sape/add_razdel">(добавить раздел)</a></div>
 
 <div >
     <?php echo "<a style=\"font-size:46px; float:left; padding-right: 7px;\" href='/sape/edit_razdel?id_project=".$project["id"]."'>" . $project["name"]."</a>"; ?>
@@ -22,4 +19,3 @@
 
     </div>
 <?php endforeach;?>
-<?php //} ?>

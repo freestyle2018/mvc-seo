@@ -54,7 +54,7 @@ Class Controller_Sape Extends Controller_Base {
         $id_project = self::$filter->out('int',(empty($_POST['id_project']) ? $_GET['id_project'] : $_POST['id_project']));
 
 
-        if(self::$authentication["auth"] === true && self::$status == "admin"){
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
             if($name_project != ""){
                 self::$sape->project_update($id_project, $name_project);
 
@@ -84,7 +84,7 @@ Class Controller_Sape Extends Controller_Base {
         $name_project = self::$filter->out('string',(empty($_POST['name_project']) ? '' : $_POST['name_project']));
         $kolichestvo_urls = self::$filter->out('string',(empty($_POST['kolichestvo_urls']) ? '' : $_POST['kolichestvo_urls']));
 
-        if(self::$authentication["auth"] === true && self::$status == "admin"){
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
             if($name_project != ""){
                 $project_id = self::$sape->project_add($name_project);
                 self::$sape_model->add_Razdel($project_id, $name_project, date("Y-m-d H:i:s"), $kolichestvo_urls);
@@ -103,7 +103,7 @@ Class Controller_Sape Extends Controller_Base {
     {
         $id_project = self::$filter->out('string',(empty($_GET['id_project']) ? '' : $_GET['id_project']));
 
-        if(self::$authentication["auth"] === true && self::$status == "admin"){
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
             self::$sape->project_delete($id_project);
             self::$sape_model->delete_Razdel($id_project);
             self::$sape_model->delete_all_urls_in_Razdel($id_project);
@@ -118,7 +118,7 @@ Class Controller_Sape Extends Controller_Base {
 
         $id_project = self::$filter->out('int',(empty($_GET['id_project']) ? '' : $_GET['id_project']));
 
-        if(self::$authentication["auth"] === true && self::$status == "admin"){
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
             if($id_project != ""){
                 $project = self::$sape->get_project($id_project);
                 $info = self::$sape->get_urls($id_project);
@@ -137,7 +137,7 @@ Class Controller_Sape Extends Controller_Base {
         $urls = empty($_POST['urls']) ? '' : $_POST['urls'];
         $id_project = self::$filter->out('int',(empty($_GET['id_project']) ? '' : $_GET['id_project']));
 
-        if(self::$authentication["auth"] === true && self::$status == "admin"){
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
             // Отображаем сам проект
             $project = self::$sape->get_project($id_project);
             $this->template->vars('project', $project);
@@ -164,7 +164,7 @@ Class Controller_Sape Extends Controller_Base {
 
     function delete_url()
     {
-        if(self::$authentication["auth"] === true && self::$status == "admin"){
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
             $id_url = self::$filter->out('int',(empty($_GET['id_url']) ? '' : $_GET['id_url']));
             self::$sape->url_delete($id_url);
 

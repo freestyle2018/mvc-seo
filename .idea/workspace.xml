@@ -2,18 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4b9589d-8ffa-42b1-b29d-a44b7f6e8d2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/views/magazin/edit_magazin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/Curl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/Load_Image.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/Magazin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/Model_Opencart.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/magazin/add_category.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/magazin/add_magazin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/magazin/edit_category.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/magazin/load_category.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/magazin/show_magazin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Filter.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Filter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/controller_base.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Controller_Base.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Pagination.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/registry.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Registry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/sort.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Sort.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/template.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Template.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/magazin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/sape.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/xpath.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/xpath.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/core.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/model_magazin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/model_db.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/model_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Magazin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/model_news.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_News.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/model_sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Sape.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/model_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_project.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_project.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpauthtest.sql" beforeDir="false" afterPath="$PROJECT_DIR$/phpauthtest.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/index/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/layouts/first_layouts.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/first_layouts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/magazin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/sape/add_razdel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/add_razdel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/sape/add_urls.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/add_urls.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/sape/edit_razdel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/edit_razdel.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/sape/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/sape/show_project.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/show_project.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/xpath/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/xpath/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,13 +134,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/magazin" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\admin\PhpstormProjects\mvc-seo" />
       <recent name="C:\Users\admin\PhpstormProjects\mvc-seo\views\sape" />
       <recent name="C:\Users\admin\PhpstormProjects\mvc-seo\classes" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\OpenServer\domains\localhost\views\magazin" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -151,7 +180,49 @@
       <workItem from="1588154575420" duration="4128000" />
       <workItem from="1588312723118" duration="11388000" />
       <workItem from="1588403379442" duration="12113000" />
-      <workItem from="1588487250859" duration="12266000" />
+      <workItem from="1588487250859" duration="15386000" />
+      <workItem from="1588570934618" duration="13364000" />
+      <workItem from="1588588029630" duration="395000" />
+      <workItem from="1588663804088" duration="11627000" />
+      <workItem from="1588737622860" duration="1711000" />
+      <workItem from="1588739412887" duration="1372000" />
+      <workItem from="1588740811299" duration="1785000" />
+      <workItem from="1588742622479" duration="1107000" />
+      <workItem from="1588743755207" duration="2300000" />
+      <workItem from="1588746433410" duration="1206000" />
+      <workItem from="1588748315399" duration="1785000" />
+      <workItem from="1588750131369" duration="1788000" />
+      <workItem from="1588751959509" duration="834000" />
+      <workItem from="1588753773791" duration="1787000" />
+      <workItem from="1588756080981" duration="1787000" />
+      <workItem from="1588757893784" duration="984000" />
+      <workItem from="1588760216760" duration="1785000" />
+      <workItem from="1588762027448" duration="1078000" />
+      <workItem from="1588825764753" duration="1639000" />
+      <workItem from="1588827503383" duration="1785000" />
+      <workItem from="1588829319105" duration="1565000" />
+      <workItem from="1588830909954" duration="1783000" />
+      <workItem from="1588832723214" duration="1621000" />
+      <workItem from="1588834621647" duration="754000" />
+      <workItem from="1588836433485" duration="2197000" />
+      <workItem from="1588840484928" duration="1787000" />
+      <workItem from="1588842300860" duration="1793000" />
+      <workItem from="1588844137902" duration="1784000" />
+      <workItem from="1588845947428" duration="1789000" />
+      <workItem from="1588847761137" duration="1153000" />
+      <workItem from="1588872192668" duration="1755000" />
+      <workItem from="1588909690246" duration="1708000" />
+      <workItem from="1588911461922" duration="1247000" />
+      <workItem from="1588913279182" duration="1733000" />
+      <workItem from="1588915093336" duration="1784000" />
+      <workItem from="1588916906290" duration="1786000" />
+      <workItem from="1588918836512" duration="1808000" />
+      <workItem from="1588928910612" duration="1408000" />
+      <workItem from="1588930745731" duration="1806000" />
+      <workItem from="1588932823106" duration="1783000" />
+      <workItem from="1588934752122" duration="1786000" />
+      <workItem from="1588936610696" duration="544000" />
+      <workItem from="1588938161522" duration="235000" />
     </task>
     <servers />
   </component>
@@ -167,18 +238,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="454" y="177" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1587208879611" />
-    <state x="518" y="286" key="NewPhpFileDialog" timestamp="1588442683272">
+    <state x="518" y="286" key="NewPhpFileDialog" timestamp="1588841097996">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="518" y="286" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1588442683272" />
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1588487727739">
+    <state x="518" y="286" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1588841097996" />
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1588938162099">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1588487727739" />
-    <state x="380" y="96" width="606" height="536" key="find.popup" timestamp="1588339382093">
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1588938162099" />
+    <state x="380" y="96" width="606" height="536" key="find.popup" timestamp="1588929354482">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="380" y="96" width="606" height="536" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1588339382093" />
+    <state x="380" y="96" width="606" height="536" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1588929354482" />
     <state x="424" y="5" key="refactoring.ChangeSignatureDialog" timestamp="1587232294243">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

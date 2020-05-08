@@ -18,19 +18,26 @@ Class Controller_XPath Extends Controller_Base {
 
             $url = $filter->out('string',(empty($_POST['url']) ? '' : $_POST['url']));
             $pravilo = (empty($_POST['pravilo']) ? '' : $_POST['pravilo']);
+            $zapros = (empty($_POST['zapros']) ? '' : $_POST['zapros']);
 
             if($url != "" && $pravilo != ""){
+
                 $doc = new DOMDocument();
                 $doc->preserveWhiteSpace=true;
                 $doc->formatOutput=false;
-                //$doc->loadHTMLFile("http://www.kazak39.com/news");
-                //@$doc->loadHTMLFile("https://kranimport.ru/catalog/telfery/type-t/t01-t17.html");
-                @$doc->loadHTMLFile($url);
-                //$doc->loadHTMLFile($content);
+
+                if($zapros != ''){
+                    $curl = new Curl();
+                    $stroka = $curl->index($url);
+
+                    @$doc->loadHTML($stroka);
+                }
+                else {
+                    @$doc->loadHTMLFile($url);
+                }
+
 
                 $xpath= new DOMXpath($doc);
-                //$elements = $xpath->query("//div[@id=\"block-system-main\"]//div[@class=\"view-content\"]/div//h3/a/text()");
-                //$elements = $xpath->query('//div[@class="page-descr"]//h3[position()>1]/text()');
                 $elements = $xpath->query($pravilo);
 
                 $this->template->vars('elements', $elements);

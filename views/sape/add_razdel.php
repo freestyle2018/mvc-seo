@@ -1,6 +1,5 @@
 
-
-<?php //echo $error; ?>
+<div><a href="/sape">Разделы</a> - <a href="/sape/add_razdel">(добавить раздел)</a></div>
 
 <form method="post" action="/sape/add_razdel">
     <p><b>Добавить раздел:</b></p>

@@ -1,4 +1,4 @@
-<?php //echo $error; ?>
+<div><a href="/sape">Разделы</a> - <a href="/sape/add_razdel">(добавить раздел)</a></div>
 
 <?php
     echo "<a style='font-size:26px; color:#000; text-decoration:underline;' href='/sape/show_project?id_project=".$project["id"]."'>".$project["name"]."</a>";
