@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Curl.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Curl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Load_Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Load_Image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/magazin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/telferu/seriya-t01--t17---telfer-elektricheskiy-kanatnyiy-statsionranyiy-v-ispolnennii-na-lapah_0..jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/telferu/telfery-serii-t/seriya-t01--t17---telfer-elektricheskiy-kanatnyiy-statsionranyiy-v-ispolnennii-na-lapah_0..jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/load_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/load_category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/xpath.html" beforeDir="false" afterPath="$PROJECT_DIR$/image/xpath.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Magazin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Opencart.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Opencart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_project.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_project.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/magazin/edit_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/edit_magazin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/magazin/show_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/show_magazin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +102,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -130,7 +128,11 @@
       <workItem from="1589409563656" duration="516000" />
       <workItem from="1589439387037" duration="601000" />
       <workItem from="1589443327962" duration="1297000" />
-      <workItem from="1589444637225" duration="321000" />
+      <workItem from="1589444637225" duration="689000" />
+      <workItem from="1589445337053" duration="261000" />
+      <workItem from="1589445983330" duration="423000" />
+      <workItem from="1589446419417" duration="1897000" />
+      <workItem from="1589449321540" duration="1454000" />
     </task>
     <servers />
   </component>
@@ -138,13 +140,13 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="461" y="162" key="SettingsEditor" timestamp="1589361616017">
+    <state x="461" y="162" key="SettingsEditor" timestamp="1589447004052">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589361616017" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589444637150">
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589447004052" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589449330577">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589444637150" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589449330577" />
   </component>
 </project>

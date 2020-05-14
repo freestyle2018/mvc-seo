@@ -59,6 +59,7 @@ Class Controller_Magazin Extends Controller_Base
         $url_skachivania_2_magazin = self::$filter->out('xpath', (empty($_POST['url_skachivania_2_magazin']) ? '' : $_POST['url_skachivania_2_magazin']));
         $name_product_magazin = self::$filter->out('xpath', (empty($_POST['name_product_magazin']) ? '' : $_POST['name_product_magazin']));
         $cena_product_magazin = self::$filter->out('xpath', (empty($_POST['cena_product_magazin']) ? '' : $_POST['cena_product_magazin']));
+        $article_product_magazin = self::$filter->out('xpath', (empty($_POST['article_product_magazin']) ? '' : $_POST['article_product_magazin']));
         $url_image_product_magazin = self::$filter->out('xpath', (empty($_POST['url_image_product_magazin']) ? '' : $_POST['url_image_product_magazin']));
         $atribute_key_product_magazin = self::$filter->out('xpath', (empty($_POST['atribute_key_product_magazin']) ? '' : $_POST['atribute_key_product_magazin']));
         $atribute_value_product_magazin = self::$filter->out('xpath', (empty($_POST['atribute_value_product_magazin']) ? '' : $_POST['atribute_value_product_magazin']));
@@ -72,6 +73,7 @@ Class Controller_Magazin Extends Controller_Base
                     "url_skachivania_2_magazin" => $url_skachivania_2_magazin,
                     "name_product_magazin" => $name_product_magazin,
                     "cena_product_magazin" => $cena_product_magazin,
+                    "article_product_magazin" => $article_product_magazin,
                     "url_image_product_magazin" => $url_image_product_magazin,
                     "atribute_key_product_magazin" => $atribute_key_product_magazin,
                     "atribute_value_product_magazin" => $atribute_value_product_magazin
@@ -229,6 +231,23 @@ Class Controller_Magazin Extends Controller_Base
         }
     }
 
+    function clone_category()
+    {
+        $id_category = self::$filter->out('xpath', (empty($_POST['id_category']) ? $_GET['id_category'] : $_POST['id_category']));
+        $id_magazin = self::$filter->out('xpath', (empty($_POST['id_magazin']) ? $_GET['id_magazin'] : $_POST['id_magazin']));
+
+        if (self::$authentication["auth"] === true && self::$authentication["status"] == "admin") {
+
+            $category = self::$magazin_model->show_Category($id_category);
+            $category["name_category"] = $category["name_category"]." (копия)";
+
+
+            self::$magazin_model->add_category_in_Magazin($category);
+            $this->show_magazin();
+
+        }
+    }
+
 
     function load_category()
     {
@@ -323,6 +342,7 @@ Class Controller_Magazin Extends Controller_Base
             $name_product_magazin = htmlspecialchars_decode($magazin['name_product_magazin']);
             $url_image_product_magazin = htmlspecialchars_decode($magazin['url_image_product_magazin']);
             $cena_product_magazin = htmlspecialchars_decode($magazin['cena_product_magazin']);
+            $article_product_magazin = htmlspecialchars_decode($magazin['article_product_magazin']);
             $atribute_key_product_magazin = htmlspecialchars_decode($magazin['atribute_key_product_magazin']);
             $atribute_value_product_magazin = htmlspecialchars_decode($magazin['atribute_value_product_magazin']);
 
@@ -366,6 +386,9 @@ Class Controller_Magazin Extends Controller_Base
                 $name_img = strtolower(substr($magazin->translit($name), 0, 90));
                 if($cena_product_magazin != ""){
                     $cena = $this->xpath_zapros($cena_product_magazin);
+                }
+                if($article_product_magazin != ""){
+                    $article = $this->xpath_zapros($article_product_magazin);
                 }
                 $array_img_new = $this->xpath_zapros($url_image_product_magazin, 'array');
                 // работаю с атрибутами продукта
@@ -465,6 +488,7 @@ Class Controller_Magazin Extends Controller_Base
                 $model = isset($atributu_parametr["model"])  ? $atributu_parametr["model"] : '';
                 $manufacturer_id = isset($manufacturer_id) ? $manufacturer_id : '';
                 $cena = isset($cena_product_magazin) ? $cena_product_magazin : '';
+                $article = isset($article_product_magazin) ? $article_product_magazin : '';
                 $dlina = isset($atributu_parametr["dlina"])  ? $atributu_parametr["dlina"] : '';
                 $wirina = isset($atributu_parametr["model"])  ? $atributu_parametr["wirina"] : '';
                 $vusota = isset($atributu_parametr["model"])  ? $atributu_parametr["vusota"] : '';
@@ -473,7 +497,7 @@ Class Controller_Magazin Extends Controller_Base
                 $proizvodstvo_id = isset($category_proizvodstvo["id"]) ? $category_proizvodstvo["id"] : '';
                 $seria_id = isset($category_seria["id"]) ? $category_seria["id"] : '';
 
-                self::$model_opencart->zapis_Product($name, $model, $manufacturer_id, $cena, $url_img_glav, $dlina, $wirina, $vusota, $array_img_new, $name_img, $catalog_category, $nazvanie_papki_category, $proizvodstvo, $glav_category_id, $category_id, $proizvodstvo_id, $seria_id, $mgomernui_massiv_attribytov);
+                self::$model_opencart->zapis_Product($name, $model, $manufacturer_id, $cena, $url_img_glav, $dlina, $wirina, $vusota, $array_img_new, $name_img, $catalog_category, $nazvanie_papki_category, $proizvodstvo, $glav_category_id, $category_id, $proizvodstvo_id, $seria_id, $mgomernui_massiv_attribytov,$article);
 
 
 

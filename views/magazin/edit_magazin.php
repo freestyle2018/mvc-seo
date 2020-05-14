@@ -25,6 +25,10 @@
                 <div class="box"><input type="text" size="120" name="cena_product_magazin" value="<?php echo $magazin["cena_product_magazin"]; ?>"><br></div>
             </div>
             <div class="box-row">
+                <div class="box">Артикул продукта</div>
+                <div class="box"><input type="text" size="120" name="cena_product_magazin" value="<?php echo $magazin["article_product_magazin"]; ?>"><br></div>
+            </div>
+            <div class="box-row">
                 <div class="box">Изображение продукта</div>
                 <div class="box"><input type="text" size="120" name="url_image_product_magazin" value="<?php echo $magazin["url_image_product_magazin"]; ?>"><br></div>
             </div>

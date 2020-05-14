@@ -53,6 +53,7 @@ Class Model_Magazin{
                                     url_skachivania_2_magazin = :url_skachivania_2_magazin,
                                     name_product_magazin = :name_product_magazin,
                                     cena_product_magazin = :cena_product_magazin,
+                                    article_product_magazin = :article_product_magazin,
                                     url_image_product_magazin = :url_image_product_magazin,
                                     atribute_key_product_magazin = :atribute_key_product_magazin,
                                     atribute_value_product_magazin  = :atribute_value_product_magazin
@@ -65,6 +66,7 @@ Class Model_Magazin{
         $stmt->bindParam(':url_skachivania_2_magazin', $magazin["url_skachivania_2_magazin"]);
         $stmt->bindParam(':name_product_magazin', $magazin["name_product_magazin"]);
         $stmt->bindParam(':cena_product_magazin', $magazin["cena_product_magazin"]);
+        $stmt->bindParam(':article_product_magazin', $magazin["article_product_magazin"]);
         $stmt->bindParam(':url_image_product_magazin', $magazin["url_image_product_magazin"]);
         $stmt->bindParam(':atribute_key_product_magazin', $magazin["atribute_key_product_magazin"]);
         $stmt->bindParam(':atribute_value_product_magazin', $magazin["atribute_value_product_magazin"]);

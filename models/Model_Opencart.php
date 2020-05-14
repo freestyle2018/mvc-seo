@@ -391,7 +391,7 @@ Class Model_Opencart{
 
 
 
-    public function zapis_Product($name, $model, $manufacturer_id, $cena, $url_img_glav, $dlina, $wirina, $vusota, $array_img_new, $name_img, $catalog_image, $nazvanie_papki_image, $proizvodstvo, $glav_category_id, $category_id, $proizvodstvo_id, $seria_id, $mgomernui_massiv_attribytov){
+    public function zapis_Product($name, $model, $manufacturer_id, $cena, $url_img_glav, $dlina, $wirina, $vusota, $array_img_new, $name_img, $catalog_image, $nazvanie_papki_image, $proizvodstvo, $glav_category_id, $category_id, $proizvodstvo_id, $seria_id, $mgomernui_massiv_attribytov, $article){
 
         $this->getConnection()->prepare("INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES (NULL, '".$model."', '', '', '', '', '', '', '0', 1, 7, '".$url_img_glav."', '".$manufacturer_id."', '1', '".$cena."', 0, 0, '".date('Y-m-d')."', '', 1, '".$dlina.".00000000', '".$wirina.".00000000', '".$vusota.".00000000', 1, 1, 1, 1, 1, 5, '".date('Y-m-d h:i:s')."', '".date('Y-m-d h:i:s')."')")->execute();
 

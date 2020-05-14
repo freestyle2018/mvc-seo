@@ -8,6 +8,7 @@
             <?php
             echo "<span class='title'>".$value["name_category"]."</span>";
             echo " - <a href='/magazin/edit_category?id_category=".$value["id_category"]."&id_magazin=".$magazin["id_magazin"]."'>Редактировать</a>";
+            echo " - <a href='/magazin/clone_category?id_category=".$value["id_category"]."&id_magazin=".$magazin["id_magazin"]."'>Клонировать</a>";
             echo " - <a href='/magazin/delete_category?id_category=".$value["id_category"]."&id_magazin=".$magazin["id_magazin"]."'>Удалить</a>";
             echo " - <a target='_blank' href='/magazin/load_category?id_category=".$value["id_category"]."&id_magazin=".$magazin["id_magazin"]."'>ЗАГРУЗИТЬ</a><br>\r\n";
             ?>
