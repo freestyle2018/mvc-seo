@@ -40,7 +40,7 @@ Class Model_Magazin{
 
 
     public function add_Magazin($domain_magazin){
-        $stmt = $this->getConnection()->prepare("INSERT INTO `opencart_magazin` (`id_magazin`, `domain_magazin`, `url_skachivania_1_magazin`, `url_skachivania_2_magazin`, `name_product_magazin`, `url_image_product_magazin`, `cena_product_magazin`, `atribute_key_product_magazin`, `atribute_value_product_magazin`) VALUES (NULL, '".$domain_magazin."', '', NULL, '', '', '', '', '')");
+        $stmt = $this->getConnection()->prepare("INSERT INTO `opencart_magazin` (`id_magazin`, `domain_magazin`, `url_skachivania_1_magazin`, `url_skachivania_2_magazin`, `name_product_magazin`, `url_image_product_magazin`, `cena_product_magazin`, `article_product_magazin`, `atribute_key_product_magazin`, `atribute_value_product_magazin`) VALUES (NULL, '".$domain_magazin."', '', NULL, '', '', '', '', '', '')");
         return $stmt->execute();
     }
 
@@ -99,7 +99,7 @@ Class Model_Magazin{
 
 
     public function add_category_in_Magazin($category){
-        $stmt = $this->getConnection()->prepare("INSERT INTO `opencart_category` (`id_category`, `glav_category`, `name_category`, `attribute_group_category`, `url_category`, `catalog_category`, `nazvanie_papki_category`, `schet_category`, `schet_max_category`, `id_magazin`) VALUES (NULL, :glav_category, :name_category, :attribute_group_category, :url_category, :catalog_category, :nazvanie_papki_category, :schet_category, :schet_max_category, :id_magazin)");
+        $stmt = $this->getConnection()->prepare("INSERT INTO `opencart_category` (`id_category`, `glav_category`, `name_category`, `attribute_group_category`, `url_category`, `catalog_category`, `nazvanie_papki_category`, `schet_category`, `schet_max_category`, `id_magazin`, `zapusk`, `zapusk_time`) VALUES (NULL, :glav_category, :name_category, :attribute_group_category, :url_category, :catalog_category, :nazvanie_papki_category, :schet_category, :schet_max_category, :id_magazin, :zapusk, :zapusk_time)");
 
         $stmt->bindParam(':glav_category', $category["glav_category"]);
         $stmt->bindParam(':name_category', $category["name_category"]);
@@ -110,6 +110,8 @@ Class Model_Magazin{
         $stmt->bindParam(':schet_category', $category["schet_category"]);
         $stmt->bindParam(':schet_max_category', $category["schet_max_category"]);
         $stmt->bindParam(':id_magazin', $category["id_magazin"]);
+        $stmt->bindParam(':zapusk', $category["zapusk"]);
+        $stmt->bindParam(':zapusk_time', $category["zapusk_time"]);
 
         return $stmt->execute();
     }
@@ -144,7 +146,9 @@ Class Model_Magazin{
                                     nazvanie_papki_category  = :nazvanie_papki_category,
                                     schet_category  = :schet_category,
                                     schet_max_category  = :schet_max_category,
-                                    id_magazin  = :id_magazin
+                                    id_magazin  = :id_magazin,
+                                    zapusk = :zapusk,
+                                    zapusk_time = :zapusk_time
                                     
                                     where id_category = :id_category");
 
@@ -158,6 +162,8 @@ Class Model_Magazin{
         $stmt->bindParam(':schet_max_category', $category["schet_max_category"]);
         $stmt->bindParam(':id_magazin', $category["id_magazin"]);
         $stmt->bindParam(':id_category', $category["id_category"]);
+        $stmt->bindParam(':zapusk', $category["zapusk"]);
+        $stmt->bindParam(':zapusk_time', $category["zapusk_time"]);
 
         $stmt->execute();
     }

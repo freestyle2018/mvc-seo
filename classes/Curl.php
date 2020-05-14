@@ -17,7 +17,7 @@ Class Curl {
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         $stroka = curl_exec($curl);
 
-        $newfile_img = fopen(URL_CATALOG."xpath.html", "w");
+        $newfile_img = fopen(URL_XPATH."xpath.html", "w");
         fwrite($newfile_img, $stroka);
 
         return $stroka;

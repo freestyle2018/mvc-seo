@@ -3,12 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cron.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Curl.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Curl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Magazin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cron.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/magazin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/image/xpath.html" beforeDir="false" afterPath="$PROJECT_DIR$/image/xpath.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Model_Magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Magazin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Model_Opencart.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Opencart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mvc_project.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_project.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/edit_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/edit_magazin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/magazin/add_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/add_category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/magazin/edit_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/edit_category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/magazin/load_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/load_category.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/magazin/show_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/show_magazin.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,6 +140,24 @@
       <workItem from="1589445983330" duration="423000" />
       <workItem from="1589446419417" duration="1897000" />
       <workItem from="1589449321540" duration="1454000" />
+      <workItem from="1589450786200" duration="607000" />
+      <workItem from="1589451807492" duration="830000" />
+      <workItem from="1589452651217" duration="501000" />
+      <workItem from="1589453166399" duration="694000" />
+      <workItem from="1589453871890" duration="798000" />
+      <workItem from="1589454679500" duration="4000" />
+      <workItem from="1589469285096" duration="61000" />
+      <workItem from="1589486154248" duration="748000" />
+      <workItem from="1589486925363" duration="772000" />
+      <workItem from="1589487708857" duration="966000" />
+      <workItem from="1589488687049" duration="295000" />
+      <workItem from="1589489411558" duration="3000" />
+      <workItem from="1589489686108" duration="1270000" />
+      <workItem from="1589490968922" duration="472000" />
+      <workItem from="1589491453759" duration="1493000" />
+      <workItem from="1589492957765" duration="271000" />
+      <workItem from="1589493239050" duration="419000" />
+      <workItem from="1589493669412" duration="383000" />
     </task>
     <servers />
   </component>
@@ -144,9 +169,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589447004052" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589449330577">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589494063754">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589449330577" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589494063754" />
   </component>
 </project>

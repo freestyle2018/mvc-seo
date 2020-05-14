@@ -23,7 +23,10 @@ define('PR_CY_URL', 'https://a.pr-cy.ru/api/v1.1.0');
 
 //define('URL_CATALOG', '/home/users/f/freestyle/domains/telfer-pro.ru/image/catalog/');
 define('URL_CATALOG', 'C:/OpenServer/domains/localhost/image/');
+define('URL_XPATH', 'C:/OpenServer/domains/localhost/image/');
 define('SLEEP_TIME', '3');
+
+define('SPEED_LOAD_PRODUCTS', 10); // в минутах
 
 
 

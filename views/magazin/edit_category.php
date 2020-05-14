@@ -55,6 +55,20 @@
             </div>
             <div class="box"><input type="text" size="120" name="schet_max_category" value="<?php echo $category["schet_max_category"]; ?>"><br></div>
         </div>
+        <div class="box-row">
+            <div class="box">
+                Запуск
+            </div>
+            <div class="box">
+                <input type="checkbox" name="zapusk" value="on" <?php if($category["zapusk"] == "on"){ echo "checked"; } ?>><br>
+            </div>
+        </div>
+        <div class="box-row">
+            <div class="box">
+                Время запуска
+            </div>
+            <div class="box"><input type="text" size="120" name="zapusk_time" value="<?php echo $category["zapusk_time"]; ?>"><br></div>
+        </div>
     </div>
     <input type="hidden" name="id_magazin" value="<?php echo $category["id_magazin"]; ?>">
 

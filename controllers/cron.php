@@ -26,4 +26,13 @@ Class Controller_Cron Extends Controller_Base {
         $this->template->view('index');
     }
 
+    function load_product()
+    {
+        $cron = new Cron();
+        $info = $cron->load_product();
+
+        $this->template->vars('info', $info);
+        $this->template->view('index');
+    }
+
 }

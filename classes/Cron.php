@@ -51,8 +51,8 @@ Class Cron {
         $pr_cy = new PrCy();
 
         $row = $sape_model->show_Razdels(); // просматриваем все разделы
-        $i = 0;
 
+        $i = 0;
         while ($i <= sizeof($row) - 1){
 
             $nomer = $row[$i]["nomer"] + 1;
@@ -77,15 +77,42 @@ Class Cron {
 
                 $j++;
             }
-
-
-
-
-
-
             $i++;
         }
+    }
 
+
+
+
+
+    function load_product() {
+        $magazin_model = new Model_Magazin();
+        $magazins = $magazin_model->show_Magazins();
+
+        $i = 0;
+        while ($i <= sizeof($magazins) - 1){
+            $id_magazin = $magazins[$i]["id_magazin"];
+            $categories = $magazin_model->show_categories_in_Magazin($id_magazin);
+
+            if(isset($categories)){
+                $j = 0;
+                while ($j <= sizeof($categories) - 1){
+                    $id_category = $categories[$j]["id_category"];
+
+                    $schet = $categories[$j]["schet_category"];
+                    $max_schet = $categories[$j]["schet_max_category"];
+                    $time_zapusk = $categories[$j]["zapusk_time"];
+
+                    if($categories[$j]["zapusk"] == "on" && (int)strtotime($time_zapusk) < (int)strtotime(date("Y-m-d H:i:s"))){
+                        $magazin = new Magazin();
+                        $magazin->load_products($id_magazin, $id_category, $schet, $max_schet);
+                    }
+
+                    $j += 1;
+                }
+            }
+            $i += 1;
+        }
     }
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 14 2020 г., 12:47
+-- Время создания: Май 15 2020 г., 01:07
 -- Версия сервера: 5.7.29
 -- Версия PHP: 7.3.17
 
@@ -37,15 +37,18 @@ CREATE TABLE `opencart_category` (
   `nazvanie_papki_category` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `schet_category` int(15) NOT NULL,
   `schet_max_category` int(15) NOT NULL,
-  `id_magazin` int(10) NOT NULL
+  `id_magazin` int(10) NOT NULL,
+  `zapusk` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `zapusk_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `opencart_category`
 --
 
-INSERT INTO `opencart_category` (`id_category`, `glav_category`, `name_category`, `attribute_group_category`, `url_category`, `catalog_category`, `nazvanie_papki_category`, `schet_category`, `schet_max_category`, `id_magazin`) VALUES
-(4, '', 'Тельферы серии Т', 'электрические тали', '/catalog/telfery/type-t?page=', 'telferu', 'telfery-serii-t', 2, 3, 1);
+INSERT INTO `opencart_category` (`id_category`, `glav_category`, `name_category`, `attribute_group_category`, `url_category`, `catalog_category`, `nazvanie_papki_category`, `schet_category`, `schet_max_category`, `id_magazin`, `zapusk`, `zapusk_time`) VALUES
+(4, '', 'Тельферы серии Т', 'электрические тали', '/catalog/telfery/type-t?page=', 'telferu', 'telfery-serii-t', 4, 3, 1, '', '2020-05-14 00:05:54'),
+(8, '', 'Тельферы серии NV', 'электрические тали', '/catalog/telfery/type-t?page=', 'telferu', 'telfery-serii-t', 2, 3, 1, '', '2020-05-14 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -71,7 +74,8 @@ CREATE TABLE `opencart_magazin` (
 --
 
 INSERT INTO `opencart_magazin` (`id_magazin`, `domain_magazin`, `url_skachivania_1_magazin`, `url_skachivania_2_magazin`, `name_product_magazin`, `url_image_product_magazin`, `cena_product_magazin`, `article_product_magazin`, `atribute_key_product_magazin`, `atribute_value_product_magazin`) VALUES
-(1, 'https://kranimport.ru', '//div[@class=&quot;wrap-page-goods&quot;]//div[@class=&quot;col-lg-6 col-md-6 col-sm-12 col-xs-12&quot;]//div[@class=&quot;col-lg-8 col-md-8 col-sm-9 col-xs-9&quot;]//a/@href', '', '//div[@class=&quot;page-slider&quot;]/h1[@class=&quot;page-title2&quot;]/text()', '//div[@class=&quot;page-slider&quot;]//li[@class=&quot;active-slide&quot;]/img/@src', '', '', '//div[@class=&quot;page-descr&quot;]//h3[position()&gt;1]/text()', '//div[@class=&quot;page-descr&quot;]//p/text()');
+(1, 'https://kranimport.ru', '//div[@class=&quot;wrap-page-goods&quot;]//div[@class=&quot;col-lg-6 col-md-6 col-sm-12 col-xs-12&quot;]//div[@class=&quot;col-lg-8 col-md-8 col-sm-9 col-xs-9&quot;]//a/@href', '', '//div[@class=&quot;page-slider&quot;]/h1[@class=&quot;page-title2&quot;]/text()', '//div[@class=&quot;page-slider&quot;]//li[@class=&quot;active-slide&quot;]/img/@src', '', '', '//div[@class=&quot;page-descr&quot;]//h3[position()&gt;1]/text()', '//div[@class=&quot;page-descr&quot;]//p/text()'),
+(2, 'https://gortorgsnab.ru', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -221,13 +225,13 @@ ALTER TABLE `zadacha`
 -- AUTO_INCREMENT для таблицы `opencart_category`
 --
 ALTER TABLE `opencart_category`
-  MODIFY `id_category` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_category` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `opencart_magazin`
 --
 ALTER TABLE `opencart_magazin`
-  MODIFY `id_magazin` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_magazin` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `sape_project`

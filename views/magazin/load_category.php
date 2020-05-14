@@ -45,6 +45,8 @@
                 $("#submit_no_stop").attr("disabled", true);
             },
             success: function(data){
+                //$(".answer").html(data);
+
                 data = JSON.parse(data);
 
                 schet = data['schet'];
@@ -52,7 +54,7 @@
 
                 $(".answer_one").html("Завершена загрузка!");
 
-                if(schet <= max_schet) {
+                if(schet < max_schet) {
                     $(".answer").html('Спарсить ' + data['schet'] + ' страницу?'); // при успешном получении ответа от сервера, заносим полученные данные в элемент с классом answer
                     $("#submit").attr("disabled", false);
                     $("#submit_no_stop").attr("disabled", false);
@@ -71,6 +73,7 @@
                 }
                 else {
                     $(".answer").html('<h3>Задание выполнено!</h3>'); // при успешном получении ответа от сервера, заносим полученные данные в элемент с классом answer
+                    $('.schet').val(data['schet']);
                     $("#submit").attr("disabled", true);
                     $("#submit_no_stop").attr("disabled", true);
                     load_bez_ostanovki == "off"
