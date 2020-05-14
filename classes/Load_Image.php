@@ -43,8 +43,8 @@ Class Load_Image {
 
             $curl = new Curl();
 
-            $url_image = $domain."/".$array_img_new[$y];
-            $copy_img = $curl->index($url_image);
+            $url_image = $domain.$array_img_new[$y];
+            $copy_img = $curl->image($url_image);
 
             $rasshirenie = $this->rasshirenie($url_image);
 

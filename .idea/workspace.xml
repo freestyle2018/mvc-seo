@@ -1,46 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c4b9589d-8ffa-42b1-b29d-a44b7f6e8d2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/classes/Curl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/Load_Image.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/Magazin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Model_Opencart.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/magazin/add_category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/magazin/add_magazin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/magazin/edit_category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/magazin/load_category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/magazin/show_magazin.php" afterDir="false" />
+    <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/controller_base.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Controller_Base.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Pagination.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/registry.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Registry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/sort.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Sort.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/template.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Template.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Curl.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Curl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Load_Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Load_Image.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/magazin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/sape.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/xpath.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/xpath.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/core.php" beforeDir="false" afterPath="$PROJECT_DIR$/core/core.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model_db.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Magazin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model_news.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_News.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model_sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Sape.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model_users.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvc_project.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_project.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpauthtest.sql" beforeDir="false" afterPath="$PROJECT_DIR$/phpauthtest.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/index/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/first_layouts.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/first_layouts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/sape/add_razdel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/add_razdel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/sape/add_urls.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/add_urls.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/sape/edit_razdel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/edit_razdel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/sape/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/sape/show_project.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/show_project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/xpath/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/xpath/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/telferu/seriya-t01--t17---telfer-elektricheskiy-kanatnyiy-statsionranyiy-v-ispolnennii-na-lapah_0..jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/telferu/telfery-serii-t/seriya-t01--t17---telfer-elektricheskiy-kanatnyiy-statsionranyiy-v-ispolnennii-na-lapah_0..jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/magazin/load_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/load_category.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +94,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/css-selector" />
     </include_path>
   </component>
-  <component name="ProjectId" id="1ac4KL3AphVpOYuHrBvradMRTXx" />
+  <component name="ProjectId" id="1bqZHDevS3UZrmuPQ7HCPo6Pu8X" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -132,97 +103,34 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/magazin" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\admin\PhpstormProjects\mvc-seo" />
-      <recent name="C:\Users\admin\PhpstormProjects\mvc-seo\views\sape" />
-      <recent name="C:\Users\admin\PhpstormProjects\mvc-seo\classes" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\OpenServer\OpenServer\domains\localhost\views\magazin" />
-    </key>
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c4b9589d-8ffa-42b1-b29d-a44b7f6e8d2b" name="Default Changelist" comment="" />
-      <created>1587021482366</created>
+      <changelist id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="" />
+      <created>1589361493756</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1587021482366</updated>
-      <workItem from="1587021484038" duration="9709000" />
-      <workItem from="1587104724376" duration="10876000" />
-      <workItem from="1587121616850" duration="8191000" />
-      <workItem from="1587149618024" duration="3471000" />
-      <workItem from="1587153573543" duration="436000" />
-      <workItem from="1587193821088" duration="23986000" />
-      <workItem from="1587371777448" duration="8991000" />
-      <workItem from="1587392445608" duration="18439000" />
-      <workItem from="1587443285552" duration="11837000" />
-      <workItem from="1587533316201" duration="5376000" />
-      <workItem from="1587558674617" duration="9003000" />
-      <workItem from="1587714353547" duration="7815000" />
-      <workItem from="1587727752027" duration="1310000" />
-      <workItem from="1587814048774" duration="5009000" />
-      <workItem from="1587832213018" duration="3628000" />
-      <workItem from="1587908045278" duration="8260000" />
-      <workItem from="1587999915682" duration="6395000" />
-      <workItem from="1588057527885" duration="187000" />
-      <workItem from="1588058224836" duration="2248000" />
-      <workItem from="1588063870709" duration="4865000" />
-      <workItem from="1588099064209" duration="3112000" />
-      <workItem from="1588154575420" duration="4128000" />
-      <workItem from="1588312723118" duration="11388000" />
-      <workItem from="1588403379442" duration="12113000" />
-      <workItem from="1588487250859" duration="15386000" />
-      <workItem from="1588570934618" duration="13364000" />
-      <workItem from="1588588029630" duration="395000" />
-      <workItem from="1588663804088" duration="11627000" />
-      <workItem from="1588737622860" duration="1711000" />
-      <workItem from="1588739412887" duration="1372000" />
-      <workItem from="1588740811299" duration="1785000" />
-      <workItem from="1588742622479" duration="1107000" />
-      <workItem from="1588743755207" duration="2300000" />
-      <workItem from="1588746433410" duration="1206000" />
-      <workItem from="1588748315399" duration="1785000" />
-      <workItem from="1588750131369" duration="1788000" />
-      <workItem from="1588751959509" duration="834000" />
-      <workItem from="1588753773791" duration="1787000" />
-      <workItem from="1588756080981" duration="1787000" />
-      <workItem from="1588757893784" duration="984000" />
-      <workItem from="1588760216760" duration="1785000" />
-      <workItem from="1588762027448" duration="1078000" />
-      <workItem from="1588825764753" duration="1639000" />
-      <workItem from="1588827503383" duration="1785000" />
-      <workItem from="1588829319105" duration="1565000" />
-      <workItem from="1588830909954" duration="1783000" />
-      <workItem from="1588832723214" duration="1621000" />
-      <workItem from="1588834621647" duration="754000" />
-      <workItem from="1588836433485" duration="2197000" />
-      <workItem from="1588840484928" duration="1787000" />
-      <workItem from="1588842300860" duration="1793000" />
-      <workItem from="1588844137902" duration="1784000" />
-      <workItem from="1588845947428" duration="1789000" />
-      <workItem from="1588847761137" duration="1153000" />
-      <workItem from="1588872192668" duration="1755000" />
-      <workItem from="1588909690246" duration="1708000" />
-      <workItem from="1588911461922" duration="1247000" />
-      <workItem from="1588913279182" duration="1733000" />
-      <workItem from="1588915093336" duration="1784000" />
-      <workItem from="1588916906290" duration="1786000" />
-      <workItem from="1588918836512" duration="1808000" />
-      <workItem from="1588928910612" duration="1408000" />
-      <workItem from="1588930745731" duration="1806000" />
-      <workItem from="1588932823106" duration="1783000" />
-      <workItem from="1588934752122" duration="1786000" />
-      <workItem from="1588936610696" duration="544000" />
-      <workItem from="1588938161522" duration="235000" />
+      <updated>1589361493756</updated>
+      <workItem from="1589361496780" duration="122000" />
+      <workItem from="1589361627353" duration="606000" />
+      <workItem from="1589362510461" duration="847000" />
+      <workItem from="1589365123123" duration="713000" />
+      <workItem from="1589365852532" duration="1796000" />
+      <workItem from="1589367664614" duration="1468000" />
+      <workItem from="1589369143459" duration="1140000" />
+      <workItem from="1589403319873" duration="605000" />
+      <workItem from="1589405020426" duration="1797000" />
+      <workItem from="1589406879999" duration="861000" />
+      <workItem from="1589407752043" duration="1797000" />
+      <workItem from="1589409563656" duration="516000" />
+      <workItem from="1589439387037" duration="601000" />
+      <workItem from="1589443327962" duration="1297000" />
+      <workItem from="1589444637225" duration="321000" />
     </task>
     <servers />
   </component>
@@ -230,33 +138,13 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="462" y="105" key="FileChooserDialogImpl" timestamp="1588057713615">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="461" y="162" key="SettingsEditor" timestamp="1589361616017">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="462" y="105" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588057713615" />
-    <state x="454" y="177" key="NewPhpClassDialog" timestamp="1587208879611">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589361616017" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589444637150">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="454" y="177" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1587208879611" />
-    <state x="518" y="286" key="NewPhpFileDialog" timestamp="1588841097996">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="518" y="286" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1588841097996" />
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1588938162099">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1588938162099" />
-    <state x="380" y="96" width="606" height="536" key="find.popup" timestamp="1588929354482">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="380" y="96" width="606" height="536" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1588929354482" />
-    <state x="424" y="5" key="refactoring.ChangeSignatureDialog" timestamp="1587232294243">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="424" y="5" key="refactoring.ChangeSignatureDialog/0.0.1366.728@0.0.1366.728" timestamp="1587232294243" />
-    <state x="339" y="157" key="run.anything.popup" timestamp="1587126961005">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="339" y="157" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1587126961005" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589444637150" />
   </component>
 </project>

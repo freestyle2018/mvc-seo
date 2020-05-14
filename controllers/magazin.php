@@ -332,7 +332,7 @@ Class Controller_Magazin Extends Controller_Base
             }
 
             // Получаем список urls на продукты в категории
-            @self::$doc_category->loadHTMLFile($domain_magazin.$url_category);
+            @self::$doc_category->loadHTMLFile($domain_magazin.$url_category.$schet);
             $xpath_category = new DOMXpath(self::$doc_category);
             $urls_product = $xpath_category->query($url_skachivania_1_magazin);
 
@@ -480,11 +480,15 @@ Class Controller_Magazin Extends Controller_Base
 
 
             }
-
             $schet += 1;
 
+            $category = self::$magazin_model->show_Category($id_category);
+            $category["schet_category"] = $schet;
+            self::$magazin_model->update_Category($category);
+
+
             //header("Content-type: application/json; charset=utf-8");
-            echo '{"schet":"'.$schet.'"}';
+            echo '{"schet":'.$schet.'}';
 
         }
 

@@ -22,7 +22,7 @@ define('PR_CY_KEY', 'vRzJ4elVsK2ZUL1ZGZ0lUU1BrYmtpND0');
 define('PR_CY_URL', 'https://a.pr-cy.ru/api/v1.1.0');
 
 //define('URL_CATALOG', '/home/users/f/freestyle/domains/telfer-pro.ru/image/catalog/');
-define('URL_CATALOG', 'C:/OpenServer/OpenServer/domains/localhost/image/');
+define('URL_CATALOG', 'C:/OpenServer/domains/localhost/image/');
 define('SLEEP_TIME', '3');
 
 
