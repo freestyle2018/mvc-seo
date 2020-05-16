@@ -19,7 +19,7 @@ class Filter
             }
         }
         else if($datchik == 'string'){
-            if(preg_match('/[^a-zA-Zа-яА-Я0-9 \-\:]/ui', $parametr)){
+            if(preg_match('/[a-zA-Zа-яА-Я0-9\s\-:]+/ui', $parametr)){
                 $value = $parametr;
                 return $value;
             }

@@ -9,6 +9,7 @@
         Шаг времени: <input type="text" name="shag_time" value="<?php echo $info_db["shag_time"]; ?>"><br>
         Количество urls: <input type="text" name="kolichestvo_urls" value="<?php echo $info_db["kolichestvo_urls"]; ?>"><br>
         Номер: <input type="text" name="nomer" value="<?php echo $info_db["nomer"]; ?>"><br>
+        Дата_index: <input type="text" name="date_index" value="<?php echo $info_db["date_index"]; ?>"><br>
         <input type="hidden" name="id_project" value="<?php echo $id_project; ?>">
     </p>
     <p><input type="submit">

@@ -55,29 +55,48 @@ Class Cron {
         $i = 0;
         while ($i <= sizeof($row) - 1){
 
-            $nomer = $row[$i]["nomer"] + 1;
-            $id_razdel = $row[$i]["id_razdel"];
+            // проверяю пришло ли время проверки индексации
+            if((int)strtotime($row[$i]["date_index"]) < (int)strtotime(date("Y-m-d H:i:s"))){
+                $nomer = $row[$i]["nomer"] + 1;
+                $id_razdel = $row[$i]["id_razdel"];
 
-            // получает весь список urls которые меньше nomer (т.е. уже закуплены)
-            $info_urls = $sape_model->get_urls_in_razdel($id_razdel, $nomer);
+                // получает весь список urls которые меньше nomer (т.е. уже закуплены)
+                $info_urls = $sape_model->get_urls_in_razdel($id_razdel, $nomer);
+
+                $j = $nomer - SAPE_KOLVO_PROVERKI_INDEX_URL;    // проверяю последние ссылки
+                if($j < 0){$j = 0;}
+
+                while ($j <= sizeof($info_urls) - 1){
+
+                    $name_url = $info_urls[$j]["name_url"];
+                    $id_url   = $info_urls[$j]["id_url"];
 
 
-            $j = 0;
-            while ($j <= sizeof($info_urls) - 1){
+                    if($info_urls[$j]["status"] == 0){
+                        $index = $pr_cy->start($name_url);
 
-                $name_url = $info_urls[$j]["name_url"];
-                $id_url   = $info_urls[$j]["id_url"];
+                        if($index == true){
+                            $sape = new Sape();
+                            $sape->delete_url($id_url);
 
-                $index = $pr_cy->start($name_url);
+                            // меняем статус ссылки, что проиндексирован
+                            $info_urls[$j]["status"] = 1;
+                            $sape_model->url_update($info_urls[$j]);
+                        }
+                    }
 
-                if($index == true){
-                    $sape = new Sape();
-                    $sape->delete_url($id_url);
+                    $j++;
                 }
+                $i++;
 
-                $j++;
+                // Изменяем данные
+                $date_index = mktime(date("H") + SAPE_SHAG_INDEX_TIME, date("i"), date("s"), date("m")  , date("d"), date("Y"));
+                $row[$i]["date_next"] = date("Y-m-d H:i:s", $date_index);
+
+                // Сохраняем razdel в базе данных изменив date_index
+                $sape_model->update_Razdel($row[$i]);
             }
-            $i++;
+
         }
     }
 

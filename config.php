@@ -17,6 +17,8 @@ define('SAPE_NAME', 'free_style22');
 define('SAPE_TOKEN', 'e068b8f255f021175995b05a1aeeecec36bc52d9e16be77cf561c1a18202ba22');
 define('SAPE_ID_URL', '115319434'); // id рабочей ссылки
 define('SAPE_FOLDER_ID', '2020546'); // id раздела
+define('SAPE_SHAG_INDEX_TIME', 12); // в часах
+define('SAPE_KOLVO_PROVERKI_INDEX_URL', 40); // количество последних ссылок, которых необходимо проверить
 
 define('PR_CY_KEY', 'vRzJ4elVsK2ZUL1ZGZ0lUU1BrYmtpND0');
 define('PR_CY_URL', 'https://a.pr-cy.ru/api/v1.1.0');

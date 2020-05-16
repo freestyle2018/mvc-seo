@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 15 2020 г., 01:07
+-- Время создания: Май 16 2020 г., 21:15
 -- Версия сервера: 5.7.29
 -- Версия PHP: 7.3.17
 
@@ -114,7 +114,8 @@ CREATE TABLE `sape_razdel` (
   `prirost` enum('static','dinamic') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'static',
   `id_project` int(10) NOT NULL,
   `zapusk` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `nomer` int(5) NOT NULL DEFAULT '0'
+  `nomer` int(5) NOT NULL DEFAULT '0',
+  `date_index` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -126,24 +127,25 @@ CREATE TABLE `sape_razdel` (
 CREATE TABLE `sape_url` (
   `id_url` int(15) NOT NULL,
   `name_url` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `id_razdel` int(5) NOT NULL
+  `id_razdel` int(5) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `sape_url`
 --
 
-INSERT INTO `sape_url` (`id_url`, `name_url`, `id_razdel`) VALUES
-(120521954, 'http://dcsgvrg.ru', 3399345),
-(120521956, 'http://aegesh.ru', 3399345),
-(120521958, 'http://kjvaergeg.ru', 3399345),
-(120545023, 'http://sdvafb.ru', 3399466),
-(120547774, 'http://adcwrrwg.ru', 3399466),
-(120547775, 'http://sdvar.ru', 3399466),
-(120547776, 'http://sdvwvarearb.ru', 3399466),
-(120547778, 'http://adcwrrwg.ucoz.ru', 3399467),
-(120547779, 'http://sdvar.ucoz.ru', 3399467),
-(120547780, 'http://sdvwvarearb.ucoz.ru', 3399467);
+INSERT INTO `sape_url` (`id_url`, `name_url`, `id_razdel`, `status`) VALUES
+(120521954, 'http://dcsgvrg.ru', 3399345, 0),
+(120521956, 'http://aegesh.ru', 3399345, 0),
+(120521958, 'http://kjvaergeg.ru', 3399345, 0),
+(120545023, 'http://sdvafb.ru', 3399466, 0),
+(120547774, 'http://adcwrrwg.ru', 3399466, 0),
+(120547775, 'http://sdvar.ru', 3399466, 0),
+(120547776, 'http://sdvwvarearb.ru', 3399466, 0),
+(120547778, 'http://adcwrrwg.ucoz.ru', 3399467, 0),
+(120547779, 'http://sdvar.ucoz.ru', 3399467, 0),
+(120547780, 'http://sdvwvarearb.ucoz.ru', 3399467, 0);
 
 -- --------------------------------------------------------
 
@@ -225,13 +227,13 @@ ALTER TABLE `zadacha`
 -- AUTO_INCREMENT для таблицы `opencart_category`
 --
 ALTER TABLE `opencart_category`
-  MODIFY `id_category` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_category` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `opencart_magazin`
 --
 ALTER TABLE `opencart_magazin`
-  MODIFY `id_magazin` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_magazin` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `sape_project`

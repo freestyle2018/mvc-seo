@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Curl.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Curl.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/xpath.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/xpath.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/xpath.html" beforeDir="false" afterPath="$PROJECT_DIR$/image/xpath.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localhost.rar" beforeDir="false" afterPath="$PROJECT_DIR$/localhost.rar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cron.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Filter.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Filter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/sape.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Sape.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/sape/edit_razdel.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/sape/edit_razdel.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +156,15 @@
       <workItem from="1589540170523" duration="647000" />
       <workItem from="1589547483114" duration="656000" />
       <workItem from="1589550486696" duration="1153000" />
-      <workItem from="1589623725338" duration="358000" />
+      <workItem from="1589623725338" duration="1262000" />
+      <workItem from="1589646135469" duration="889000" />
+      <workItem from="1589647035308" duration="704000" />
+      <workItem from="1589647750580" duration="687000" />
+      <workItem from="1589648507279" duration="1323000" />
+      <workItem from="1589649842291" duration="262000" />
+      <workItem from="1589650115782" duration="1164000" />
+      <workItem from="1589651290633" duration="775000" />
+      <workItem from="1589652476403" duration="201000" />
     </task>
     <servers />
   </component>
@@ -165,9 +176,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1589447004052" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589623792901">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589652476185">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589623792901" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589652476185" />
   </component>
 </project>

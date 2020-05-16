@@ -16,9 +16,9 @@ Class Model_Sape{
     }
 
 
-    public function add_Razdel($id_razdel, $name_razdel, $date_next, $kolichestvo_urls, $date_start = null, $date_end = null, $shag_time = 4, $koef_time = 120, $prirost = 'static', $id_folder = SAPE_FOLDER_ID, $zapusk = 'off', $nomer = 0){
+    public function add_Razdel($id_razdel, $name_razdel, $date_next, $kolichestvo_urls, $date_start = null, $date_end = null, $shag_time = 4, $koef_time = 120, $prirost = 'static', $id_folder = SAPE_FOLDER_ID, $zapusk = '', $nomer = 0){
 
-        $stmt = $this->getConnection()->prepare("INSERT INTO `sape_razdel` (`id_razdel`, `name_razdel`, `date_next`, `date_start`, `date_end`, `shag_time`, `koef_time`, `kolichestvo_urls`, `prirost`, `id_project`, `zapusk`, `nomer`) VALUES (:id_razdel, :name_razdel, :date_next, NULL, NULL, :shag_time, :koef_time, :kolichestvo_urls, :prirost, :id_folder, :zapusk, :nomer)");
+        $stmt = $this->getConnection()->prepare("INSERT INTO `sape_razdel` (`id_razdel`, `name_razdel`, `date_next`, `date_start`, `date_end`, `shag_time`, `koef_time`, `kolichestvo_urls`, `prirost`, `id_project`, `zapusk`, `nomer`, `date_index`) VALUES (:id_razdel, :name_razdel, :date_next, NULL, NULL, :shag_time, :koef_time, :kolichestvo_urls, :prirost, :id_folder, :zapusk, :nomer, NULL)");
 
         $stmt->bindParam(':id_razdel', $id_razdel);
         $stmt->bindParam(':name_razdel', $name_razdel);
@@ -65,7 +65,8 @@ Class Model_Sape{
                                     prirost = :prirost,
                                     id_project = :id_project,
                                     zapusk = :zapusk,
-                                    nomer = :nomer 
+                                    nomer = :nomer, 
+                                    date_index = :date_index
                                     
                                     where id_razdel = :id_razdel");
 
@@ -80,6 +81,7 @@ Class Model_Sape{
         $stmt->bindParam(':id_project', $razdel["id_project"]);
         $stmt->bindParam(':zapusk', $razdel["zapusk"]);
         $stmt->bindParam(':nomer', $razdel["nomer"]);
+        $stmt->bindParam(':date_index', $razdel["date_index"]);
 
         $stmt->bindParam(':id_razdel', $razdel["id_razdel"]);
 
@@ -133,7 +135,7 @@ Class Model_Sape{
 
 
     public function url_add($id_url, $name_url, $id_project){
-        $stmt = $this->getConnection()->prepare("INSERT INTO `sape_url` (`id_url`, `name_url`, `id_razdel`) VALUES (:id_url, :name_url, :id_project)");
+        $stmt = $this->getConnection()->prepare("INSERT INTO `sape_url` (`id_url`, `name_url`, `id_razdel`, `status`) VALUES (:id_url, :name_url, :id_project, '0')");
 
         $stmt->bindParam(':id_url', $id_url);
         $stmt->bindParam(':name_url', $name_url);
@@ -141,6 +143,26 @@ Class Model_Sape{
 
         $stmt->execute();
     }
+
+
+
+    public function url_update($url){
+        $stmt = $this->getConnection()->prepare("UPDATE sape_url set 
+                                    name_url = :name_url,
+                                    id_razdel = :id_razdel,
+                                    status = :status
+                                    
+                                    where id_url = :id_url");
+
+        $stmt->bindParam(':id_url', $url["id_url"]);
+        $stmt->bindParam(':name_url', $url["name_url"]);
+        $stmt->bindParam(':id_razdel', $url["id_razdel"]);
+        $stmt->bindParam(':status', $url["status"]);
+
+        $stmt->execute();
+    }
+
+
 
 
     public function get_url_for_zakupka($id_razdel, $nomer){
