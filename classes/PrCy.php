@@ -15,7 +15,9 @@ Class PrCy {
 
     function start($name_domain) {
         $this->create_project($name_domain);
-        $this->proverka_index($name_domain);
+        $otvet = $this->proverka_index($name_domain);
+
+        return $otvet;
     }
 
     function create_project($name_domain) {

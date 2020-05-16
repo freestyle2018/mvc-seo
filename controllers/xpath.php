@@ -36,6 +36,9 @@ Class Controller_XPath Extends Controller_Base {
                     @$doc->loadHTMLFile($url);
                 }
 
+                $newfile_img = fopen(URL_XPATH."xpath.html", "w");
+                fwrite($newfile_img, $doc->saveHTML());
+
 
                 $xpath= new DOMXpath($doc);
                 $elements = $xpath->query($pravilo);
