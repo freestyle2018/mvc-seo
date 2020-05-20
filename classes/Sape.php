@@ -160,6 +160,8 @@ Class Sape {
 
             //self::$client->call('sape.placement_create', array($id_plojadki, $id_url, $name_url));
             self::$client->call('sape.placement_create', array($id_plojadki, $id_url, $name_url));
+
+            $x += 1;
         }
     }
 
