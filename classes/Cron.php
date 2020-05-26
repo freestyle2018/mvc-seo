@@ -91,7 +91,7 @@ Class Cron {
 
                 // Изменяем данные
                 $date_index = mktime(date("H") + SAPE_SHAG_INDEX_TIME, date("i"), date("s"), date("m")  , date("d"), date("Y"));
-                $row[$i]["date_next"] = date("Y-m-d H:i:s", $date_index);
+                $row[$i]["date_index"] = date("Y-m-d H:i:s", $date_index);
 
                 // Сохраняем razdel в базе данных изменив date_index
                 $sape_model->update_Razdel($row[$i]);

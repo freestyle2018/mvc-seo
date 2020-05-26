@@ -12,6 +12,7 @@ define('DB_HOST', 'localhost');
 define('DB_NAME', 'mvc_project');
 define('DB_NAME_2', 'phpauthtest');
 define('DB_NAME_OPENCART', 'opencart');
+define('TYPE_MAGAZIN', 'opencart');  // ocstore   opencart
 
 define('SAPE_NAME', 'free_style22');
 define('SAPE_TOKEN', 'e068b8f255f021175995b05a1aeeecec36bc52d9e16be77cf561c1a18202ba22');
