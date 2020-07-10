@@ -24,6 +24,19 @@ define('SAPE_KOLVO_PROVERKI_INDEX_URL', 40); // количество после�
 define('PR_CY_KEY', 'vRzJ4elVsK2ZUL1ZGZ0lUU1BrYmtpND0');
 define('PR_CY_URL', 'https://a.pr-cy.ru/api/v1.1.0');
 
+define('URL_SUBDOMAIN', 'C:/OpenServer/domains/');  //   /var/www/domains/ivan-ocstore.tk
+define('DOMAIN', 'vubor-santehniki.ru');
+define('PREFIX_DATABASE', 'freestyle');  // эту база данных осн. домена и ее закачиваю на поддомены.
+define('DOMAIN_DATABASE', 'vubor-san'); // база данных сайта vubor-santehniki.ru будет соотвественно magazin_vubor-san
+define('VPS_SERVER', 'localhost');
+define('VPS_USER', 'mysql'); // root
+define('VPS_PASS', 'mysql'); // pass
+define('SSH_SERVER', '2001:1bb0:e000:1e::200');
+define('SSH_PORT', '22');
+define('SSH_USER', 'root'); // root
+define('SSH_PASS', 'liliput45M%#'); // pass
+
+
 //define('URL_CATALOG', '/home/users/f/freestyle/domains/telfer-pro.ru/image/catalog/');
 define('URL_CATALOG', 'C:/OpenServer/domains/localhost/image/');
 define('URL_XPATH', 'C:/OpenServer/domains/localhost/image/');
