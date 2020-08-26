@@ -5,9 +5,10 @@
         <div class='quick-links'>
 
             <?php
-            echo "<a style='font-size:26px; color:#000; text-decoration:underline;' href='/poddomain/show?id=".$value["id"]."'>".$value["name"]."</a>";
-            echo " - <a href='/poddomain/reload?id=".$value["id"]."'>Обновить</a>";
-            echo " - <a href='/poddomain/delete?id=".$value["id"]."'>Удалить</a><br>\r\n";
+            //echo "<a style='font-size:26px; color:#000; text-decoration:underline;' href='/poddomain/show?id=".$value["id"]."'>".$value["name"]."</a>";
+            echo $value["name"];
+            //echo " - <a href='/poddomain/reload?id=".$value["id"]."'>Обновить</a>";
+            //echo " - <a href='/poddomain/delete?id=".$value["id"]."'>Удалить</a><br>\r\n";
             ?>
 
         </div>

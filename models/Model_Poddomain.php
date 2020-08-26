@@ -32,7 +32,7 @@ Class Model_Poddomain{
 
 
 
-    public function add_Poddomain($name){
+    public function add_Poddomain($name, $name_url, $name_rus, $indikator){
 
         $stmt_1 = $this->getConnection()->prepare("SELECT * FROM poddomain WHERE name LIKE '$name'");
         $stmt_1->execute();
@@ -40,9 +40,12 @@ Class Model_Poddomain{
         $count = count($stmt_1->fetchAll(PDO::FETCH_NAMED));
 
         if($count == 0){
-            $stmt = $this->getConnection()->prepare("INSERT INTO `poddomain` (`id`, `name`) VALUES (NULL, :name)");
+            $stmt = $this->getConnection()->prepare("INSERT INTO `poddomain` (`id`, `name`, `name_url`, `name_rus`, `indikator`) VALUES (NULL, :name, :name_url, :name_rus, :indikator)");
 
             $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':name_url', $name_url);
+            $stmt->bindParam(':name_rus', $name_rus);
+            $stmt->bindParam(':indikator', $indikator);
 
             return $stmt->execute();
         }

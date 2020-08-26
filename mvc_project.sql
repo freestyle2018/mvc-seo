@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 16 2020 г., 21:15
+-- Время создания: Авг 14 2020 г., 15:39
 -- Версия сервера: 5.7.29
--- Версия PHP: 7.3.17
+-- Версия PHP: 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -76,6 +76,28 @@ CREATE TABLE `opencart_magazin` (
 INSERT INTO `opencart_magazin` (`id_magazin`, `domain_magazin`, `url_skachivania_1_magazin`, `url_skachivania_2_magazin`, `name_product_magazin`, `url_image_product_magazin`, `cena_product_magazin`, `article_product_magazin`, `atribute_key_product_magazin`, `atribute_value_product_magazin`) VALUES
 (1, 'https://kranimport.ru', '//div[@class=&quot;wrap-page-goods&quot;]//div[@class=&quot;col-lg-6 col-md-6 col-sm-12 col-xs-12&quot;]//div[@class=&quot;col-lg-8 col-md-8 col-sm-9 col-xs-9&quot;]//a/@href', '', '//div[@class=&quot;page-slider&quot;]/h1[@class=&quot;page-title2&quot;]/text()', '//div[@class=&quot;page-slider&quot;]//li[@class=&quot;active-slide&quot;]/img/@src', '', '', '//div[@class=&quot;page-descr&quot;]//h3[position()&gt;1]/text()', '//div[@class=&quot;page-descr&quot;]//p/text()'),
 (2, 'https://gortorgsnab.ru', '', '', '', '', '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `poddomain`
+--
+
+CREATE TABLE `poddomain` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `name_url` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `name_rus` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `indikator` int(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп данных таблицы `poddomain`
+--
+
+INSERT INTO `poddomain` (`id`, `name`, `name_url`, `name_rus`, `indikator`) VALUES
+(1, 'msk', '-v-moskve', ' в Москве', 0),
+(53, 'spb', '-v-spb', ' в Питере, Санкт-Петербурге', 0);
 
 -- --------------------------------------------------------
 
@@ -195,6 +217,12 @@ ALTER TABLE `opencart_magazin`
   ADD UNIQUE KEY `id_magazin` (`id_magazin`);
 
 --
+-- Индексы таблицы `poddomain`
+--
+ALTER TABLE `poddomain`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Индексы таблицы `sape_project`
 --
 ALTER TABLE `sape_project`
@@ -234,6 +262,12 @@ ALTER TABLE `opencart_category`
 --
 ALTER TABLE `opencart_magazin`
   MODIFY `id_magazin` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `poddomain`
+--
+ALTER TABLE `poddomain`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT для таблицы `sape_project`

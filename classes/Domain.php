@@ -6,45 +6,72 @@
 
 Class Domain {
 
+    static $connect;
+
+    function __construct() {
+        self::$connect = ssh2_connect(SSH_SERVER, SSH_PORT);
+        if (!self::$connect) die('Не удалось установить соединение');
+
+        ssh2_auth_password(self::$connect, SSH_USER, SSH_PASS);
+    }
 
 
-    function index($name) {
+    function index($name, $name_url, $name_rus) {
         $this->create_domain($name);
 
         $this->create_database($name);
         $this->copy_database($name);
-        $this->edit_database($name);
+        $this->edit_database($name, $name_url, $name_rus);
 
-
-        $this->create_arhive( URL_SUBDOMAIN.DOMAIN, URL_SUBDOMAIN.DOMAIN."/archive.zip");
+        $this->create_arhive( URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML, URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML."/archive.zip");
         $this->copy_arhive($name);
         $this->extract_arhive($name);
 
         $this->replace_config($name);
         $this->link_dir_image($name);
 
+        $this->open_basedir($name);
+        $this->delete_cache($name);
     }
+
+
 
 
 
 
 
     function create_domain($name) {
-        chmod(URL_SUBDOMAIN, 0755);
+        /*chmod(URL_SUBDOMAIN, 0755);
 
         $dir_domain = URL_SUBDOMAIN.$name.".".DOMAIN;
         echo $dir_domain;
 
         if (!file_exists($dir_domain)) {
             mkdir($dir_domain);
-        }
+        }*/
+
+
+		
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-domain admin ".$name.".".DOMAIN);
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-generate-ssl-cert ".$name.".".DOMAIN." troinfo@yandex.ru RU Moscow Orel HOME admin");
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-letsencrypt-domain admin ".$name.".".DOMAIN);
+		
+		/*
+		$stream = ssh2_exec($connect, 'php -v'); 
+		stream_set_blocking($stream, true); 
+		$stream_out = ssh2_fetch_stream($stream, SSH2_STREAM_STDIO); 
+		echo stream_get_contents($stream_out); 
+		*/
     }
-
-
+	
+	
 
 
     function create_database($name) {
-        $mysqli = new mysqli(VPS_SERVER, VPS_USER, VPS_PASS);
+
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-database admin $name ".VPS_USER." ".VPS_PASS);
+
+        /*$mysqli = new mysqli(VPS_SERVER, VPS_USER, VPS_PASS);
         if($mysqli->connect_errno) {
             //die('Нет соединения с базой: ' . $mysqli->connect_error);
         }
@@ -56,7 +83,9 @@ Class Domain {
             //die('Невозможно создать базу данных: ' . $mysqli->connect_error);
         }
         //echo "База данных test_db создана успешно\n";
-        $mysqli->close();
+        $mysqli->close();*/
+
+
     }
 
 
@@ -65,26 +94,21 @@ Class Domain {
 
     function copy_database($name) {
 
-        $connect = ssh2_connect(SSH_SERVER, SSH_PORT);
-        ssh2_auth_password($connect, SSH_USER, SSH_PASS);
-
-        if($connect) {echo "XXXXX";}
-
         //$cmd = 'mkdir dump';
         //ssh2_exec($connect, $cmd);
 
         //$name_database = "dump_".date("Y-m-d").".sql";
-        $name_database = "dump2.sql";
-        echo $name_database;
-        if (!file_exists("./dump/".$name_database)) {
+        $name_database = "dump.sql";
+        
+        if (!$this->fresh_file($name_database)) {
             // создаю новую базу данных
             //mysqldump -h localhost -uroot magazin_osn -pqwuiFr5e2A > ./dump/dump2.sql
-            $cmd = "mysqldump -h ".VPS_SERVER." -u'".VPS_USER."' ".PREFIX_DATABASE."_".DOMAIN_DATABASE." -p'".VPS_PASS."' > ./dump/".$name_database;
-            ssh2_exec($connect, $cmd);
+            $cmd = "mysqldump -h ".VPS_SERVER." -u'admin_".VPS_USER."' ".PREFIX_DATABASE."_".DOMAIN_DATABASE." -p'".VPS_PASS."' > ./dump/".$name_database;
+            ssh2_exec(self::$connect, $cmd);
         }
 
-        $cmd = "mysql -h ".VPS_SERVER." -u'".VPS_USER."' ".PREFIX_DATABASE."_".$name." -p'".VPS_PASS."' < ./dump/".$name_database;
-        ssh2_exec($connect, $cmd);
+        $cmd = "mysql -h ".VPS_SERVER." -u'admin_".VPS_USER."' ".PREFIX_DATABASE."_".$name." -p'".VPS_PASS."' < ./dump/".$name_database;
+        ssh2_exec(self::$connect, $cmd);
 
     }
 
@@ -96,7 +120,13 @@ Class Domain {
     function connect_database($name) {
         // Устанавливаем соединение
         $dsn = "mysql:host=".VPS_SERVER.";dbname=".PREFIX_DATABASE."_".$name;
-        $db = new PDO($dsn, VPS_USER, VPS_PASS);
+
+        try {
+            $db = new PDO($dsn, "admin_".VPS_USER, VPS_PASS);
+        } catch (PDOException $e) {
+            print "Error!: " . $e->getMessage();
+            die();
+        }
         // Задаем кодировку
         $db->exec("set names utf8");
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -107,22 +137,23 @@ Class Domain {
 
 
 
-    function edit_database($name) {
-        $this->connect_database($name)->prepare("UPDATE `oc_url_alias` SET `keyword`=CONCAT(keyword,'-v-novosibirske') WHERE query NOT LIKE 'common/home'")->execute();
-        //$this->connect_database($name)->prepare("UPDATE `oc_oct_megamenu_description` SET `link`=CONCAT(link,'-v-novosibirske')")->execute();
-        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_title`=CONCAT(meta_title,' в Новосибирске')")->execute();
-        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(meta_description,' в Новосибирске')")->execute();
+    function edit_database($name, $name_url, $name_rus) {
+        $this->connect_database($name)->prepare("UPDATE `oc_url_alias` SET `keyword`=CONCAT(keyword, '".$name_url."') WHERE url_alias_id > 638;")->execute();
+
+        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_title`=CONCAT(meta_title, '".$name_rus."') WHERE meta_title != '';")->execute();
+        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_title`=CONCAT(name, '".$name_rus."') WHERE meta_title = '';")->execute();
+
+        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(meta_description, '".$name_rus."') WHERE meta_description != '';")->execute();
+        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(name, '".$name_rus."') WHERE meta_description = '';")->execute();
     }
 
 
 
 
 
-    function create_arhive($source, $destination){
-
-        // проверяю свежий ли архив
-        if(file_exists($destination)){
-            $time_create = filemtime($destination);
+    function fresh_file($file){
+        if(file_exists($file)){
+            $time_create = filemtime($file);
 
             $year_create = date("Y", $time_create);
             $month_create = date("n", $time_create);
@@ -132,8 +163,20 @@ Class Domain {
                 return true;
             }
             else{
-                unlink(URL_SUBDOMAIN.DOMAIN."/archive.zip");
+                unlink($file);
+                return false;
             }
+        }
+    }
+
+
+
+
+    function create_arhive($source, $destination){
+
+        // проверяю свежий ли архив
+        if ($this->fresh_file($destination) === true) {
+            return true;
         }
 
 
@@ -161,10 +204,14 @@ Class Domain {
 
                 $file = realpath($file);
                 $file = str_replace('\\', '/', $file);
-
-                if (is_dir($file) === true && $file != "image"){
+				
+				//echo $file." - ";
+				//echo var_dump(strpos($file, URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML."/image"))."<br>\r\n";
+				
+				
+                if (is_dir($file) === true && strpos($file, URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML."/image") === false){
                     $zip->addEmptyDir(str_replace($source . '/', '', $file . '/'));
-                }else if (is_file($file) === true){
+                }else if (is_file($file) === true && strpos($file, URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML."/image") === false){
                     $zip->addFromString(str_replace($source . '/', '', $file), file_get_contents($file));
                 }
             }
@@ -177,7 +224,7 @@ Class Domain {
 
 
     function copy_arhive($name) {
-        copy(URL_SUBDOMAIN.DOMAIN."/archive.zip", URL_SUBDOMAIN.$name.".".DOMAIN."/archive.zip");
+        copy(URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML."/archive.zip", URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/archive.zip");
     }
 
 
@@ -185,11 +232,11 @@ Class Domain {
         $zip1 = new ZipArchive;
 
         //Открываем Zip-архив
-        $extract1 = $zip1->open(URL_SUBDOMAIN.$name.".".DOMAIN."/archive.zip");
+        $extract1 = $zip1->open(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/archive.zip");
 
         if ($extract1 === TRUE) {
             //Извлекаем содержимое архива
-            $zip1->extractTo(URL_SUBDOMAIN.$name.".".DOMAIN);
+            $zip1->extractTo(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML);
 
             //Закрываем Zip-архив
             $zip1->close();
@@ -201,23 +248,23 @@ Class Domain {
 
 
     function replace_config($name) {
-        $data = file_get_contents(URL_SUBDOMAIN.$name.".".DOMAIN."/config.php");
+        $data = file_get_contents(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/config.php");
         $data = str_replace(DOMAIN,$name.".".DOMAIN, $data);
-        //$data = str_replace(DOMAIN.".".$name."/image",DOMAIN."/image", $data);
+        //$data = str_replace(DOMAIN."/".DOMAIN_HTML.".".$name."/image",DOMAIN."/".DOMAIN_HTML."/image", $data);
         $data = str_replace("define('DB_DRIVER', 'mysqli_memcached');","define('DB_DRIVER', 'mysqli');", $data);
         $data = str_replace("define('DB_DATABASE', '".PREFIX_DATABASE."_".DOMAIN_DATABASE."');","define('DB_DATABASE', '".PREFIX_DATABASE."_".$name."');", $data);
-        $handle = fopen(URL_SUBDOMAIN.$name.".".DOMAIN."/config.php","w+"); // Открыть файл, сделать его пустым
+        $handle = fopen(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/config.php","w+");
         fwrite($handle,$data); // Записать переменную в файл
         fclose($handle); // Закрыть файл
 
 
 
-        $data = file_get_contents(URL_SUBDOMAIN.$name.".".DOMAIN."/admin/config.php");
+        $data = file_get_contents(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/admin/config.php");
         $data = str_replace(DOMAIN,$name.".".DOMAIN, $data);
-        //$data = str_replace(DOMAIN.".".$name."/image",DOMAIN."/image", $data);
+        //$data = str_replace(DOMAIN."/".DOMAIN_HTML.".".$name."/image",DOMAIN."/".DOMAIN_HTML."/image", $data);
         $data = str_replace("define('DB_DRIVER', 'mysqli_memcached');","define('DB_DRIVER', 'mysqli');", $data);
         $data = str_replace("define('DB_DATABASE', '".PREFIX_DATABASE."_".DOMAIN_DATABASE."');","define('DB_DATABASE', '".PREFIX_DATABASE."_".$name."');", $data);
-        $handle = fopen(URL_SUBDOMAIN.$name.".".DOMAIN."/admin/config.php","w+"); // Открыть файл, сделать его пустым
+        $handle = fopen(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/admin/config.php","w+");
         fwrite($handle,$data); // Записать переменную в файл
         fclose($handle); // Закрыть файл
     }
@@ -229,8 +276,82 @@ Class Domain {
 
 
     function link_dir_image($name) {
-        symlink(URL_SUBDOMAIN.$name.".".DOMAIN."/image", URL_SUBDOMAIN.DOMAIN."/image");
+        
+		ssh2_exec(self::$connect, "ln -s ".URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML."/image ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML);
+		
+		//symlink(URL_SUBDOMAIN.$name.".".DOMAIN."/image", URL_SUBDOMAIN.DOMAIN."/image");
     }
+
+
+
+
+
+
+
+
+    function open_basedir($name) {
+
+
+
+
+
+        ssh2_exec(self::$connect, "sleep 200 | grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2");
+        ssh2_exec(self::$connect, "sleep 201 | rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf -f");
+        ssh2_exec(self::$connect, "sleep 202 | mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf");
+
+
+
+
+
+        ssh2_exec(self::$connect, "sleep 210 | grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2");
+        ssh2_exec(self::$connect, "sleep 211 | rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf -f");
+        ssh2_exec(self::$connect, "sleep 212 | mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf");
+
+        
+        
+        /*
+        $data = file_get_contents("/home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf");
+        $data = str_replace("php_admin_value open_basedir /home/admin/web/".$name.".".DOMAIN."/public_html:home/admin/tmp","", $data);
+        $handle = fopen("/home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf","w+");
+        fwrite($handle,$data); // Записать переменную в файл
+        fclose($handle); // Закрыть файл
+
+
+        $data = file_get_contents("/home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf");
+        $data = str_replace("php_admin_value open_basedir /home/admin/web/".$name.".".DOMAIN."/public_html:home/admin/tmp","", $data);
+        $handle = fopen("/home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf","w+");
+        fwrite($handle,$data); // Записать переменную в файл
+        fclose($handle); // Закрыть файл
+        */
+    }
+
+
+
+
+
+
+    function delete_cache($name) {
+        ssh2_exec(self::$connect, "rm ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/system/storage/cache/*");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

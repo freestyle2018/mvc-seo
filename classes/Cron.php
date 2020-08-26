@@ -8,6 +8,22 @@ Class Cron {
     public static $my_id;
     public static $client;
 
+
+    function api() {
+        $api = new Api_Webmaster();
+        $user_id = $api->get_user();
+        $host_id = $api->add_site($user_id);
+
+        $api->verification_site_post($user_id, $host_id);
+        $api->verification_site_get($user_id, $host_id);
+
+    }
+
+
+
+
+
+
     // закупаем ссылки
     function start() {
         $sape_model = new Model_Sape();
