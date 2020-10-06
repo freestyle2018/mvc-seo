@@ -55,7 +55,9 @@ Class Controller_Poddomain Extends Controller_Base {
 
                 if($indikator == 1) {
                     self::$contr->index($name, $name_url, $name_rus);
-                    exit();
+
+                    $api = new Api_Webmaster();
+                    $api->add_site_in_webmaster($name);
                 }
                 else {
                     $this->index();

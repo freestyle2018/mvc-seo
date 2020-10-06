@@ -8,11 +8,17 @@ Class Domain {
 
     static $connect;
 
+
+
+
+
+
+
     function __construct() {
-        self::$connect = ssh2_connect(SSH_SERVER, SSH_PORT);
+        self::$connect = ssh2_connect(VpsConf::getSshServer(), VpsConf::getSshPort());
         if (!self::$connect) die('Не удалось установить соединение');
 
-        ssh2_auth_password(self::$connect, SSH_USER, SSH_PASS);
+        ssh2_auth_password(self::$connect, VpsConf::getSshUser(), VpsConf::getSshPass());
     }
 
 
@@ -69,7 +75,7 @@ Class Domain {
 
     function create_database($name) {
 
-        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-database admin $name ".VPS_USER." ".VPS_PASS);
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-database admin $name ".VpsConf::getVpsUser()." ".VpsConf::getVpsPass());
 
         /*$mysqli = new mysqli(VPS_SERVER, VPS_USER, VPS_PASS);
         if($mysqli->connect_errno) {
@@ -103,11 +109,12 @@ Class Domain {
         if (!$this->fresh_file($name_database)) {
             // создаю новую базу данных
             //mysqldump -h localhost -uroot magazin_osn -pqwuiFr5e2A > ./dump/dump2.sql
-            $cmd = "mysqldump -h ".VPS_SERVER." -u'admin_".VPS_USER."' ".PREFIX_DATABASE."_".DOMAIN_DATABASE." -p'".VPS_PASS."' > ./dump/".$name_database;
-            ssh2_exec(self::$connect, $cmd);
+
+            $cmd = "mysqldump -h ".VpsConf::getVpsServer()." -u'admin_".VpsConf::getVpsUser()."' ".PREFIX_DATABASE."_".DOMAIN_DATABASE." -p'".VpsConf::getVpsPass()."' > ./dump/".$name_database;
+
         }
 
-        $cmd = "mysql -h ".VPS_SERVER." -u'admin_".VPS_USER."' ".PREFIX_DATABASE."_".$name." -p'".VPS_PASS."' < ./dump/".$name_database;
+        $cmd = "mysql -h ".VpsConf::getVpsServer()." -u'admin_".VpsConf::getVpsUser()."' ".PREFIX_DATABASE."_".$name." -p'".VpsConf::getVpsPass()."' < ./dump/".$name_database;
         ssh2_exec(self::$connect, $cmd);
 
     }
@@ -119,10 +126,10 @@ Class Domain {
 
     function connect_database($name) {
         // Устанавливаем соединение
-        $dsn = "mysql:host=".VPS_SERVER.";dbname=".PREFIX_DATABASE."_".$name;
+        $dsn = "mysql:host=".VpsConf::getVpsServer().";dbname=".PREFIX_DATABASE."_".$name;
 
         try {
-            $db = new PDO($dsn, "admin_".VPS_USER, VPS_PASS);
+            $db = new PDO($dsn, "admin_".VpsConf::getVpsUser(), VpsConf::getVpsPass());
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage();
             die();
@@ -291,21 +298,21 @@ Class Domain {
 
     function open_basedir($name) {
 
-
-
-
-
-        ssh2_exec(self::$connect, "sleep 200 | grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2");
-        ssh2_exec(self::$connect, "sleep 201 | rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf -f");
-        ssh2_exec(self::$connect, "sleep 202 | mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf");
+        ssh2_exec(self::$connect, "sleep 200 ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2");
+        ssh2_exec(self::$connect, "sleep 210 ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf -f");
+        ssh2_exec(self::$connect, "sleep 220 ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf");
 
 
 
 
 
-        ssh2_exec(self::$connect, "sleep 210 | grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2");
-        ssh2_exec(self::$connect, "sleep 211 | rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf -f");
-        ssh2_exec(self::$connect, "sleep 212 | mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf");
+        ssh2_exec(self::$connect, "sleep 230 ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2");
+        ssh2_exec(self::$connect, "sleep 240 ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf -f");
+        ssh2_exec(self::$connect, "sleep 250 ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf");
+
+
+
+        ssh2_exec(self::$connect, "sleep 270 ; service httpd restart");
 
         
         
@@ -331,7 +338,7 @@ Class Domain {
 
 
     function delete_cache($name) {
-        ssh2_exec(self::$connect, "rm ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/system/storage/cache/*");
+        ssh2_exec(self::$connect, "sleep 290 ; rm ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/system/storage/cache/*");
     }
 
 

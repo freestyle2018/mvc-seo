@@ -2,21 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/classes/Api_Webmaster.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/Yandex_Api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classes/File.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cron.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Api_Webmaster.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Api_Webmaster.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Authentication.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Authentication.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Controller_Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Controller_Base.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Domain.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Domain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Filter.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Filter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cron.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/poddomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/poddomain.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Db.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Db.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Magazin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Opencart.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Opencart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Model_Poddomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Poddomain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvc_project.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_project.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/cron/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/cron/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Sape.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Users.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/poddomain/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/poddomain/add.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/poddomain/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/poddomain/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,8 +115,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -315,7 +321,47 @@
       <workItem from="1598246628335" duration="603000" />
       <workItem from="1598317497511" duration="395000" />
       <workItem from="1598329923353" duration="4000" />
-      <workItem from="1598418483917" duration="240000" />
+      <workItem from="1598418483917" duration="851000" />
+      <workItem from="1598426245071" duration="729000" />
+      <workItem from="1598507787240" duration="610000" />
+      <workItem from="1598511612307" duration="660000" />
+      <workItem from="1598512497163" duration="1048000" />
+      <workItem from="1598594591826" duration="605000" />
+      <workItem from="1598679898960" duration="1300000" />
+      <workItem from="1598703815528" duration="7000" />
+      <workItem from="1598732586621" duration="602000" />
+      <workItem from="1598784296909" duration="1131000" />
+      <workItem from="1598787333629" duration="958000" />
+      <workItem from="1598788529171" duration="1189000" />
+      <workItem from="1598813658943" duration="927000" />
+      <workItem from="1599026997637" duration="1983000" />
+      <workItem from="1599029125011" duration="1797000" />
+      <workItem from="1599030934325" duration="1664000" />
+      <workItem from="1599560626685" duration="5000" />
+      <workItem from="1599771712373" duration="3000" />
+      <workItem from="1600370770517" duration="5000" />
+      <workItem from="1601036824426" duration="1066000" />
+      <workItem from="1601040981153" duration="580000" />
+      <workItem from="1601041571898" duration="547000" />
+      <workItem from="1601042152816" duration="872000" />
+      <workItem from="1601054358070" duration="4000" />
+      <workItem from="1601630368795" duration="600000" />
+      <workItem from="1601877907181" duration="1811000" />
+      <workItem from="1601879732229" duration="1981000" />
+      <workItem from="1601881805240" duration="1914000" />
+      <workItem from="1601883737993" duration="1644000" />
+      <workItem from="1601885550261" duration="1734000" />
+      <workItem from="1601887427237" duration="599000" />
+      <workItem from="1601891743490" duration="599000" />
+      <workItem from="1601902015070" duration="606000" />
+      <workItem from="1601909416622" duration="606000" />
+      <workItem from="1601910081048" duration="879000" />
+      <workItem from="1601911967753" duration="1800000" />
+      <workItem from="1601913905548" duration="984000" />
+      <workItem from="1601966892048" duration="1327000" />
+      <workItem from="1601969439374" duration="1350000" />
+      <workItem from="1601974166650" duration="627000" />
+      <workItem from="1601978107876" duration="515000" />
     </task>
     <servers />
   </component>
@@ -323,17 +369,21 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1595493775444">
+    <state x="740" y="262" key="FileChooserDialogImpl" timestamp="1601878021038">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1595493775444" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1598418483955">
+    <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601878021038" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1599028195701">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1598418483955" />
-    <state x="656" y="252" width="607" height="536" key="find.popup" timestamp="1594090479105">
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599028195701" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1601978108349">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="252" width="607" height="536" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1594090479105" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601978108349" />
+    <state x="658" y="252" width="825" height="659" key="find.popup" timestamp="1601037240544">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="658" y="252" width="825" height="659" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601037240544" />
   </component>
 </project>

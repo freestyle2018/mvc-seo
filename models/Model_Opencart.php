@@ -8,8 +8,8 @@ Class Model_Opencart{
     public static function getConnection()
     {
         // Устанавливаем соединение
-        $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME_OPENCART;
-        self::$db = new PDO($dsn, DB_USER, DB_PASS);
+        $dsn = "mysql:host=".DbConf::getDbHost().";dbname=".DbConf::getDbName_OPENCART();
+        self::$db = new PDO($dsn, DbConf::getDbUser(), DbConf::getDbPass());
         // Задаем кодировку
         self::$db->exec("set names utf8");
         self::$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -27,11 +27,11 @@ Class Model_Opencart{
         // Если не существует добавляю в базу и узнаю ID производителя
         if($stmt->rowCount() == 0){
 
-            if(TYPE_MAGAZIN == "opencart"){
+            if(DbConf::getDbCms == "opencart"){
                 $stmt = $this->getConnection()->prepare("INSERT INTO `oc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES (NULL, '".$proizvodstvo."', '', '0')")->execute();
                 $manufacturer_id = self::$db->lastInsertId("manufacturer_id");
             }
-            else if(TYPE_MAGAZIN == "ocstore"){
+            else if(DbConf::getDbCms == "ocstore"){
                 $stmt = $this->getConnection()->prepare("INSERT INTO `oc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES (NULL, '".$proizvodstvo."', '0')")->execute();
                 $manufacturer_id = self::$db->lastInsertId("manufacturer_id");
 
@@ -90,10 +90,10 @@ Class Model_Opencart{
             $random = rand(0, sizeof($title_array) - 1);
             $title = str_replace("...", $name_category, $title_array[$random]);
 
-            if(TYPE_MAGAZIN == "opencart"){
+            if(DbConf::getDbCms == "opencart"){
                 $this->getConnection()->prepare("INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES ('".$category_id."', '1', '".$name_category."', '', '".$title."', '".$title." ".$description_konec."', '')")->execute();
             }
-            else if(TYPE_MAGAZIN == "ocstore"){
+            else if(DbConf::getDbCms == "ocstore"){
                 $this->getConnection()->prepare("INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_h1`, `meta_description`, `meta_keyword`) VALUES ('".$category_id."', '1', '".$name_category."', '', '".$title."', '".$title."', '".$title." ".$description_konec."', '')")->execute();
             }
 
@@ -165,10 +165,10 @@ Class Model_Opencart{
             $random = rand(0, sizeof($title_array) - 1);
             $title = str_replace("...", $name_category, $title_array[$random]);
 
-            if(TYPE_MAGAZIN == "opencart"){
+            if(DbConf::getDbCms == "opencart"){
                 $this->getConnection()->prepare("INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES ('".$category_id."', '1', '".$name_category."', '', '".$title."', '".$title." ".$description_konec."', '')")->execute();
             }
-            else if(TYPE_MAGAZIN == "ocstore"){
+            else if(DbConf::getDbCms == "ocstore"){
                 $this->getConnection()->prepare("INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_h1`, `meta_description`, `meta_keyword`) VALUES ('".$category_id."', '1', '".$name_category."', '', '".$title."', '".$title."', '".$title." ".$description_konec."', '')")->execute();
             }
 
@@ -229,10 +229,10 @@ Class Model_Opencart{
             $random = rand(0, sizeof($title_array) - 1);
             $title = str_replace("...", $proizvodstvo, $title_array[$random]);
 
-            if(TYPE_MAGAZIN == "opencart"){
+            if(DbConf::getDbCms == "opencart"){
                 $this->getConnection()->prepare("INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES ('".$proizvodstvo_id."', '1', '".$proizvodstvo."', '', '".$title."', '".$title." ".$description_konec."', '')")->execute();
             }
-            else if(TYPE_MAGAZIN == "ocstore"){
+            else if(DbConf::getDbCms == "ocstore"){
                 $this->getConnection()->prepare("INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_h1`, `meta_description`, `meta_keyword`) VALUES ('".$proizvodstvo_id."', '1', '".$proizvodstvo."', '', '".$title."', '".$title."', '".$title." ".$description_konec."', '')")->execute();
             }
 
@@ -295,10 +295,10 @@ Class Model_Opencart{
             $random = rand(0, sizeof($title_array) - 1);
             $title = str_replace("...", $seria, $title_array[$random]);
 
-            if(TYPE_MAGAZIN == "opencart"){
+            if(DbConf::getDbCms == "opencart"){
                 $this->getConnection()->prepare("INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES ('".$seria_id."', '1', '".$seria."', '', '".$title."', '".$title." ".$description_konec."', '')")->execute();
             }
-            else if(TYPE_MAGAZIN == "ocstore"){
+            else if(DbConf::getDbCms == "ocstore"){
                 $this->getConnection()->prepare("INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `description`, `meta_title`, `meta_h1`, `meta_description`, `meta_keyword`) VALUES ('".$seria_id."', '1', '".$seria."', '', '".$title."', '".$title."', '".$title." ".$description_konec."', '')")->execute();
             }
 
@@ -447,7 +447,7 @@ Class Model_Opencart{
 
 
         // загружаем продукт в категории
-        if(TYPE_MAGAZIN == "opencart"){
+        if(DbConf::getDbCms == "opencart"){
             if($glav_category_id != ""){
                 $this->getConnection()->prepare("INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES ('".$product_id."', '".$glav_category_id."')")->execute();
             }
@@ -461,7 +461,7 @@ Class Model_Opencart{
                 $this->getConnection()->prepare("INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES ('".$product_id."', '".$seria_id."')")->execute();
             }
         }
-        else if(TYPE_MAGAZIN == "ocstore"){
+        else if(DbConf::getDbCms == "ocstore"){
             if($seria_id != ""){
                 $this->getConnection()->prepare("INSERT INTO `oc_product_to_category` (`product_id`, `category_id`, `main_category`) VALUES ('".$product_id."', '".$seria_id."', '1')")->execute();
                 $this->getConnection()->prepare("INSERT INTO `oc_product_to_category` (`product_id`, `category_id`, `main_category`) VALUES ('".$product_id."', '".$proizvodstvo_id."', '0')")->execute();
@@ -486,10 +486,10 @@ Class Model_Opencart{
         
 
 
-        if(TYPE_MAGAZIN == "opencart"){
+        if(DbConf::getDbCms == "opencart"){
             $this->getConnection()->prepare("INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES ('".$product_id."', '1', '".$name."', '', '', '".$name."', '".$name."', '')")->execute();
         }
-        else if(TYPE_MAGAZIN == "ocstore"){
+        else if(DbConf::getDbCms == "ocstore"){
             $this->getConnection()->prepare("INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `tag`, `meta_title`, `meta_h1`, `meta_description`, `meta_keyword`) VALUES ('".$product_id."', '1', '".$name."', '', '', '".$name."', '".$name."', '".$name."', '')")->execute();
         }
 

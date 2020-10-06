@@ -6,8 +6,8 @@ Class Model_Poddomain{
     public static function getConnection()
     {
         // Устанавливаем соединение
-        $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME;
-        $db = new PDO($dsn, DB_USER, DB_PASS);
+        $dsn = "mysql:host=".DbConf::getDbHost().";dbname=".DbConf::getDbName();
+        $db = new PDO($dsn, DbConf::getDbUser(), DbConf::getDbPass());
         // Задаем кодировку
         $db->exec("set names utf8");
         $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

@@ -1,6 +1,7 @@
 <div><a href="/poddomain">Поддомены</a>
 
 <form method="post" id="addForm" action="">
+   <!-- <form action="/poddomain/add/" method="post" id="addForm" action=""> -->
     <p><b>Добавить поддомен:</b></p>
     <p>
         Name: <input type="text" name="name" id="name" value="<?php echo $name; ?>"><br>
