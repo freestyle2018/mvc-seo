@@ -48,4 +48,14 @@ Class Controller_Cron Extends Controller_Base {
         $this->template->view('index');
     }
 
+
+    function create_poddomain()
+    {
+        $cron = new Cron();
+        $cron->create_poddomain();
+
+        //$this->template->vars('info', $info);
+        $this->template->view('index');
+    }
+
 }

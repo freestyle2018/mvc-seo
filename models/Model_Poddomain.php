@@ -31,6 +31,41 @@ Class Model_Poddomain{
 
 
 
+    public function show_create_Poddomain(){
+        $stmt = $this->getConnection()->prepare("SELECT * FROM poddomain WHERE indikator = 0 ORDER BY id LIMIT 1");
+        $stmt->execute();
+
+        foreach ($stmt->fetchAll(PDO::FETCH_NAMED) as $key => $value) {
+            $row[$key] = $value;
+        }
+
+        if(isset($row)){
+            return $row;
+        }
+    }
+
+
+    public function update_Poddomain($domain){
+        $stmt = $this->getConnection()->prepare("UPDATE poddomain set 
+                                    name = :name,
+                                    name_url = :name_url,
+                                    name_rus = :name_rus,
+                                    indikator = :indikator
+                                    
+                                    where id = :id");
+
+        echo $domain["name"]." - ".$domain["id"];
+
+        $stmt->bindParam(':name', $domain["name"]);
+        $stmt->bindParam(':name_url', $domain["name_url"]);
+        $stmt->bindParam(':name_rus', $domain["name_rus"]);
+        $stmt->bindParam(':indikator', $domain["indikator"]);
+
+        $stmt->bindParam(':id', $domain["id"]);
+
+
+        $stmt->execute();
+    }
 
     public function add_Poddomain($name, $name_url, $name_rus, $indikator){
 

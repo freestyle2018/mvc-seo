@@ -151,4 +151,54 @@ Class Cron {
     }
 
 
+
+
+    function create_poddomain() {
+
+        $model = new Model_Poddomain();
+        $info_domain = $model->show_create_Poddomain();
+
+        print_r($info_domain);
+
+        if(!empty($info_domain)) {
+            $name = $info_domain[0]["name"];
+            $name_url = $info_domain[0]["name_url"];
+            $name_rus = $info_domain[0]["name_rus"];
+
+            $poddomain = new Domain();
+            $poddomain->index($name, $name_url, $name_rus);
+            $info_domain[0]["indikator"] = 1;
+
+            $api = new Api_Webmaster();
+            $api->add_site_in_webmaster($name);
+
+            $model->update_Poddomain($info_domain[0]);
+        }
+        else{
+            echo "пусто";
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+

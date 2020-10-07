@@ -59,7 +59,7 @@ Class Domain {
 
 		
         ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-domain admin ".$name.".".DOMAIN);
-        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-generate-ssl-cert ".$name.".".DOMAIN." troinfo@yandex.ru RU Moscow Orel HOME admin");
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-generate-ssl-cert ".DOMAIN." *.".DOMAIN." troinfo@yandex.ru RU Moscow Orel HOME admin");
         ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-letsencrypt-domain admin ".$name.".".DOMAIN);
 		
 		/*
