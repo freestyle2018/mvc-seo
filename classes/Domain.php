@@ -145,13 +145,15 @@ Class Domain {
 
 
     function edit_database($name, $name_url, $name_rus) {
-        $this->connect_database($name)->prepare("UPDATE `oc_url_alias` SET `keyword`=CONCAT(keyword, '".$name_url."') WHERE url_alias_id > 638;")->execute();
+        if(DbConf::getDbCms == "opencart"){
+            $this->connect_database($name)->prepare("UPDATE `oc_url_alias` SET `keyword`=CONCAT(keyword, '".$name_url."') WHERE url_alias_id > 638;")->execute();
 
-        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_title`=CONCAT(meta_title, '".$name_rus."') WHERE meta_title != '';")->execute();
-        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_title`=CONCAT(name, '".$name_rus."') WHERE meta_title = '';")->execute();
+            $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_title`=CONCAT(meta_title, '".$name_rus."') WHERE meta_title != '';")->execute();
+            $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_title`=CONCAT(name, '".$name_rus."') WHERE meta_title = '';")->execute();
 
-        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(meta_description, '".$name_rus."') WHERE meta_description != '';")->execute();
-        $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(name, '".$name_rus."') WHERE meta_description = '';")->execute();
+            $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(meta_description, '".$name_rus."') WHERE meta_description != '';")->execute();
+            $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(name, '".$name_rus."') WHERE meta_description = '';")->execute();
+        }
     }
 
 

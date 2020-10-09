@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cron.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Domain.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Domain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Yandex_Api.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cron.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Model_Poddomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Poddomain.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -364,6 +360,17 @@
       <workItem from="1602061932216" duration="26000" />
       <workItem from="1602062607608" duration="1304000" />
       <workItem from="1602064432881" duration="607000" />
+      <workItem from="1602066927379" duration="703000" />
+      <workItem from="1602126049496" duration="746000" />
+      <workItem from="1602177193820" duration="948000" />
+      <workItem from="1602179697177" duration="442000" />
+      <workItem from="1602180152052" duration="1554000" />
+      <workItem from="1602182933658" duration="599000" />
+      <workItem from="1602184744423" duration="1563000" />
+      <workItem from="1602243549654" duration="646000" />
+      <workItem from="1602255764233" duration="599000" />
+      <workItem from="1602264788023" duration="1320000" />
+      <workItem from="1602268058034" duration="347000" />
     </task>
     <servers />
   </component>
@@ -375,17 +382,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601878021038" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1599028195701">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1602180816804">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1599028195701" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1602066927922">
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602180816804" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1602268066925">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602066927922" />
-    <state x="658" y="252" width="825" height="659" key="find.popup" timestamp="1601037240544">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602268066925" />
+    <state x="658" y="252" width="825" height="659" key="find.popup" timestamp="1602268118781">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="658" y="252" width="825" height="659" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601037240544" />
+    <state x="658" y="252" width="825" height="659" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602268118781" />
   </component>
 </project>
