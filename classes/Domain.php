@@ -153,6 +153,15 @@ Class Domain {
 
             $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(meta_description, '".$name_rus."') WHERE meta_description != '';")->execute();
             $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(name, '".$name_rus."') WHERE meta_description = '';")->execute();
+
+            if(CHANGE_PRODUCT == "yes"){
+                $this->connect_database($name)->prepare("UPDATE `oc_product_description` SET `meta_title`=CONCAT(meta_title, '".$name_rus."') WHERE meta_title != '';")->execute();
+                $this->connect_database($name)->prepare("UPDATE `oc_product_description` SET `meta_title`=CONCAT(name, '".$name_rus."') WHERE meta_title = '';")->execute();
+
+                $this->connect_database($name)->prepare("UPDATE `oc_product_description` SET `meta_description`=CONCAT(meta_description, '".$name_rus."') WHERE meta_description != '';")->execute();
+                $this->connect_database($name)->prepare("UPDATE `oc_product_description` SET `meta_description`=CONCAT(name, '".$name_rus."') WHERE meta_description = '';")->execute();
+            }
+
         }
     }
 
