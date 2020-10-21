@@ -51,10 +51,14 @@ Class Controller_Cron Extends Controller_Base {
 
     function create_poddomain()
     {
-        $cron = new Cron();
-        $cron->create_poddomain();
+        $filter = new Filter();
+        $https = $filter->out('string',(empty($_GET['https']) ? null : $_GET['https']));
 
-        //$this->template->vars('info', $info);
+        $cron = new Cron();
+        $cron->create_poddomain($https);
+        $info = "";
+
+        $this->template->vars('info', $info);
         $this->template->view('index');
     }
 

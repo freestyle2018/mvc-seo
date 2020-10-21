@@ -9,7 +9,15 @@ Class Api_Webmaster {
 
     function add_site_in_webmaster($name)
     {
-        $domain = "https://".$name.".".DOMAIN;
+        if(CREATE_HTTPS_DOMAIN == "yes"){
+            $prefiks = "https://";
+        }
+        else{
+            $prefiks = "http://";
+        }
+
+
+        $domain = $prefiks.$name.".".DOMAIN;
 
         $user_id = (int)$this->get_user();
         $host_id = $this->add_site($user_id, $domain);

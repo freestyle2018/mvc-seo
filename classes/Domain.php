@@ -10,10 +10,6 @@ Class Domain {
 
 
 
-
-
-
-
     function __construct() {
         self::$connect = ssh2_connect(VpsConf::getSshServer(), VpsConf::getSshPort());
         if (!self::$connect) die('Не удалось установить соединение');
@@ -22,8 +18,10 @@ Class Domain {
     }
 
 
-    function index($name, $name_url, $name_rus) {
+    function index($name, $name_url, $name_rus, $https = null) {
         $this->create_domain($name);
+        $this->create_ssl_certificate($https);
+        $this->installation_ssl_certificate($name, $https);
 
         $this->create_database($name);
         $this->copy_database($name);
@@ -33,12 +31,18 @@ Class Domain {
         $this->copy_arhive($name);
         $this->extract_arhive($name);
 
-        $this->replace_config($name);
-        $this->link_dir_image($name);
+        $this->replace_config($name, $https);
+        $this->link_dir_image($name, $https);
 
         $this->open_basedir($name);
-        $this->delete_cache($name);
+        $this->delete_cache_and_archive($name);
     }
+
+
+
+
+
+
 
 
 
@@ -47,51 +51,36 @@ Class Domain {
 
 
     function create_domain($name) {
-        /*chmod(URL_SUBDOMAIN, 0755);
-
-        $dir_domain = URL_SUBDOMAIN.$name.".".DOMAIN;
-        echo $dir_domain;
-
-        if (!file_exists($dir_domain)) {
-            mkdir($dir_domain);
-        }*/
-
-
-		
         ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-domain admin ".$name.".".DOMAIN);
-        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-generate-ssl-cert ".DOMAIN." *.".DOMAIN." troinfo@yandex.ru RU Moscow Orel HOME admin");
-        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-letsencrypt-domain admin ".$name.".".DOMAIN);
-		
-		/*
-		$stream = ssh2_exec($connect, 'php -v'); 
-		stream_set_blocking($stream, true); 
-		$stream_out = ssh2_fetch_stream($stream, SSH2_STREAM_STDIO); 
-		echo stream_get_contents($stream_out); 
-		*/
     }
-	
-	
+
+    function create_ssl_certificate($https = null) {
+        $https = $https ? $https : CREATE_HTTPS_DOMAIN;
+
+        if($https == "yes"){
+            ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-generate-ssl-cert ".DOMAIN." *.".DOMAIN." troinfo@yandex.ru RU Moscow Orel HOME admin");
+        }
+    }
+
+    function installation_ssl_certificate($name, $https = null) {
+        $https = $https ? $https : CREATE_HTTPS_DOMAIN;
+
+        if($https == "yes"){
+            ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-letsencrypt-domain admin ".$name.".".DOMAIN);
+        }
+    }
+
+
+
+
+
+
+
+
 
 
     function create_database($name) {
-
         ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-database admin $name ".VpsConf::getVpsUser()." ".VpsConf::getVpsPass());
-
-        /*$mysqli = new mysqli(VPS_SERVER, VPS_USER, VPS_PASS);
-        if($mysqli->connect_errno) {
-            //die('Нет соединения с базой: ' . $mysqli->connect_error);
-        }
-        //echo 'Подключено успешно';
-
-        $retval = $mysqli->query("CREATE Database ".PREFIX_DATABASE."_".$name);
-
-        if(! $retval ) {
-            //die('Невозможно создать базу данных: ' . $mysqli->connect_error);
-        }
-        //echo "База данных test_db создана успешно\n";
-        $mysqli->close();*/
-
-
     }
 
 
@@ -111,7 +100,7 @@ Class Domain {
             //mysqldump -h localhost -uroot magazin_osn -pqwuiFr5e2A > ./dump/dump2.sql
 
             $cmd = "mysqldump -h ".VpsConf::getVpsServer()." -u'admin_".VpsConf::getVpsUser()."' ".PREFIX_DATABASE."_".DOMAIN_DATABASE." -p'".VpsConf::getVpsPass()."' > ./dump/".$name_database;
-
+            ssh2_exec(self::$connect, $cmd);
         }
 
         $cmd = "mysql -h ".VpsConf::getVpsServer()." -u'admin_".VpsConf::getVpsUser()."' ".PREFIX_DATABASE."_".$name." -p'".VpsConf::getVpsPass()."' < ./dump/".$name_database;
@@ -145,14 +134,24 @@ Class Domain {
 
 
     function edit_database($name, $name_url, $name_rus) {
-        if(DbConf::getDbCms == "opencart"){
-            $this->connect_database($name)->prepare("UPDATE `oc_url_alias` SET `keyword`=CONCAT(keyword, '".$name_url."') WHERE url_alias_id > 638;")->execute();
+
+        if(DbConf::getDbCms() == "opencart"){
+            $this->connect_database($name)->prepare("UPDATE `oc_url_alias` SET `keyword`=CONCAT(keyword, '".$name_url."') WHERE url_alias_id > ".URL_ALIAS_ID.";")->execute();
 
             $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_title`=CONCAT(meta_title, '".$name_rus."') WHERE meta_title != '';")->execute();
             $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_title`=CONCAT(name, '".$name_rus."') WHERE meta_title = '';")->execute();
 
             $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(meta_description, '".$name_rus."') WHERE meta_description != '';")->execute();
             $this->connect_database($name)->prepare("UPDATE `oc_category_description` SET `meta_description`=CONCAT(name, '".$name_rus."') WHERE meta_description = '';")->execute();
+
+
+            $info = urldecode("Купить тельфер");
+
+            // редактируем главную страницу
+            $this->connect_database($name)->prepare("UPDATE `oc_setting` SET `value` = REPLACE(value, 'Купить тельфер', 'Купить тельфер".$name_rus."') WHERE `key` LIKE 'config_meta_description';")->execute();
+            $this->connect_database($name)->prepare("UPDATE `oc_setting` SET `value` = REPLACE(value, 'Купить тельфер', 'Купить тельфер".$name_rus."') WHERE `key` LIKE 'config_meta_title';")->execute();
+
+
 
             if(CHANGE_PRODUCT == "yes"){
                 $this->connect_database($name)->prepare("UPDATE `oc_product_description` SET `meta_title`=CONCAT(meta_title, '".$name_rus."') WHERE meta_title != '';")->execute();
@@ -199,14 +198,8 @@ Class Domain {
 
 
 
-        if (!extension_loaded('zip') || !file_exists($source)) {
-            return false;
-        }
-
         $zip = new ZipArchive();
-        if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
-            return false;
-        }
+        $zip->open($destination, ZIPARCHIVE::CREATE);
 
         $source = str_replace('\\', '/', realpath($source));
 
@@ -265,26 +258,82 @@ Class Domain {
 
 
 
-    function replace_config($name) {
+    function replace_config($name, $https = null) {
+
+        $https = $https ? $https : CREATE_HTTPS_DOMAIN;
+
+
+
+
+
+
+
+
+
+        // правим файл .htaccess
+        $data = file_get_contents(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/.htaccess");
+
+        if($https == "no"){
+            $data = str_replace("RewriteCond %{HTTPS} =off ","#RewriteCond %{HTTPS} =off ", $data);
+            $data = str_replace("RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]","#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]", $data);
+        }
+        else{
+            $data = str_replace("#RewriteCond %{HTTPS} =off ","RewriteCond %{HTTPS} =off ", $data);
+            $data = str_replace("#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]","RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]", $data);
+        }
+
+        $handle = fopen(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/.htaccess","w+");
+        fwrite($handle,$data); // Записать переменную в файл
+        fclose($handle); // Закрыть файл
+
+
+
+
+
+
+
+
+
+        // правим файлы конфигураций
         $data = file_get_contents(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/config.php");
         $data = str_replace(DOMAIN,$name.".".DOMAIN, $data);
-        //$data = str_replace(DOMAIN."/".DOMAIN_HTML.".".$name."/image",DOMAIN."/".DOMAIN_HTML."/image", $data);
+        $data = str_replace($name.".".DOMAIN."/".DOMAIN_HTML."/image",DOMAIN."/".DOMAIN_HTML."/image", $data);
         $data = str_replace("define('DB_DRIVER', 'mysqli_memcached');","define('DB_DRIVER', 'mysqli');", $data);
         $data = str_replace("define('DB_DATABASE', '".PREFIX_DATABASE."_".DOMAIN_DATABASE."');","define('DB_DATABASE', '".PREFIX_DATABASE."_".$name."');", $data);
+
+        if($https == "no"){
+            $data = str_replace("define('HTTPS_SERVER', 'https://".$name.".".DOMAIN."/');","define('HTTPS_SERVER', 'http://".$name.".".DOMAIN."/');", $data);
+        }
+        else {
+            $data = str_replace("define('HTTPS_SERVER', 'http://".$name.".".DOMAIN."/');","define('HTTPS_SERVER', 'https://".$name.".".DOMAIN."/');", $data);
+        }
+
         $handle = fopen(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/config.php","w+");
         fwrite($handle,$data); // Записать переменную в файл
         fclose($handle); // Закрыть файл
 
 
 
+
+
         $data = file_get_contents(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/admin/config.php");
         $data = str_replace(DOMAIN,$name.".".DOMAIN, $data);
-        //$data = str_replace(DOMAIN."/".DOMAIN_HTML.".".$name."/image",DOMAIN."/".DOMAIN_HTML."/image", $data);
+        $data = str_replace($name.".".DOMAIN."/".DOMAIN_HTML."/image",DOMAIN."/".DOMAIN_HTML."/image", $data);
         $data = str_replace("define('DB_DRIVER', 'mysqli_memcached');","define('DB_DRIVER', 'mysqli');", $data);
         $data = str_replace("define('DB_DATABASE', '".PREFIX_DATABASE."_".DOMAIN_DATABASE."');","define('DB_DATABASE', '".PREFIX_DATABASE."_".$name."');", $data);
-        $handle = fopen(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/admin/config.php","w+");
-        fwrite($handle,$data); // Записать переменную в файл
-        fclose($handle); // Закрыть файл
+
+        if($https == "no"){
+            $data = str_replace("define('HTTPS_SERVER', 'https://".$name.".".DOMAIN."/admin/');","define('HTTPS_SERVER', 'http://".$name.".".DOMAIN."/admin/');", $data);
+            $data = str_replace("define('HTTPS_CATALOG', 'https://".$name.".".DOMAIN."/');","define('HTTPS_CATALOG', 'http://".$name.".".DOMAIN."/');", $data);
+        }
+        else {
+            $data = str_replace("define('HTTPS_SERVER', 'http://".$name.".".DOMAIN."/admin/');","define('HTTPS_SERVER', 'https://".$name.".".DOMAIN."/admin/');", $data);
+            $data = str_replace("define('HTTPS_CATALOG', 'http://".$name.".".DOMAIN."/');","define('HTTPS_CATALOG', 'https://".$name.".".DOMAIN."/');", $data);
+        }
+
+        $handle_2 = fopen(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/admin/config.php","w+");
+        fwrite($handle_2,$data); // Записать переменную в файл
+        fclose($handle_2); // Закрыть файл
     }
 
 
@@ -307,23 +356,25 @@ Class Domain {
 
 
 
-    function open_basedir($name) {
+    function open_basedir($name, $https = null) {
 
-        ssh2_exec(self::$connect, "sleep 200 ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2");
-        ssh2_exec(self::$connect, "sleep 210 ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf -f");
-        ssh2_exec(self::$connect, "sleep 220 ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf");
+        $https = $https ? $https : CREATE_HTTPS_DOMAIN;
 
-
-
-
-
-        ssh2_exec(self::$connect, "sleep 230 ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2");
-        ssh2_exec(self::$connect, "sleep 240 ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf -f");
-        ssh2_exec(self::$connect, "sleep 250 ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf");
-
+        if($https == "yes"){
+            ssh2_exec(self::$connect, "sleep 200 ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2");
+            ssh2_exec(self::$connect, "sleep 210 ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf -f ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf");
+            $sleep = 200;
+        }
+        else{
+            $sleep = 0;
+        }
 
 
-        ssh2_exec(self::$connect, "sleep 270 ; service httpd restart");
+        ssh2_exec(self::$connect, "sleep ".$sleep." ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2");
+        ssh2_exec(self::$connect, "sleep ".$sleep." ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf -f ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf");
+
+
+        ssh2_exec(self::$connect, "sleep ".$sleep." ; service httpd restart");
 
         
         
@@ -348,8 +399,9 @@ Class Domain {
 
 
 
-    function delete_cache($name) {
-        ssh2_exec(self::$connect, "sleep 290 ; rm ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/system/storage/cache/*");
+    function delete_cache_and_archive($name) {
+        ssh2_exec(self::$connect, "sleep 290 ; rm -f ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/system/storage/cache/*");
+        ssh2_exec(self::$connect, "sleep 300 ; rm -f ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/archive.zip");
     }
 
 
@@ -362,7 +414,11 @@ Class Domain {
 
 
 
-
+    function posted_adress($name, $address, $paspisanie) {
+        $this->connect_database($name)->prepare("UPDATE `oc_setting` SET `value` = '".$address."' WHERE `key` LIKE 'config_microdata_address_3';")->execute();
+        $this->connect_database($name)->prepare("UPDATE `oc_setting` SET `value` = '".$address."' WHERE `key` LIKE 'config_address';")->execute();
+        $this->connect_database($name)->prepare("UPDATE `oc_setting` SET `value` = '".$paspisanie."' WHERE `key` LIKE 'config_open';")->execute();
+    }
 
 
 

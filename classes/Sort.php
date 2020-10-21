@@ -23,16 +23,10 @@ Class Sort
 
             switch ($sort_value) {
                 case "id":
-                    $sortirovka = "zadacha_id";
+                    $sortirovka = "id";
                     break;
-                case "user":
-                    $sortirovka = "zadacha_user";
-                    break;
-                case "email":
-                    $sortirovka = "zadacha_email";
-                    break;
-                case "text":
-                    $sortirovka = "zadacha_text";
+                case "name":
+                    $sortirovka = "name";
                     break;
             }
 

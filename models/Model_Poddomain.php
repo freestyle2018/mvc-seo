@@ -3,6 +3,8 @@
 // модель
 Class Model_Poddomain{
 
+    const SHOW_BY_DEFAULT = 20;
+
     public static function getConnection()
     {
         // Устанавливаем соединение
@@ -16,6 +18,19 @@ Class Model_Poddomain{
     }
 
 
+    public function show_Poddomain($id){
+        $stmt = $this->getConnection()->prepare("SELECT * FROM poddomain WHERE id=".$id);
+        $stmt->execute();
+
+        foreach ($stmt->fetchAll(PDO::FETCH_NAMED) as $key => $value) {
+            $row[$key] = $value;
+        }
+
+        if(isset($row)){
+            return $row;
+        }
+    }
+
     public function show_Poddomains(){
         $stmt = $this->getConnection()->prepare("SELECT * FROM poddomain");
         $stmt->execute();
@@ -27,6 +42,34 @@ Class Model_Poddomain{
         if(isset($row)){
             return $row;
         }
+    }
+
+    public static function get_Poddomains_Limit($page, $sort){
+        $limit = self::SHOW_BY_DEFAULT;
+        $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
+        $db = Model_Poddomain::getConnection();
+
+        if($sort == ""){
+            $sql = 'SELECT * FROM poddomain ORDER BY id ASC LIMIT :limit OFFSET :offset ';
+        }
+        else{
+            $sql = 'SELECT * FROM poddomain ORDER BY ' . $sort . ' LIMIT :limit OFFSET :offset ';
+        }
+
+        $result = $db->prepare($sql);
+        $result->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $result->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $result->execute();
+
+
+        foreach ($result->fetchAll(PDO::FETCH_NAMED) as $key => $value) {
+            $row[$key] = $value;
+        }
+
+        if(isset($row)){
+            return $row;
+        }
+
     }
 
 
@@ -50,15 +93,21 @@ Class Model_Poddomain{
                                     name = :name,
                                     name_url = :name_url,
                                     name_rus = :name_rus,
+                                    adress = :adress,   
+                                    paspisanie = :paspisanie,
+                                    posted_address = :posted_address,
                                     indikator = :indikator
                                     
                                     where id = :id");
 
-        echo $domain["name"]." - ".$domain["id"];
+        //echo $domain["name"]." - ".$domain["id"];
 
         $stmt->bindParam(':name', $domain["name"]);
         $stmt->bindParam(':name_url', $domain["name_url"]);
         $stmt->bindParam(':name_rus', $domain["name_rus"]);
+        $stmt->bindParam(':adress', $domain["adress"]);
+        $stmt->bindParam(':paspisanie', $domain["paspisanie"]);
+        $stmt->bindParam(':posted_address', $domain["posted_address"]);
         $stmt->bindParam(':indikator', $domain["indikator"]);
 
         $stmt->bindParam(':id', $domain["id"]);
@@ -95,6 +144,26 @@ Class Model_Poddomain{
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
+
+
+
+
+
+    public function count_Poddomain(){
+        $stmt = $this->getConnection()->prepare("SELECT count(id) AS count FROM poddomain");
+        $stmt->execute();
+
+        foreach ($stmt->fetchAll(PDO::FETCH_NAMED) as $key => $value) {
+            $row[$key] = $value;
+        }
+
+        if(isset($row)){
+            return $row;
+        }
+    }
+
+
+
 
 
 

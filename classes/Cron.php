@@ -153,31 +153,29 @@ Class Cron {
 
 
 
-    function create_poddomain() {
+    function create_poddomain($https=null) {
+        $https = $https ? $https : CREATE_HTTPS_DOMAIN;
 
         $model = new Model_Poddomain();
         $info_domain = $model->show_create_Poddomain();
 
-        print_r($info_domain);
+        $info_domain[0]["indikator"] = 1;
+        $model->update_Poddomain($info_domain[0]);
 
-        if(!empty($info_domain)) {
+        if(!empty($info_domain[0])) {
             $name = $info_domain[0]["name"];
             $name_url = $info_domain[0]["name_url"];
             $name_rus = $info_domain[0]["name_rus"];
 
             $poddomain = new Domain();
-            $poddomain->index($name, $name_url, $name_rus);
-            $info_domain[0]["indikator"] = 1;
+            $poddomain->index($name, $name_url, $name_rus, $https);
 
             $api = new Api_Webmaster();
             $api->add_site_in_webmaster($name);
-
-            $model->update_Poddomain($info_domain[0]);
         }
         else{
             echo "пусто";
         }
-
     }
 
 

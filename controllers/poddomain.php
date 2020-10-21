@@ -13,6 +13,8 @@ Class Controller_Poddomain Extends Controller_Base {
     static $filter;
     static $status;
 
+    public $message;
+
     function __construct() {
         self::$auth = new Authentication();
         self::$authentication = self::$auth->index();
@@ -24,6 +26,9 @@ Class Controller_Poddomain Extends Controller_Base {
 
         $this->template = new Template($this->layouts, get_class($this));
 
+
+        //$this->message = '';
+
         $this->template->vars('authentication', self::$authentication["auth"]);
         $this->template->vars('status', $status);
     }
@@ -31,8 +36,27 @@ Class Controller_Poddomain Extends Controller_Base {
     // экшен
     function index() {
         if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
-            $info = self::$model->show_Poddomains();
+
+            $page = self::$filter->out('int',(empty($_GET['page']) ? '1' : $_GET['page']));
+            $sort_get = self::$filter->out('string',(empty($_GET['sort']) ? '' : $_GET['sort']));
+
+            $sort = new Sort();
+            $sortirovka = $sort->get($sort_get);
+
+            $info = self::$model->get_Poddomains_Limit($page, $sortirovka[2]);
+
+            $row = self::$model->count_Poddomain();
+            $total = $row["0"]["count"];
+
+            $pagination = new Pagination($total, $page, self::$model::SHOW_BY_DEFAULT, '');
+
+
             $this->template->vars('projects', $info);
+            $this->template->vars('page', $page);
+            $this->template->vars('total', $total);
+            $this->template->vars('sortirovka', $sortirovka);
+            $this->template->vars('pagination', $pagination->get($sortirovka));
+            $this->template->vars('message', $this->message);
         }
 
         $this->template->view('index');
@@ -44,6 +68,7 @@ Class Controller_Poddomain Extends Controller_Base {
         $name = self::$filter->out('string',(empty($_POST['name']) ? '' : $_POST['name']));
         $name_url = self::$filter->out('string',(empty($_POST['name_url']) ? '' : $_POST['name_url']));
         $name_rus = self::$filter->out('string',(empty($_POST['name_rus']) ? '' : $_POST['name_rus']));
+        //$name_rus = empty($_POST['name_rus']) ? '' : urldecode($_POST['name_rus']);
         $indikator = self::$filter->out('int',(empty($_POST['indikator']) ? '0' : $_POST['indikator']));
 
         //echo "indikator = ".$indikator."<br>\r\n";
@@ -56,8 +81,8 @@ Class Controller_Poddomain Extends Controller_Base {
                 if($indikator == 1) {
                     self::$contr->index($name, $name_url, $name_rus);
 
-                    $api = new Api_Webmaster();
-                    $api->add_site_in_webmaster($name);
+                    //$api = new Api_Webmaster();
+                    //$api->add_site_in_webmaster($name);
                 }
                 else {
                     $this->index();
@@ -74,6 +99,119 @@ Class Controller_Poddomain Extends Controller_Base {
         }
     }
 
+
+
+
+    function operation() {
+
+        $ids_poddomain = empty($_POST['ids_poddomain']) ? '' : $_POST['ids_poddomain'];
+        $operation = empty($_POST['operation']) ? '' : $_POST['operation'];
+
+        //$sort = empty($_GET['sort']) ? '' : $_GET['sort'];
+        //$page = empty($_GET['page']) ? '' : $_GET['page'];
+
+
+        //print_r($ids_poddomain);
+        //print_r($operation);
+
+
+
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
+
+
+
+                if($operation == "ssl"){
+                    self::$contr->create_ssl_certificate();
+                }
+
+
+
+                $x = 0;
+                foreach ($ids_poddomain as $key => $value) {
+
+                    echo "value = ".$value."<br>\r\n";
+
+                    $info_poddomain = self::$model->show_Poddomain($value);
+
+                    print_r($info_poddomain);
+
+
+                    $name = $info_poddomain[0]["name"];
+                    $address = $info_poddomain[0]["adress"];
+                    $paspisanie = $info_poddomain[0]["paspisanie"];
+
+                    if($operation == "ssl"){
+                        self::$contr->installation_ssl_certificate($name, "yes");
+                        self::$contr->open_basedir($name, "yes");
+                    }
+                    else if($operation == "address"){
+
+                        echo "name = ".$name."<br>\r\n";
+
+
+
+                        self::$contr->posted_adress($name, $address, $paspisanie);
+                        $info_poddomain[0]["posted_address"] = 1;
+                        self::$model->update_Poddomain($info_poddomain[0]);
+                    }
+
+                    $x++;
+                }
+
+                $this->index();
+
+
+        }
+    }
+
+
+
+
+    function adress() {
+
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
+
+            $first = empty($_POST['first']) ? '' : $_POST['first'];
+            $last = empty($_POST['last']) ? '' : $_POST['last'];
+
+            $cdek = new Model_Cdek();
+
+            $poddomain = new Model_Poddomain();
+            $info_poddomain = $poddomain->show_Poddomains();
+
+            //print_r($info_poddomain);
+
+
+            if($first != ""){
+                $x = $first;
+                while ($x <= $last){
+                    $name = $info_poddomain[$x]["name"];
+
+                    $info = $cdek->find_cdek_adress($name);
+                    $nomer_adress = rand(0, sizeof($info)-1);
+
+                    $adress = $info[$nomer_adress]["city"].", ".$info[$nomer_adress]["adress"];
+                    $paspisanie = $info[$nomer_adress]["paspisanie"];
+
+                    $info_poddomain[$x]["adress"] = $adress;
+                    $info_poddomain[$x]["paspisanie"] = $paspisanie;
+
+                    $poddomain->update_Poddomain($info_poddomain[$x]);
+
+                    $x++;
+                }
+            }
+
+
+
+
+            $this->template->view('adress');
+
+        }
+
+
+
+    }
 
 
 
