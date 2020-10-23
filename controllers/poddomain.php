@@ -81,8 +81,8 @@ Class Controller_Poddomain Extends Controller_Base {
                 if($indikator == 1) {
                     self::$contr->index($name, $name_url, $name_rus);
 
-                    //$api = new Api_Webmaster();
-                    //$api->add_site_in_webmaster($name);
+                    $api = new Api_Webmaster();
+                    $api->add_site_in_webmaster($name);
                 }
                 else {
                     $this->index();
@@ -133,9 +133,6 @@ Class Controller_Poddomain Extends Controller_Base {
 
                     $info_poddomain = self::$model->show_Poddomain($value);
 
-                    print_r($info_poddomain);
-
-
                     $name = $info_poddomain[0]["name"];
                     $address = $info_poddomain[0]["adress"];
                     $paspisanie = $info_poddomain[0]["paspisanie"];
@@ -145,15 +142,15 @@ Class Controller_Poddomain Extends Controller_Base {
                         self::$contr->open_basedir($name, "yes");
                     }
                     else if($operation == "address"){
-
-                        echo "name = ".$name."<br>\r\n";
-
-
-
                         self::$contr->posted_adress($name, $address, $paspisanie);
                         $info_poddomain[0]["posted_address"] = 1;
                         self::$model->update_Poddomain($info_poddomain[0]);
                     }
+                    else if($operation == "add_webmaster"){
+                        $api = new Api_Webmaster();
+                        $api->add_site_in_webmaster($name);
+                    }
+
 
                     $x++;
                 }
@@ -176,19 +173,20 @@ Class Controller_Poddomain Extends Controller_Base {
 
             $cdek = new Model_Cdek();
 
-            $poddomain = new Model_Poddomain();
-            $info_poddomain = $poddomain->show_Poddomains();
-
-            //print_r($info_poddomain);
-
+            
 
             if($first != ""){
-                $x = $first;
-                while ($x <= $last){
+
+                $info_poddomain = self::$model->show_Poddomains();
+
+                $x = $first - 1;
+                while ($x <= $last - 1){
                     $name = $info_poddomain[$x]["name"];
 
                     $info = $cdek->find_cdek_adress($name);
                     $nomer_adress = rand(0, sizeof($info)-1);
+
+                    print_r($info);
 
                     $adress = $info[$nomer_adress]["city"].", ".$info[$nomer_adress]["adress"];
                     $paspisanie = $info[$nomer_adress]["paspisanie"];
@@ -196,7 +194,7 @@ Class Controller_Poddomain Extends Controller_Base {
                     $info_poddomain[$x]["adress"] = $adress;
                     $info_poddomain[$x]["paspisanie"] = $paspisanie;
 
-                    $poddomain->update_Poddomain($info_poddomain[$x]);
+                    self::$model->update_Poddomain($info_poddomain[$x]);
 
                     $x++;
                 }

@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/Model_Cdek.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/poddomain/adress.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Api_Webmaster.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Api_Webmaster.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cron.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Domain.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Domain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Sort.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Sort.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cron.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/poddomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/poddomain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Model_Opencart.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Opencart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Cdek.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Cdek.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Model_Poddomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Poddomain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/first_layouts.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/first_layouts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc-seo.ru.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc_project.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_project.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/poddomain/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/poddomain/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -451,6 +446,25 @@
       <workItem from="1603271418844" duration="1652000" />
       <workItem from="1603273232904" duration="1057000" />
       <workItem from="1603274552230" duration="728000" />
+      <workItem from="1603275875135" duration="109000" />
+      <workItem from="1603276068060" duration="607000" />
+      <workItem from="1603310178651" duration="1399000" />
+      <workItem from="1603313009928" duration="1797000" />
+      <workItem from="1603314821529" duration="486000" />
+      <workItem from="1603315322538" duration="1370000" />
+      <workItem from="1603357768857" duration="1749000" />
+      <workItem from="1603359580317" duration="1512000" />
+      <workItem from="1603361489314" duration="1539000" />
+      <workItem from="1603370311434" duration="1366000" />
+      <workItem from="1603374106214" duration="1827000" />
+      <workItem from="1603375992499" duration="1036000" />
+      <workItem from="1603377369557" duration="148000" />
+      <workItem from="1603378407932" duration="1198000" />
+      <workItem from="1603387606122" duration="784000" />
+      <workItem from="1603392075625" duration="597000" />
+      <workItem from="1603392685389" duration="2009000" />
+      <workItem from="1603394709152" duration="692000" />
+      <workItem from="1603398755163" duration="622000" />
     </task>
     <servers />
   </component>
@@ -466,10 +480,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603269249055" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1603275879104">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1603435392802">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603275879104" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603435392802" />
     <state x="658" y="252" width="825" height="659" key="find.popup" timestamp="1602573902734">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

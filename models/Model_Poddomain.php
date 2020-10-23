@@ -32,7 +32,7 @@ Class Model_Poddomain{
     }
 
     public function show_Poddomains(){
-        $stmt = $this->getConnection()->prepare("SELECT * FROM poddomain");
+        $stmt = $this->getConnection()->prepare("SELECT * FROM poddomain ORDER BY id ASC");
         $stmt->execute();
 
         foreach ($stmt->fetchAll(PDO::FETCH_NAMED) as $key => $value) {

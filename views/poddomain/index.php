@@ -74,6 +74,7 @@
         <option value="">(не выбрана)</option>
         <option value="ssl">Установить SSL сертификат</option>
         <option value="address">Добавить адрес на сайт</option>
+        <option value="add_webmaster">Добавить сайт в Вебмастер</option>
     </select>
 
     <button id="submit" type="submit" value="Выполнить">Выполнить</button>

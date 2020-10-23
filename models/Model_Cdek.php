@@ -16,7 +16,7 @@ Class Model_Cdek{
 
 
     public function find_cdek_adress($name){
-        $stmt = $this->getConnection()->prepare("SELECT * FROM cdek_adress WHERE transliterate_func(city) LIKE '%".$name."%'");
+        $stmt = $this->getConnection()->prepare("SELECT * FROM cdek_adress WHERE transliterate_func(city) LIKE '".$name."%'");
         $stmt->execute();
 
         foreach ($stmt->fetchAll(PDO::FETCH_NAMED) as $key => $value) {

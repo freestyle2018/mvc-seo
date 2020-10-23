@@ -27,15 +27,17 @@ Class Domain {
         $this->copy_database($name);
         $this->edit_database($name, $name_url, $name_rus);
 
+        sleep(20);
+
         $this->create_arhive( URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML, URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML."/archive.zip");
         $this->copy_arhive($name);
         $this->extract_arhive($name);
 
         $this->replace_config($name, $https);
-        $this->link_dir_image($name, $https);
+        $this->link_dir_image($name);
 
-        $this->open_basedir($name);
-        $this->delete_cache_and_archive($name);
+        $this->open_basedir($name, $https);
+        $this->delete_cache_and_archive($name, $https);
     }
 
 
@@ -51,7 +53,7 @@ Class Domain {
 
 
     function create_domain($name) {
-        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-domain admin ".$name.".".DOMAIN);
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-domain admin ".$name.".".DOMAIN."; sleep 30;");
     }
 
     function create_ssl_certificate($https = null) {
@@ -197,7 +199,6 @@ Class Domain {
         }
 
 
-
         $zip = new ZipArchive();
         $zip->open($destination, ZIPARCHIVE::CREATE);
 
@@ -240,6 +241,7 @@ Class Domain {
 
 
     function extract_arhive($name) {
+
         $zip1 = new ZipArchive;
 
         //Открываем Zip-архив
@@ -399,9 +401,19 @@ Class Domain {
 
 
 
-    function delete_cache_and_archive($name) {
-        ssh2_exec(self::$connect, "sleep 290 ; rm -f ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/system/storage/cache/*");
-        ssh2_exec(self::$connect, "sleep 300 ; rm -f ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/archive.zip");
+    function delete_cache_and_archive($name, $https = null) {
+
+        $https = $https ? $https : CREATE_HTTPS_DOMAIN;
+
+        if($https == "yes"){
+            $sleep = 200;
+        }
+        else{
+            $sleep = 0;
+        }
+
+        ssh2_exec(self::$connect, "sleep ".$sleep." ; rm -f ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/system/storage/cache/*");
+        ssh2_exec(self::$connect, "sleep ".$sleep." ; rm -f ".URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/archive.zip");
     }
 
 
