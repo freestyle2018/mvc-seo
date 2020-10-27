@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/views/poddomain/show.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/Domain.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Domain.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/Pagination.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Pagination.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/poddomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/poddomain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Model_Cdek.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Cdek.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Model_Poddomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Poddomain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvc-seo.ru.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvc_project.sql" beforeDir="false" afterPath="$PROJECT_DIR$/mvc_project.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/poddomain/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/poddomain/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,11 +107,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/poddomain" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OpenServer\domains\mvc-seo.ru\views\poddomain" />
       <recent name="C:\OpenServer\domains" />
     </key>
   </component>
@@ -465,6 +466,41 @@
       <workItem from="1603392685389" duration="2009000" />
       <workItem from="1603394709152" duration="692000" />
       <workItem from="1603398755163" duration="622000" />
+      <workItem from="1603435381184" duration="1781000" />
+      <workItem from="1603437353171" duration="1796000" />
+      <workItem from="1603439165384" duration="722000" />
+      <workItem from="1603439905246" duration="1272000" />
+      <workItem from="1603441193245" duration="1684000" />
+      <workItem from="1603442889855" duration="1139000" />
+      <workItem from="1603444042878" duration="1724000" />
+      <workItem from="1603446508909" duration="1794000" />
+      <workItem from="1603448327561" duration="46000" />
+      <workItem from="1603460386249" duration="1090000" />
+      <workItem from="1603461496846" duration="618000" />
+      <workItem from="1603483513920" duration="1513000" />
+      <workItem from="1603486970858" duration="600000" />
+      <workItem from="1603488161042" duration="616000" />
+      <workItem from="1603521221114" duration="1266000" />
+      <workItem from="1603554382669" duration="608000" />
+      <workItem from="1603556286440" duration="700000" />
+      <workItem from="1603559447080" duration="748000" />
+      <workItem from="1603571509115" duration="1387000" />
+      <workItem from="1603573648444" duration="1697000" />
+      <workItem from="1603575611562" duration="1655000" />
+      <workItem from="1603608436266" duration="778000" />
+      <workItem from="1603640035453" duration="1832000" />
+      <workItem from="1603641884272" duration="599000" />
+      <workItem from="1603644072216" duration="752000" />
+      <workItem from="1603647179896" duration="1540000" />
+      <workItem from="1603699778371" duration="1289000" />
+      <workItem from="1603711095280" duration="501000" />
+      <workItem from="1603711614318" duration="1647000" />
+      <workItem from="1603730986991" duration="1127000" />
+      <workItem from="1603732696162" duration="617000" />
+      <workItem from="1603734227135" duration="1794000" />
+      <workItem from="1603736053391" duration="1797000" />
+      <workItem from="1603737905413" duration="685000" />
+      <workItem from="1603784103663" duration="725000" />
     </task>
     <servers />
   </component>
@@ -480,10 +516,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603269249055" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1603435392802">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1603784104236">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603435392802" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1603784104236" />
     <state x="658" y="252" width="825" height="659" key="find.popup" timestamp="1602573902734">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

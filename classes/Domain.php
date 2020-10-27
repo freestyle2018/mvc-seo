@@ -27,16 +27,16 @@ Class Domain {
         $this->copy_database($name);
         $this->edit_database($name, $name_url, $name_rus);
 
-        sleep(20);
+        sleep(30);
 
         $this->create_arhive( URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML, URL_SUBDOMAIN.DOMAIN."/".DOMAIN_HTML."/archive.zip");
         $this->copy_arhive($name);
         $this->extract_arhive($name);
 
-        $this->replace_config($name, $https);
+        $this->replace_config($name, $https, 1);
         $this->link_dir_image($name);
 
-        $this->open_basedir($name, $https);
+        $this->open_basedir($name, $https, 1);
         $this->delete_cache_and_archive($name, $https);
     }
 
@@ -82,7 +82,7 @@ Class Domain {
 
 
     function create_database($name) {
-        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-database admin $name ".VpsConf::getVpsUser()." ".VpsConf::getVpsPass());
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-database admin $name ".VpsConf::getVpsUser()." ".VpsConf::getVpsPass()." mysql localhost");
     }
 
 
@@ -260,7 +260,7 @@ Class Domain {
 
 
 
-    function replace_config($name, $https = null) {
+    function replace_config($name, $https = null, $raz) {
 
         $https = $https ? $https : CREATE_HTTPS_DOMAIN;
 
@@ -298,7 +298,9 @@ Class Domain {
 
         // правим файлы конфигураций
         $data = file_get_contents(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/config.php");
-        $data = str_replace(DOMAIN,$name.".".DOMAIN, $data);
+        if($raz == 1){
+            $data = str_replace(DOMAIN,$name.".".DOMAIN, $data);
+        }
         $data = str_replace($name.".".DOMAIN."/".DOMAIN_HTML."/image",DOMAIN."/".DOMAIN_HTML."/image", $data);
         $data = str_replace("define('DB_DRIVER', 'mysqli_memcached');","define('DB_DRIVER', 'mysqli');", $data);
         $data = str_replace("define('DB_DATABASE', '".PREFIX_DATABASE."_".DOMAIN_DATABASE."');","define('DB_DATABASE', '".PREFIX_DATABASE."_".$name."');", $data);
@@ -319,7 +321,9 @@ Class Domain {
 
 
         $data = file_get_contents(URL_SUBDOMAIN.$name.".".DOMAIN."/".DOMAIN_HTML."/admin/config.php");
-        $data = str_replace(DOMAIN,$name.".".DOMAIN, $data);
+        if($raz == 1){
+            $data = str_replace(DOMAIN,$name.".".DOMAIN, $data);
+        }
         $data = str_replace($name.".".DOMAIN."/".DOMAIN_HTML."/image",DOMAIN."/".DOMAIN_HTML."/image", $data);
         $data = str_replace("define('DB_DRIVER', 'mysqli_memcached');","define('DB_DRIVER', 'mysqli');", $data);
         $data = str_replace("define('DB_DATABASE', '".PREFIX_DATABASE."_".DOMAIN_DATABASE."');","define('DB_DATABASE', '".PREFIX_DATABASE."_".$name."');", $data);
@@ -358,7 +362,7 @@ Class Domain {
 
 
 
-    function open_basedir($name, $https = null) {
+    function open_basedir($name, $https = null, $raz) {
 
         $https = $https ? $https : CREATE_HTTPS_DOMAIN;
 
@@ -376,7 +380,10 @@ Class Domain {
         ssh2_exec(self::$connect, "sleep ".$sleep." ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf -f ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf");
 
 
-        ssh2_exec(self::$connect, "sleep ".$sleep." ; service httpd restart");
+        if($raz == 1){
+            $sleep_restart = 210;
+            ssh2_exec(self::$connect, "sleep ".$sleep_restart." ; service httpd restart");
+        }
 
         
         
@@ -399,6 +406,11 @@ Class Domain {
 
 
 
+
+
+    function service_httpd_restart() {
+        ssh2_exec(self::$connect, "sleep 200 ; service httpd restart");
+    }
 
 
     function delete_cache_and_archive($name, $https = null) {

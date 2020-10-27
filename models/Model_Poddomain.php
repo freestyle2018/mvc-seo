@@ -44,9 +44,10 @@ Class Model_Poddomain{
         }
     }
 
-    public static function get_Poddomains_Limit($page, $sort){
-        $limit = self::SHOW_BY_DEFAULT;
-        $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
+    public static function get_Poddomains_Limit($page, $sort, $limit = null){
+
+        $limit = $limit ? $limit : self::SHOW_BY_DEFAULT;
+        $offset = ($page - 1) * $limit;
         $db = Model_Poddomain::getConnection();
 
         if($sort == ""){

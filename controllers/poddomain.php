@@ -39,29 +39,45 @@ Class Controller_Poddomain Extends Controller_Base {
 
             $page = self::$filter->out('int',(empty($_GET['page']) ? '1' : $_GET['page']));
             $sort_get = self::$filter->out('string',(empty($_GET['sort']) ? '' : $_GET['sort']));
+            $sum = self::$filter->out('int',(empty($_GET['sum']) ? self::$model::SHOW_BY_DEFAULT : $_GET['sum']));
 
             $sort = new Sort();
             $sortirovka = $sort->get($sort_get);
 
-            $info = self::$model->get_Poddomains_Limit($page, $sortirovka[2]);
+            $info = self::$model->get_Poddomains_Limit($page, $sortirovka[2], $sum);
 
             $row = self::$model->count_Poddomain();
             $total = $row["0"]["count"];
 
-            $pagination = new Pagination($total, $page, self::$model::SHOW_BY_DEFAULT, '');
 
+            $pagination = new Pagination($total, $page, $sum, '');
 
             $this->template->vars('projects', $info);
+            $this->template->vars('sum', $sum);
             $this->template->vars('page', $page);
             $this->template->vars('total', $total);
             $this->template->vars('sortirovka', $sortirovka);
-            $this->template->vars('pagination', $pagination->get($sortirovka));
+            $this->template->vars('pagination', $pagination->get($sortirovka, $sum));
             $this->template->vars('message', $this->message);
         }
 
         $this->template->view('index');
     }
 
+    function show() {
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
+            $id = self::$filter->out('int',(empty($_GET['id']) ? $_POST['id'] : $_GET['id']));
+            
+            if(isset($_POST)){
+                self::$model->update_Poddomain($_POST);
+            }
+
+            $domain = self::$model->show_Poddomain($id);
+
+            $this->template->vars('domain', $domain[0]);
+            $this->template->view('show');
+        }
+    }
 
     function add() {
 
@@ -107,17 +123,8 @@ Class Controller_Poddomain Extends Controller_Base {
         $ids_poddomain = empty($_POST['ids_poddomain']) ? '' : $_POST['ids_poddomain'];
         $operation = empty($_POST['operation']) ? '' : $_POST['operation'];
 
-        //$sort = empty($_GET['sort']) ? '' : $_GET['sort'];
-        //$page = empty($_GET['page']) ? '' : $_GET['page'];
-
-
-        //print_r($ids_poddomain);
-        //print_r($operation);
-
-
 
         if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
-
 
 
                 if($operation == "ssl"){
@@ -139,7 +146,9 @@ Class Controller_Poddomain Extends Controller_Base {
 
                     if($operation == "ssl"){
                         self::$contr->installation_ssl_certificate($name, "yes");
-                        self::$contr->open_basedir($name, "yes");
+
+                        self::$contr->replace_config($name, "yes", 2);
+                        self::$contr->open_basedir($name, "yes", 2);
                     }
                     else if($operation == "address"){
                         self::$contr->posted_adress($name, $address, $paspisanie);
@@ -150,10 +159,15 @@ Class Controller_Poddomain Extends Controller_Base {
                         $api = new Api_Webmaster();
                         $api->add_site_in_webmaster($name);
                     }
-
-
                     $x++;
                 }
+
+
+
+                if($operation == "ssl"){
+                    self::$contr->service_httpd_restart();
+                }
+
 
                 $this->index();
 

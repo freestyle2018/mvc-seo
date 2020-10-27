@@ -10,7 +10,7 @@
             <?php
 
             if($page != ""){
-                $page_str = "&page=".$page;
+                $page_str = "&page=".$page."&sum=".$sum;
             }
 
             $razdelu = array(
@@ -32,9 +32,25 @@
                 }
 
             endforeach;
-
-
             ?>
+
+
+
+            <select class='select_page select_page_1'>
+                <option value='25'>25</option>
+                <option value='50'>50</option>
+                <option value='100'>100</option>
+                <option value='250'>250</option>
+            </select>
+
+
+            <span class="check-block">
+                <i class='fa fa-check-square check'></i>
+                <i class='fa fa-check check'></i>
+            </span>
+
+
+
 
         <?php echo "<br>"; ?>
         <?php foreach($projects as $key=>$value) :?>
@@ -52,10 +68,17 @@
                     }
                     echo "href='http://".$value["name"].".".DOMAIN."'>".$value["name"].".".DOMAIN."</a>";
 
+                    echo "<a target='_blank' href='/poddomain/show/?id=".$value["id"]."'><i class='fa fa-eye'></i></a>";
+
+
                     if($value["adress"] != ""){
                         echo "&nbsp;<i class='fa ";
-                        if($value["posted_address"] == 1){
-                            echo " blue ";
+
+                        if($value["adress"] == ", "){
+                            echo " red ";
+                        }
+                        else if($value["posted_address"] == 1){
+                            echo " green ";
                         }
                         echo "fa-home'> <span class='adress'>".$value["adress"]."<span></i>&nbsp;";
                     }
@@ -67,12 +90,27 @@
 
             </div>
         <?php endforeach;?>
+
+        <select class='select_page select_page_2'>
+            <option value='25'>25</option>
+            <option value='50'>50</option>
+            <option value='100'>100</option>
+            <option value='250'>250</option>
+        </select>
+
+        <span class="check-block">
+            <i class='fa fa-check-square check'></i>
+            <i class='fa fa-check check'></i>
+        </span>
+        <br>
+
+
     <?php } ?>
 
     Выберите операцию:
     <select id="select_bar" name="operation">
         <option value="">(не выбрана)</option>
-        <option value="ssl">Установить SSL сертификат</option>
+        <option value="ssl">Установить SSL сертификат и HTTPS</option>
         <option value="address">Добавить адрес на сайт</option>
         <option value="add_webmaster">Добавить сайт в Вебмастер</option>
     </select>
@@ -82,51 +120,98 @@
 
 </form>
 
-<style>
-    .pagination li {
-        list-style-type: none;
-        float: left;
-        margin-right: 3px;
-    }
-
-    .pagination li.active {
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .green {
-        color: #1c7430;
-        font-weight: bold;
-    }
-
-    .message {
-        color: #de0003;
-        font-weight: bold;
-    }
-
-    .adress {
-        display: none;
-    }
-
-    .blue {
-        color: #020a85;
-    }
-
-</style>
-
 <div class="answer"></div>
 <div class="pagination" style="margin-left:20%;"><?php echo $pagination; ?></div>
 
 
 <script type="text/javascript">
 
-    $("i.fa-home").on("click", function() {
-        $(this).children('span').toggle('slow');
+
+    // разбивает GET запрос на переменные
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
+
+    // после загрузки страницы показывает в select нужное количество страниц
+    $(document).ready(function() {
+        $array = getUrlVars();
+        $sum = $array["sum"];
+
+        $(".select_page option[value='" + $sum + "']").attr("selected", "selected");
+    });
+
+    function select()
+    {
+        $url = $(location).attr('href');
+        $url = $url.replace(/&sum=\d{2,4}/g, '');
+        window.location.href = $url + "&sum=" + $info;
+    }
+
+    // выбор пункта select_page
+    // и перезагрузка страницы
+    $(".select_page_1").change(function() {
+        $info = $(".select_page_1 option:selected").val();
+        select();
+    });
+
+    $(".select_page_2").change(function() {
+        $info = $(".select_page_2 option:selected").val();
+        select();
     });
 
 
 
 
+    // выбрать все input-checkbox
+    $check_all = false;
+    $('.check-block').on('click', function() {
+
+        //alert("aregaesgh");
+
+        $(".check").toggle();
+
+        if($check_all == false){
+            $("input[name~='ids_poddomain[]']").prop('checked', true);
+            $check_all = true;
+        }
+        else{
+            $("input[name~='ids_poddomain[]']").prop('checked', false);
+            $check_all = false;
+        }
+
+    });
+
+
+    // отображать адрес рядом с иконкой
+    $("i.fa-home").on("click", function() {
+        $(this).children('span').toggle('slow');
+    });
+
+
+   /* $("#submit").on("click", function() {
+
+        if ($("input[name~='ids_poddomain[]']").is(':checked')){
+            $("#select_bar").attr("disabled", true);
+            $("#submit").attr("disabled", true);
+        }
+        else {
+            alert("Не выбраны значения!");
+        }
+
+    });*/
+
+
+    // ajax обработка формы запроса
     $("#addForm").on('submit', function (e) {
         e.preventDefault();
 
@@ -157,9 +242,6 @@
                     console.log(data); // выводим ошибку в консоль
                 }
             });
-        }
-        else {
-            alert("Не выбраны значения!");
         }
 
         return false;

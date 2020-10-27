@@ -28,12 +28,12 @@ class Pagination
      * @param type $limit <p>Количество записей на страницу</p>
      * @param type $index <p>Ключ для url</p>
      */
-    public function __construct($total, $currentPage, $limit, $index)
+    public function __construct($total, $currentPage, $limit = null, $index)
     {
         # Устанавливаем общее количество записей
         $this->total = $total;
         # Устанавливаем количество записей на страницу
-        $this->limit = $limit;
+        $this->limit = $limit ? $limit : self::$model::SHOW_BY_DEFAULT;
         # Устанавливаем ключ в url
         $this->index = $index;
         # Устанавливаем количество страниц
@@ -45,7 +45,7 @@ class Pagination
      *  Для вывода ссылок
      * @return HTML-код со ссылками навигации
      */
-    public function get($sortirovka)
+    public function get($sortirovka, $sum=null)
     {
         # Для записи ссылок
         $links = null;
@@ -58,16 +58,16 @@ class Pagination
             if ($page == $this->current_page) {
 
                 if($sortirovka[0] != ""){
-                    $links .= '<li class="active"><a href="?page=' . $page . '&sort=' . $sortirovka[1] . $sortirovka[0] . '">' . $page . '</a></li>';
+                    $links .= '<li class="active"><a href="?page=' . $page . '&sort=' . $sortirovka[1] . $sortirovka[0] . '&sum='.$sum.'">' . $page . '</a></li>';
                 }
                 else{
-                    $links .= '<li class="active"><a href="?page=' . $page . '">' . $page . '</a></li>';
+                    $links .= '<li class="active"><a href="?page=' . $page . '&sum='.$sum.'">' . $page . '</a></li>';
                 }
 
 
             } else {
                 # Иначе генерируем ссылку
-                $links .= $this->generateHtml($page, null, $sortirovka);
+                $links .= $this->generateHtml($page, null, $sortirovka, $sum);
             }
         }
         # Если ссылки создались
@@ -75,11 +75,11 @@ class Pagination
             # Если текущая страница не первая
             if ($this->current_page > 1)
                 # Создаём ссылку "На первую"
-                $links = $this->generateHtml(1, '&lt;', $sortirovka) . $links;
+                $links = $this->generateHtml(1, '&lt;', $sortirovka, $sum) . $links;
             # Если текущая страница не первая
             if ($this->current_page < $this->amount)
                 # Создаём ссылку "На последнюю"
-                $links .= $this->generateHtml($this->amount, '&gt;', $sortirovka);
+                $links .= $this->generateHtml($this->amount, '&gt;', $sortirovka, $sum);
         }
         $html .= $links . '</ul>';
         # Возвращаем html
@@ -92,7 +92,7 @@ class Pagination
 
      * @return
      */
-    private function generateHtml($page, $text = null, $sortirovka)
+    private function generateHtml($page, $text = null, $sortirovka, $sum=null)
     {
         # Если текст ссылки не указан
         if (!$text)
@@ -105,11 +105,11 @@ class Pagination
 
         if($sortirovka[1] != ""){
             return
-                '<li><a href= ?page=' . $page . '&sort=' . $sortirovka[1] . $sortirovka[0] . '>' . $text . '</a></li>';
+                '<li><a href= ?page=' . $page . '&sort=' . $sortirovka[1] . $sortirovka[0] . '&sum='.$sum.'>' . $text . '</a></li>';
         }
         else{
             return
-                '<li><a href= ?page=' . $page . '&sort=' . $sortirovka[1] . $sortirovka[0] . '>' . $text . '</a></li>';
+                '<li><a href= ?page=' . $page . '&sort=' . $sortirovka[1] . $sortirovka[0] . '&sum='.$sum.'>' . $text . '</a></li>';
         }
 
     }
