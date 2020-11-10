@@ -17,6 +17,12 @@
         </div>
         <div class="box-row">
             <div class="box">
+                Город
+            </div>
+            <div class="box"><input type="text" size="120" name="gorod" value="<?php echo $domain["gorod"]; ?>"><br></div>
+        </div>
+        <div class="box-row">
+            <div class="box">
                 Rus
             </div>
             <div class="box"><input type="text" size="120" name="name_rus" value="<?php echo $domain["name_rus"]; ?>"><br></div>
@@ -55,6 +61,14 @@
                 Индикатор
             </div>
             <div class="box"><input type="checkbox" name="indikator" value="1" <?php if($domain["indikator"] == "1") echo "checked" ?>><br></div>
+        </div>
+
+
+        <div class="box-row">
+            <div class="box">
+                SSL
+            </div>
+            <div class="box"><input type="checkbox" name="ssl_indikator" value="1" <?php if($domain["ssl_indikator"] == "1") echo "checked" ?>><br></div>
         </div>
     </div>
 

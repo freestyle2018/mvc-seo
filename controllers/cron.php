@@ -62,4 +62,14 @@ Class Controller_Cron Extends Controller_Base {
         $this->template->view('index');
     }
 
+    function https_and_ssl()
+    {
+        $cron = new Cron();
+        $cron->https_and_ssl();
+        $info = "";
+
+        $this->template->vars('info', $info);
+        $this->template->view('index');
+    }
+
 }

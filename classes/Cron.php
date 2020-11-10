@@ -157,7 +157,7 @@ Class Cron {
         $https = $https ? $https : CREATE_HTTPS_DOMAIN;
 
         $model = new Model_Poddomain();
-        $info_domain = $model->show_create_Poddomain();
+        $info_domain = $model->show_cron_Poddomain("create");
 
         $info_domain[0]["indikator"] = 1;
         $model->update_Poddomain($info_domain[0]);
@@ -179,6 +179,34 @@ Class Cron {
     }
 
 
+
+    
+
+
+    function https_and_ssl() {
+        $model = new Model_Poddomain();
+        $info_domain = $model->show_cron_Poddomain("ssl");
+
+        if(!empty($info_domain[0])) {
+            $name = $info_domain[0]["name"];
+
+            echo $name;
+
+            $poddomain = new Domain();
+            $poddomain->installation_ssl_certificate($name, "yes");
+            sleep(30);
+            $poddomain->replace_config($name, "yes", 2);
+            $poddomain->open_basedir($name, "yes", 2);
+            $poddomain->service_httpd_restart();
+        }
+        else{
+            echo "пусто";
+        }
+
+        $info_domain[0]["ssl_indikator"] = 1;
+        $model->update_Poddomain($info_domain[0]);
+
+    }
 
 
 

@@ -44,11 +44,10 @@ Class Model_Poddomain{
         }
     }
 
-    public static function get_Poddomains_Limit($page, $sort, $limit = null){
+    public function get_Poddomains_Limit($page, $sort, $limit = null){
 
         $limit = $limit ? $limit : self::SHOW_BY_DEFAULT;
         $offset = ($page - 1) * $limit;
-        $db = Model_Poddomain::getConnection();
 
         if($sort == ""){
             $sql = 'SELECT * FROM poddomain ORDER BY id ASC LIMIT :limit OFFSET :offset ';
@@ -57,7 +56,7 @@ Class Model_Poddomain{
             $sql = 'SELECT * FROM poddomain ORDER BY ' . $sort . ' LIMIT :limit OFFSET :offset ';
         }
 
-        $result = $db->prepare($sql);
+        $result = $this->getConnection()->prepare($sql);
         $result->bindParam(':limit', $limit, PDO::PARAM_INT);
         $result->bindParam(':offset', $offset, PDO::PARAM_INT);
         $result->execute();
@@ -75,8 +74,16 @@ Class Model_Poddomain{
 
 
 
-    public function show_create_Poddomain(){
-        $stmt = $this->getConnection()->prepare("SELECT * FROM poddomain WHERE indikator = 0 ORDER BY id LIMIT 1");
+    public function show_cron_Poddomain($condition){
+
+        if($condition == "create"){
+            $where = "indikator = 0";
+        }
+        else if($condition == "ssl"){
+            $where = "ssl_indikator = 0";
+        }
+
+        $stmt = $this->getConnection()->prepare("SELECT * FROM poddomain WHERE ".$where." ORDER BY id LIMIT 1");
         $stmt->execute();
 
         foreach ($stmt->fetchAll(PDO::FETCH_NAMED) as $key => $value) {
@@ -92,24 +99,28 @@ Class Model_Poddomain{
     public function update_Poddomain($domain){
         $stmt = $this->getConnection()->prepare("UPDATE poddomain set 
                                     name = :name,
+                                    gorod = :gorod,
                                     name_url = :name_url,
                                     name_rus = :name_rus,
                                     adress = :adress,   
                                     paspisanie = :paspisanie,
                                     posted_address = :posted_address,
-                                    indikator = :indikator
+                                    indikator = :indikator,
+                                    ssl_indikator = :ssl_indikator
                                     
                                     where id = :id");
 
         //echo $domain["name"]." - ".$domain["id"];
 
         $stmt->bindParam(':name', $domain["name"]);
+        $stmt->bindParam(':gorod', $domain["gorod"]);
         $stmt->bindParam(':name_url', $domain["name_url"]);
         $stmt->bindParam(':name_rus', $domain["name_rus"]);
         $stmt->bindParam(':adress', $domain["adress"]);
         $stmt->bindParam(':paspisanie', $domain["paspisanie"]);
         $stmt->bindParam(':posted_address', $domain["posted_address"]);
         $stmt->bindParam(':indikator', $domain["indikator"]);
+        $stmt->bindParam(':ssl_indikator', $domain["ssl_indikator"]);
 
         $stmt->bindParam(':id', $domain["id"]);
 

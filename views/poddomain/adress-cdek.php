@@ -1,6 +1,7 @@
 
 
 <form id="addForm" method="post" action="">
+    <h2>CDEK</h2>
     Введите id сайтов для которых добавить адреса в базу данных:<br>
     <input type="text" name="first"> - <input type="text" name="last"><br><br>
 
@@ -26,7 +27,7 @@
             processData: false,
             contentType: false,
             async: false,
-            url: '/poddomain/adress/',
+            url: '/poddomain/adress_cdek/',
             data : formData,
             beforeSend: function(){
                 console.log("ajax!!!!");

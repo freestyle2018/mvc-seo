@@ -1,6 +1,6 @@
 <div><a href="/poddomain">Поддомены</a> - <a href="/poddomain/add/">(добавить поддомен)</a></div>
 
-<a target="_blank" href="/poddomain/adress/">(адреса в базу данных)</a></a><br><br>
+адреса в базу данных: <a target="_blank" href="/poddomain/adress_cdek/">CDEK</a> - <a target="_blank" href="/poddomain/adress_pochta/">Почта России</a><br><br>
 
 <form id="addForm" method="post" action="">
 
@@ -66,22 +66,25 @@
                     if($value["indikator"] == 1){
                         echo " class='green' ";
                     }
-                    echo "href='http://".$value["name"].".".DOMAIN."'>".$value["name"].".".DOMAIN."</a>";
+                echo "href='http://".$value["name"].".".DOMAIN."'>".$value["name"].".".DOMAIN."</a>";
 
-                    echo "<a target='_blank' href='/poddomain/show/?id=".$value["id"]."'><i class='fa fa-eye'></i></a>";
+                echo "<a target='_blank' href='/poddomain/show/?id=".$value["id"]."'><i class='fa fa-eye'></i></a>";
 
+                if($value["ssl_indikator"] == 1){
+                    echo "&nbsp;<i class='grey fa fa-lock'> <span class='adress'>".$value['adress']."<span></i>&nbsp;";
+                }
 
-                    if($value["adress"] != ""){
-                        echo "&nbsp;<i class='fa ";
+                if($value["adress"] != ""){
+                    echo "&nbsp;<i class='fa ";
 
-                        if($value["adress"] == ", "){
-                            echo " red ";
-                        }
-                        else if($value["posted_address"] == 1){
-                            echo " green ";
-                        }
-                        echo "fa-home'> <span class='adress'>".$value["adress"]."<span></i>&nbsp;";
+                    if($value["adress"] == " " || $value["adress"] == ", "){
+                        echo " red ";
                     }
+                    else if($value["posted_address"] == 1){
+                        echo " green ";
+                    }
+                    echo "fa-home'> <span class='adress'>".$value["adress"]."<span></i>&nbsp;";
+                }
 
 
                 //echo " - <a href='/poddomain/reload?id=".$value["id"]."'>Обновить</a>";
@@ -111,6 +114,7 @@
     <select id="select_bar" name="operation">
         <option value="">(не выбрана)</option>
         <option value="ssl">Установить SSL сертификат и HTTPS</option>
+        <option value="http">на HTTP</option>
         <option value="address">Добавить адрес на сайт</option>
         <option value="add_webmaster">Добавить сайт в Вебмастер</option>
     </select>

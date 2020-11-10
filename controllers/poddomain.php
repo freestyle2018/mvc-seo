@@ -33,6 +33,8 @@ Class Controller_Poddomain Extends Controller_Base {
         $this->template->vars('status', $status);
     }
 
+
+
     // экшен
     function index() {
         if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
@@ -67,7 +69,7 @@ Class Controller_Poddomain Extends Controller_Base {
     function show() {
         if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
             $id = self::$filter->out('int',(empty($_GET['id']) ? $_POST['id'] : $_GET['id']));
-            
+
             if(isset($_POST)){
                 self::$model->update_Poddomain($_POST);
             }
@@ -77,6 +79,37 @@ Class Controller_Poddomain Extends Controller_Base {
             $this->template->vars('domain', $domain[0]);
             $this->template->view('show');
         }
+    }
+
+
+
+
+    function info() {
+        $client = new Google_Client();
+
+        // service_account_file.json is the private key that you created for your service account.
+        $client->setAuthConfig('service_account_file.json');
+        $client->addScope('https://www.googleapis.com/auth/indexing');
+
+        // Get a Guzzle HTTP Client
+        $httpClient = $client->authorize();
+        $endpoint = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
+
+        // Define contents here. The structure of the content is described in the next step.
+        $content = "{
+          \"url\": \"http://example.com/jobs/42\",
+          \"type\": \"URL_UPDATED\"
+        }";
+
+        $response = $httpClient->post($endpoint, [ 'body' => $content ]);
+        $status_code = $response->getStatusCode();
+    }
+
+
+
+    function test() {
+        $google = new Api_Google();
+        $google->index();
     }
 
     function add() {
@@ -128,7 +161,7 @@ Class Controller_Poddomain Extends Controller_Base {
 
 
                 if($operation == "ssl"){
-                    self::$contr->create_ssl_certificate();
+                    //self::$contr->create_ssl_certificate();
                 }
 
 
@@ -146,9 +179,18 @@ Class Controller_Poddomain Extends Controller_Base {
 
                     if($operation == "ssl"){
                         self::$contr->installation_ssl_certificate($name, "yes");
-
+                        sleep(30);
                         self::$contr->replace_config($name, "yes", 2);
                         self::$contr->open_basedir($name, "yes", 2);
+
+                        $info_poddomain[0]["ssl_indikator"] = 1;
+                        self::$model->update_Poddomain($info_poddomain[0]);
+                    }
+                    else if($operation == "http"){
+                        self::$contr->replace_config($name, "no", 2);
+
+                        $info_poddomain[0]["ssl_indikator"] = 0;
+                        self::$model->update_Poddomain($info_poddomain[0]);
                     }
                     else if($operation == "address"){
                         self::$contr->posted_adress($name, $address, $paspisanie);
@@ -178,7 +220,7 @@ Class Controller_Poddomain Extends Controller_Base {
 
 
 
-    function adress() {
+    function adress_cdek() {
 
         if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
 
@@ -202,8 +244,14 @@ Class Controller_Poddomain Extends Controller_Base {
 
                     print_r($info);
 
-                    $adress = $info[$nomer_adress]["city"].", ".$info[$nomer_adress]["adress"];
-                    $paspisanie = $info[$nomer_adress]["paspisanie"];
+                    if($info[$nomer_adress]["adress"] != ""){
+                        $adress = $info[$nomer_adress]["city"].", ".$info[$nomer_adress]["adress"];
+                        $paspisanie = $info[$nomer_adress]["paspisanie"];
+                    }
+                    else {
+                        $adress = " ";
+                    }
+
 
                     $info_poddomain[$x]["adress"] = $adress;
                     $info_poddomain[$x]["paspisanie"] = $paspisanie;
@@ -214,10 +262,57 @@ Class Controller_Poddomain Extends Controller_Base {
                 }
             }
 
+            $this->template->view('adress-cdek');
+
+        }
+    }
 
 
 
-            $this->template->view('adress');
+    function adress_pochta() {
+
+        if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
+
+            $first = empty($_POST['first']) ? '' : $_POST['first'];
+            $last = empty($_POST['last']) ? '' : $_POST['last'];
+
+            $pochta = new Model_Pochta();
+
+
+
+            if($first != ""){
+
+                $info_poddomain = self::$model->show_Poddomains();
+
+                $x = $first - 1;
+                while ($x <= $last - 1){
+                    $gorod = $info_poddomain[$x]["gorod"];
+
+                    if($info_poddomain[$x]["adress"] == " "){
+                        $info = $pochta->find_pochta_adress($gorod);
+                        $nomer_adress = rand(0, sizeof($info)-1);
+
+                        $adress = $info[$nomer_adress]["adress"];
+                        $paspisanie = "Пн-Пт 10:00-19:00<br> Сб 10:00-16:00";
+
+                        if($adress != ""){
+                            $info_poddomain[$x]["adress"] = $adress;
+                            $info_poddomain[$x]["paspisanie"] = $paspisanie;
+
+                            self::$model->update_Poddomain($info_poddomain[$x]);
+                        }
+
+
+                    }
+
+                    $x++;
+                }
+            }
+
+
+
+
+            $this->template->view('adress-pochta');
 
         }
 

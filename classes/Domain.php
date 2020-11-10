@@ -82,7 +82,7 @@ Class Domain {
 
 
     function create_database($name) {
-        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-database admin $name ".VpsConf::getVpsUser()." ".VpsConf::getVpsPass()." mysql localhost");
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-database admin $name ".VpsConf::getVpsUser()." ".VpsConf::getVpsPass()." mysql localhost;");
     }
 
 
@@ -367,22 +367,17 @@ Class Domain {
         $https = $https ? $https : CREATE_HTTPS_DOMAIN;
 
         if($https == "yes"){
-            ssh2_exec(self::$connect, "sleep 200 ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2");
-            ssh2_exec(self::$connect, "sleep 210 ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf -f ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf");
-            $sleep = 200;
-        }
-        else{
-            $sleep = 0;
+            ssh2_exec(self::$connect, "sleep 190 ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2");
+            ssh2_exec(self::$connect, "sleep 200 ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf -f ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.ssl.conf");
         }
 
 
-        ssh2_exec(self::$connect, "sleep ".$sleep." ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2");
-        ssh2_exec(self::$connect, "sleep ".$sleep." ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf -f ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf");
+        ssh2_exec(self::$connect, "sleep 210 ; grep -v 'php_admin_value open_basedir' /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf > /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2");
+        ssh2_exec(self::$connect, "sleep 220 ; rm /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf -f ; mv /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf2 /home/admin/conf/web/".$name.".".DOMAIN.".httpd.conf");
 
 
         if($raz == 1){
-            $sleep_restart = 210;
-            ssh2_exec(self::$connect, "sleep ".$sleep_restart." ; service httpd restart");
+            ssh2_exec(self::$connect, "sleep 230 ; service httpd restart");
         }
 
         
@@ -409,7 +404,7 @@ Class Domain {
 
 
     function service_httpd_restart() {
-        ssh2_exec(self::$connect, "sleep 200 ; service httpd restart");
+        ssh2_exec(self::$connect, "sleep 240 ; service httpd restart");
     }
 
 
