@@ -128,7 +128,7 @@ Class Model_Poddomain{
         $stmt->execute();
     }
 
-    public function add_Poddomain($name, $name_url, $name_rus, $indikator){
+    public function add_Poddomain($name, $name_url, $name_rus, $indikator, $http = null){
 
         $stmt_1 = $this->getConnection()->prepare("SELECT * FROM poddomain WHERE name LIKE '$name'");
         $stmt_1->execute();

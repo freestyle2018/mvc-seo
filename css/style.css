@@ -1,10 +1,55 @@
+
+
+.flex-box {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    margin-bottom: 40px;
+}
+
+.flex-box .block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #00850a;
+    padding: 5px;
+    margin-top: 15px;
+    margin-right: 15px;
+    width: 150px;
+}
+
+.flex-box .block .fa {
+    color: #00850a;
+}
+
+.flex-box .block p {
+    display: inline-block;
+    text-align:  center;
+    margin-bottom: 0px;
+}
+
+
+
+
+/* ------------- */
+
+
+
+
+
+
 .boxer {
     display: table;
     border-collapse: collapse;
+    width: 830px;
 }
 
 .boxer .box-row {
     display: table-row;
+}
+
+.boxer .box-row .box:first-child {
+    width: 143px;
 }
 
 .boxer .box {
@@ -78,6 +123,99 @@ p.bold {
 .check-block .fa-check {
     display:none;
 }
+
+.input_margin {
+    margin-left: 74px;
+}
+
+
+
+
+
+
+
+/*    filter    */
+
+.filter_1 {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter_1 .fa-plus-square {
+    padding-right: 5px;
+}
+
+.filter_1 .fa-minus-square {
+    display: none;
+}
+
+
+/* ---- */
+
+.filter_2 {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter_2 .fa-plus-square {
+    padding-right: 5px;
+}
+
+.filter_2 .fa-minus-square {
+    display: none;
+}
+
+
+.boxer_2 {
+    margin-top: 25px;
+}
+
+.block .boxer {
+    text-align: right;
+}
+
+.block .info {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.block .info .ot {
+    margin-left: 54px;
+}
+
+.block .info .do {
+    margin-left: 20px;
+}
+
+
+
+
+
+
+
+/*    expired    */
+
+
+
+.expired_filter {
+    position: fixed;
+    padding: 5px 10px;
+    left:15px;
+    bottom: 15px;
+    border: 3px solid #ff8f00;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

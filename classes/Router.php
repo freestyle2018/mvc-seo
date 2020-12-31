@@ -72,6 +72,8 @@ Class Router {
 
     function start() {
         // Анализируем путь
+        $file = $controller = $action = $args = '';
+
         $this->getController($file, $controller, $action, $args);
 
         // Проверка существования файла, иначе 404

@@ -125,6 +125,24 @@ Class Sape {
         self::$client->call('sape.url_delete', array($id_url));
     }
 
+    function str_replace_once($search, $replace, $text)
+    {
+        $pos = strpos($text, $search);
+        return $pos!==false ? substr_replace($text, $replace, $pos, strlen($search)) : $text;
+    }
+
+    function name_url($name_url) {
+        require './files/sape/names.php';
+
+        $randon_name = rand(0, sizeof($array_names) - 1);
+        $text_sape = $array_names[$randon_name];
+
+        $text_sape = $this->str_replace_once("KEY", SAPE_KEY, $text_sape);
+
+        return $text_sape;
+    }
+
+
 
     function new_url($id_url, $name_url, $step) {
         $x=1;
@@ -134,14 +152,15 @@ Class Sape {
 
             $filter = array(
                 "cy_from" => 10,
-                "price_2" => 7,
+                "price_2" => 20,
+                "tr_1" => 1,
                 "domain_level" => 2,
                 "no_double_in_folder" => 1,
                 "level_from" => 1,
                 "level_2" => 1
             );
 
-            $pn = rand(0, 2);
+            $pn = rand(0, 4);
             $ps = 100;
 
             // (array) sape.search( (int) urlId, (array) filter[, (int) pn[, (int) ps = 100]] )
@@ -157,6 +176,9 @@ Class Sape {
 
             $nomer_plojadki = rand(0, 99);
             $id_plojadki = $id[$nomer_plojadki];
+
+            // Создаем ссылку на сайт внутри предложения
+            $name_url = $this->name_url($name_url);
 
             //self::$client->call('sape.placement_create', array($id_plojadki, $id_url, $name_url));
             self::$client->call('sape.placement_create', array($id_plojadki, $id_url, $name_url));

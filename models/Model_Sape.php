@@ -165,7 +165,7 @@ Class Model_Sape{
 
 
 
-    public function get_url_for_zakupka($id_razdel, $nomer){
+    public function get_url_in_cron($id_razdel, $nomer){
 
         $stmt = $this->getConnection()->prepare("SELECT * FROM sape_url WHERE id_razdel = :id_razdel ORDER BY id_url ASC LIMIT :nomer, 1");
 
@@ -182,10 +182,12 @@ Class Model_Sape{
     }
 
 
-    public function get_urls_in_razdel($id_razdel, $nomer){
-        $stmt = $this->getConnection()->prepare("SELECT * FROM sape_url WHERE id_razdel = :id_razdel ORDER BY id_url ASC LIMIT :nomer");
+
+    public function get_urls_in_razdel($id_razdel, $nomer, $url_id){
+        $stmt = $this->getConnection()->prepare("SELECT * FROM sape_url WHERE id_razdel = :id_razdel AND status = 0 AND id_url <= :id_url ORDER BY id_url DESC LIMIT :nomer");
 
         $stmt->bindParam(':id_razdel', $id_razdel);
+        $stmt->bindParam(':id_url', $url_id);
         $stmt->bindParam(':nomer', $nomer);
 
         $stmt->execute();

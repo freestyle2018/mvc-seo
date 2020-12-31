@@ -8,7 +8,9 @@
     <title>Задание</title>
 
     <script src="/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/filter.js"></script>
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -18,21 +20,24 @@
 
 <body>
 
-    <div class="reg"><a href="/user/regist/">Регистрация</a></div>
-    <div class="login"><a href="/user/login/">Авторизация</a></div>
 
 
 
-    <?php
-        if($authentication === true){
-            echo "<div class=\"login\"><a href=\"/xpath/\">XPath</a></div>";
-            echo "<div class=\"login\"><a href=\"/sape/\">SAPE</a></div>";
-            echo "<div class=\"login\"><a href=\"/magazin/\">Загрузка товара</a></div>";
-            echo "<div class=\"login\"><a href=\"/poddomain/\">Поддомены</a></div>";
-            echo "<div class=\"login\"><a href=\"/google/\">Получить Google Token</a></div>";
-            echo "<div class=\"reg\"><a href=\"/user/out\">Выйти</a></div>";
-        }
-    ?>
+
+    <?php if($authentication === true){ ?>
+
+        <?php
+            include ("./views/layouts/menu.php");
+        ?>
+
+    <?php    }   ?>
+
+
+
+
+
+
+
 
     <div class="container-fluid">
         <div class="container">
@@ -72,22 +77,38 @@
             {
                 __requestComplete = true;
                 value = data.auth;
+                console.log('value = '+value);
+            },
+            error: function(data){
+                alert("Сбой соединения! Скоро все наладится!");
+                value = 1;
             }
         });
-        return value;
+
+        if(value == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+
     }
 
     $(window).on('focus blur load', function() {
-        var urls = ["/user/login/", "/user/login", "/user/regist/", "/user/activate", "/user/reset_password/", "/user/reset/", "/user/reset", "/"];
+        var urls = ["/user/login/", "/user/login", "/user/regist/", "/user/activate", "/user/reset_password/", "/user/reset/", "/user/reset", "/user/out", , "/user/out/", "/"];
         var url = document.location.pathname;
 
         proverka = in_array(url, urls);
         auth = getSomeValue();
 
+        console.log('proverka = '+proverka);
+        console.log('auth = '+auth);
+
         if(proverka === true) {}
         else{
-            if(auth == 0 && (proverka === false)) {
-               //window.location.replace("/user/login/?error=go");
+            if(auth === false && proverka === false) {
+               window.location.replace("/user/login/?error=go");
             }
         }
     });

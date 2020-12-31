@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+session_write_close();
+
+
 require 'vendor/autoload.php';
 require 'vendor/phpauth/phpauth/Auth.php';
 require 'vendor/phpauth/phpauth/Config.php';

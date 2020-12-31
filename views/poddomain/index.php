@@ -1,8 +1,10 @@
-<div><a href="/poddomain">Поддомены</a> - <a href="/poddomain/add/">(добавить поддомен)</a></div>
+<?php if($authentication === true){ ?>
 
-адреса в базу данных: <a target="_blank" href="/poddomain/adress_cdek/">CDEK</a> - <a target="_blank" href="/poddomain/adress_pochta/">Почта России</a><br><br>
+    <div><a href="/poddomain">Поддомены</a> - <a href="/poddomain/add/">(добавить поддомен)</a></div>
 
-<form id="addForm" method="post" action="">
+    адреса в базу данных: <a target="_blank" href="/poddomain/adress_cdek/">CDEK</a> - <a target="_blank" href="/poddomain/adress_pochta/">Почта России</a><br><br>
+
+    <form id="addForm" method="get" action="/poddomain/operation/">
 
 
         <?php if(isset($projects)) { ?>
@@ -52,206 +54,212 @@
 
 
 
-        <?php echo "<br>"; ?>
-        <?php foreach($projects as $key=>$value) :?>
-            <div class='quick-links'>
+            <?php echo "<br>"; ?>
+            <?php foreach($projects as $key=>$value) :?>
+                <div class='quick-links'>
 
-                <?php
-                //echo "<input type='checkbox' name='".$value["id"]."' value=".$value["id"]."> - ";
-                echo "<input type='checkbox' name='ids_poddomain[]' value=".$value["id"]."> - ";
-                echo $value["id"]." - ";
+                    <?php
+                    //echo "<input type='checkbox' name='".$value["id"]."' value=".$value["id"]."> - ";
+                    echo "<input type='checkbox' name='ids_poddomain[]' value=".$value["id"]."> - ";
+                    echo $value["id"]." - ";
 
 
-                echo "<a target='_blank'";
+                    echo "<a target='_blank'";
                     if($value["indikator"] == 1){
                         echo " class='green' ";
                     }
-                echo "href='http://".$value["name"].".".DOMAIN."'>".$value["name"].".".DOMAIN."</a>";
+                    echo "href='http://".$value["name"].".".DOMAIN."'>".$value["name"].".".DOMAIN."</a>";
 
-                echo "<a target='_blank' href='/poddomain/show/?id=".$value["id"]."'><i class='fa fa-eye'></i></a>";
+                    echo "<a target='_blank' href='/poddomain/show/?id=".$value["id"]."'><i class='fa fa-eye'></i></a>";
 
-                if($value["ssl_indikator"] == 1){
-                    echo "&nbsp;<i class='grey fa fa-lock'> <span class='adress'>".$value['adress']."<span></i>&nbsp;";
-                }
-
-                if($value["adress"] != ""){
-                    echo "&nbsp;<i class='fa ";
-
-                    if($value["adress"] == " " || $value["adress"] == ", "){
-                        echo " red ";
+                    if($value["ssl_indikator"] == 1){
+                        echo "&nbsp;<i class='grey fa fa-lock'> <span class='adress'>".$value['adress']."<span></i>&nbsp;";
                     }
-                    else if($value["posted_address"] == 1){
-                        echo " green ";
+
+                    if($value["adress"] != ""){
+                        echo "&nbsp;<i class='fa ";
+
+                        if($value["adress"] == " " || $value["adress"] == ", "){
+                            echo " red ";
+                        }
+                        else if($value["posted_address"] == 1){
+                            echo " green ";
+                        }
+                        echo "fa-home'> <span class='adress'>".$value["adress"]."<span></i>&nbsp;";
                     }
-                    echo "fa-home'> <span class='adress'>".$value["adress"]."<span></i>&nbsp;";
-                }
 
 
-                //echo " - <a href='/poddomain/reload?id=".$value["id"]."'>Обновить</a>";
-                //echo " - <a href='/poddomain/delete?id=".$value["id"]."'>Удалить</a><br>\r\n";
-                ?>
+                    //echo " - <a href='/poddomain/reload?id=".$value["id"]."'>Обновить</a>";
+                    //echo " - <a href='/poddomain/delete?id=".$value["id"]."'>Удалить</a><br>\r\n";
+                    ?>
 
-            </div>
-        <?php endforeach;?>
+                </div>
+            <?php endforeach;?>
 
-        <select class='select_page select_page_2'>
-            <option value='25'>25</option>
-            <option value='50'>50</option>
-            <option value='100'>100</option>
-            <option value='250'>250</option>
-        </select>
+            <select class='select_page select_page_2'>
+                <option value='25'>25</option>
+                <option value='50'>50</option>
+                <option value='100'>100</option>
+                <option value='250'>250</option>
+            </select>
 
-        <span class="check-block">
+            <span class="check-block">
             <i class='fa fa-check-square check'></i>
             <i class='fa fa-check check'></i>
         </span>
-        <br>
+            <br>
 
 
-    <?php } ?>
+        <?php } ?>
 
-    Выберите операцию:
-    <select id="select_bar" name="operation">
-        <option value="">(не выбрана)</option>
-        <option value="ssl">Установить SSL сертификат и HTTPS</option>
-        <option value="http">на HTTP</option>
-        <option value="address">Добавить адрес на сайт</option>
-        <option value="add_webmaster">Добавить сайт в Вебмастер</option>
-    </select>
+        Выберите операцию:
+        <select id="select_bar" name="operation">
+            <option value="">(не выбрана)</option>
+            <option value="ssl">Установить SSL сертификат и HTTPS</option>
+            <option value="http">на HTTP</option>
+            <option value="address">Добавить адрес на сайт</option>
+            <option value="add_webmaster">Добавить сайт в Вебмастер</option>
+            <option value="clear">Очистить проект</option>
+            <option value="delete">Удалить проект</option>
+        </select>
 
-    <button id="submit" type="submit" value="Выполнить">Выполнить</button>
-    <?php echo "<div class='message'>".$message."</div>"; ?>
+        <button id="submit" type="submit" value="Выполнить">Выполнить</button>
+        <?php echo "<div class='message'>".$message."</div>"; ?>
 
-</form>
+    </form>
 
-<div class="answer"></div>
-<div class="pagination" style="margin-left:20%;"><?php echo $pagination; ?></div>
-
-
-<script type="text/javascript">
+    <div class="answer"></div>
+    <div class="pagination" style="margin-left:20%;"><?php echo $pagination; ?></div>
 
 
-    // разбивает GET запрос на переменные
-    function getUrlVars()
-    {
-        var vars = [], hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for(var i = 0; i < hashes.length; i++)
+    <script type="text/javascript">
+
+
+        // разбивает GET запрос на переменные
+        function getUrlVars()
         {
-            hash = hashes[i].split('=');
-            vars.push(hash[0]);
-            vars[hash[0]] = hash[1];
-        }
-        return vars;
-    }
-
-
-    // после загрузки страницы показывает в select нужное количество страниц
-    $(document).ready(function() {
-        $array = getUrlVars();
-        $sum = $array["sum"];
-
-        $(".select_page option[value='" + $sum + "']").attr("selected", "selected");
-    });
-
-    function select()
-    {
-        $url = $(location).attr('href');
-        $url = $url.replace(/&sum=\d{2,4}/g, '');
-        window.location.href = $url + "&sum=" + $info;
-    }
-
-    // выбор пункта select_page
-    // и перезагрузка страницы
-    $(".select_page_1").change(function() {
-        $info = $(".select_page_1 option:selected").val();
-        select();
-    });
-
-    $(".select_page_2").change(function() {
-        $info = $(".select_page_2 option:selected").val();
-        select();
-    });
-
-
-
-
-    // выбрать все input-checkbox
-    $check_all = false;
-    $('.check-block').on('click', function() {
-
-        //alert("aregaesgh");
-
-        $(".check").toggle();
-
-        if($check_all == false){
-            $("input[name~='ids_poddomain[]']").prop('checked', true);
-            $check_all = true;
-        }
-        else{
-            $("input[name~='ids_poddomain[]']").prop('checked', false);
-            $check_all = false;
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++)
+            {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
         }
 
-    });
 
+        // после загрузки страницы показывает в select нужное количество страниц
+        $(document).ready(function() {
+            $array = getUrlVars();
+            $sum = $array["sum"];
 
-    // отображать адрес рядом с иконкой
-    $("i.fa-home").on("click", function() {
-        $(this).children('span').toggle('slow');
-    });
+            $(".select_page option[value='" + $sum + "']").attr("selected", "selected");
+        });
 
-
-   /* $("#submit").on("click", function() {
-
-        if ($("input[name~='ids_poddomain[]']").is(':checked')){
-            $("#select_bar").attr("disabled", true);
-            $("#submit").attr("disabled", true);
-        }
-        else {
-            alert("Не выбраны значения!");
+        function select()
+        {
+            $url = $(location).attr('href');
+            $url = $url.replace(/&sum=\d{2,4}/g, '');
+            window.location.href = $url + "&sum=" + $info;
         }
 
-    });*/
+        // выбор пункта select_page
+        // и перезагрузка страницы
+        $(".select_page_1").change(function() {
+            $info = $(".select_page_1 option:selected").val();
+            select();
+        });
+
+        $(".select_page_2").change(function() {
+            $info = $(".select_page_2 option:selected").val();
+            select();
+        });
 
 
-    // ajax обработка формы запроса
-    $("#addForm").on('submit', function (e) {
-        e.preventDefault();
 
-        var form = $('#addForm')[0];
-        var formData = new FormData(form);
 
-        $("#select_bar").attr("disabled", true);
-        $("#submit").attr("disabled", true);
+        // выбрать все input-checkbox
+        $check_all = false;
+        $('.check-block').on('click', function() {
 
-        console.log(formData);
+            //alert("aregaesgh");
 
-        if ($("input[name~='ids_poddomain[]']").is(':checked')){
-            $.ajax({
-                type: 'POST', // метод отправки
-                processData: false,
-                contentType: false,
-                async: false,
-                url: '/poddomain/operation/',
-                data : formData,
-                beforeSend: function(){
-                    console.log("ajax!!!!");
-                    $(".answer").html("Выполнение операции...");
-                },
-                success: function(data){
-                    $(".answer").html("Закончено!");
-                },
-                error: function(data){
-                    console.log(data); // выводим ошибку в консоль
+            $(".check").toggle();
+
+            if($check_all == false){
+                $("input[name~='ids_poddomain[]']").prop('checked', true);
+                $check_all = true;
+            }
+            else{
+                $("input[name~='ids_poddomain[]']").prop('checked', false);
+                $check_all = false;
+            }
+
+        });
+
+
+        // отображать адрес рядом с иконкой
+        $("i.fa-home").on("click", function() {
+            $(this).children('span').toggle('slow');
+        });
+
+
+
+        // ajax обработка формы запроса
+        $("#addForm").on('submit', function (e) {
+            e.preventDefault();
+
+            if ($("input[name~='ids_poddomain[]']").is(':checked')){
+                var form = $('#addForm')[0];
+                var formData = new FormData(form);
+
+                $("#select_bar").attr("disabled", true);
+                $("#submit").attr("disabled", true);
+
+                console.log(formData);
+
+                if ($("input[name~='ids_poddomain[]']").is(':checked')){
+                    $.ajax({
+                        //async: false,
+                        beforeSend: function(){
+                            console.log("ajax!!!!");
+                            $(".answer").html("Выполнение операции...");
+                        },
+                        url: '/poddomain/operation/',
+                        type: 'POST', // метод отправки
+                        dataType: 'json',
+                        data : formData,
+                        success: function(data){
+                            $(".answer").html("Закончено!");
+                        },
+                        complete: function(data){
+                            $(".answer").html("Закончено!");
+                        },
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        error: function(data){
+                            console.log(data); // выводим ошибку в консоль
+                        },
+                        timeout: 800000
+                    });
                 }
-            });
-        }
+            }
+            else {
+                alert("Не выбраны значения!");
+            }
 
-        return false;
-    });
+            return false;
+        });
 
-</script>
+    </script>
+
+<?php    }   ?>
+
+
+
 
 
 

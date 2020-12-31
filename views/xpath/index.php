@@ -1,45 +1,42 @@
+<?php if($authentication === true){ ?>
+    <?php
 
-<?php
-
-if (isset($elements)) {
-    foreach ($elements as $element) {
-        echo "<br/>[". $element->nodeName. "]";
-        var_dump($element);
-        echo "<br><br><br>\r\n\r\n\r\n";
+    if (isset($elements)) {
+        foreach ($elements as $element) {
+            echo $element->textContent." - ";
+            echo "<br><br>\r\n\r\n";
+        }
     }
-}
 
-?>
+    ?>
 
-<?php if(isset($url)){ ?>
-    <a target="_blank" href="/image/xpath.html">HTML</a>
-<?php } ?>
+    <?php if(isset($url)){ ?>
+        <a target="_blank" href="/image/xpath.html">HTML</a>
+    <?php } ?>
 
 
-<form method="post" action="/xpath/index">
-    <p><b>Тестируем XPath:</b></p>
-    <p>
-    <div class="boxer">
-        <div class="box-row">
-            <div class="box">Url</div>
-            <div class="box"><input type="text" size="120" name="url" value="<?php if(isset($url)) {echo $url;} ?>"><br></div>
+    <form method="post" action="/xpath/index">
+        <p><b>Тестируем XPath:</b></p>
+        <p>
+        <div class="boxer">
+            <div class="box-row">
+                <div class="box">Url</div>
+                <div class="box"><input type="text" size="120" name="url" value="<?php if(isset($url)) {echo $url;} ?>"><br></div>
+            </div>
+            <div class="box-row">
+                <div class="box">Правило</div>
+                <div class="box"><input type="text" size="120" name="pravilo" value="<?php if(isset($pravilo)) {echo htmlspecialchars($pravilo);} ?>"><br></div>
+            </div>
+            <div class="box-row">
+                <div class="box">Curl</div>
+                <div class="box"><input type="checkbox" name="zapros" value="1"><br></div>
+            </div>
+
         </div>
-        <div class="box-row">
-            <div class="box">Правило</div>
-            <div class="box"><input type="text" size="120" name="pravilo" value="<?php if(isset($pravilo)) {echo htmlspecialchars($pravilo);} ?>"><br></div>
-        </div>
-        <div class="box-row">
-            <div class="box">Curl</div>
-            <div class="box"><input type="checkbox" name="zapros" value="1"><br></div>
-        </div>
 
-    </div>
-
-    </p>
-    <p><input type="submit">
-    </p>
-</form>
-
-
-
+        </p>
+        <p><input type="submit">
+        </p>
+    </form>
+<?php    }   ?>
 

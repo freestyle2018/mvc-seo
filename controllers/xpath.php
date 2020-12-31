@@ -49,8 +49,9 @@ Class Controller_XPath Extends Controller_Base {
             $this->template->vars('authentication', $authentication["auth"]);
             $this->template->vars('url', $url);
             $this->template->vars('pravilo', $pravilo);
-            $this->template->view('index');
         }
+
+        $this->template->view('index');
 
 
 

@@ -271,7 +271,7 @@ Class Magazin {
 
 
 
-    function xpath_zapros($query, $parametr = null)
+    public function xpath_zapros($query, $parametr = null)
     {
         $xpath_category = new DOMXpath(self::$doc_product);
         $info = $xpath_category->query($query);

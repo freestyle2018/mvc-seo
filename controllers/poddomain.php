@@ -77,39 +77,36 @@ Class Controller_Poddomain Extends Controller_Base {
             $domain = self::$model->show_Poddomain($id);
 
             $this->template->vars('domain', $domain[0]);
-            $this->template->view('show');
         }
-    }
 
-
-
-
-    function info() {
-        $client = new Google_Client();
-
-        // service_account_file.json is the private key that you created for your service account.
-        $client->setAuthConfig('service_account_file.json');
-        $client->addScope('https://www.googleapis.com/auth/indexing');
-
-        // Get a Guzzle HTTP Client
-        $httpClient = $client->authorize();
-        $endpoint = 'https://indexing.googleapis.com/v3/urlNotifications:publish';
-
-        // Define contents here. The structure of the content is described in the next step.
-        $content = "{
-          \"url\": \"http://example.com/jobs/42\",
-          \"type\": \"URL_UPDATED\"
-        }";
-
-        $response = $httpClient->post($endpoint, [ 'body' => $content ]);
-        $status_code = $response->getStatusCode();
+        $this->template->view('show');
     }
 
 
 
     function test() {
+        /*$name = "angarsk";
+
         $google = new Api_Google();
-        $google->index();
+        $google->index($name);
+
+        $name = "http://angarsk.ru";
+
+        $google = new Sape();
+        echo $google->name_url($name);*/
+
+
+        $yandex_xml = new Yandex_Xml();
+        $otvet = $yandex_xml->proverka_index("afterblowlob.bessti.ru");
+
+
+        var_dump($otvet);
+        //var_dump($otvet->response->grouping->group->doccount);
+        //var_dump($otvet["response"]["grouping"]["group"]["doccount"]);
+
+        echo $otvet;
+
+
     }
 
     function add() {
@@ -117,10 +114,11 @@ Class Controller_Poddomain Extends Controller_Base {
         $name = self::$filter->out('string',(empty($_POST['name']) ? '' : $_POST['name']));
         $name_url = self::$filter->out('string',(empty($_POST['name_url']) ? '' : $_POST['name_url']));
         $name_rus = self::$filter->out('string',(empty($_POST['name_rus']) ? '' : $_POST['name_rus']));
-        //$name_rus = empty($_POST['name_rus']) ? '' : urldecode($_POST['name_rus']);
         $indikator = self::$filter->out('int',(empty($_POST['indikator']) ? '0' : $_POST['indikator']));
+        $ssl = self::$filter->out('string',(empty($_POST['ssl']) ? null : $_POST['ssl']));
 
         //echo "indikator = ".$indikator."<br>\r\n";
+
 
         if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
             if($name != ""){
@@ -128,24 +126,30 @@ Class Controller_Poddomain Extends Controller_Base {
                 self::$model->add_Poddomain($name, $name_url, $name_rus, $indikator);
 
                 if($indikator == 1) {
-                    self::$contr->index($name, $name_url, $name_rus);
-
+                    self::$contr->index($name, $name_url, $name_rus, $ssl);
+                    sleep(30);
                     $api = new Api_Webmaster();
                     $api->add_site_in_webmaster($name);
                 }
-                else {
-                    $this->index();
-                    //exit();
-                }
+
+                /*$this->layouts = "poddomain";
+                $this->template = new Template($this->layouts, get_class($this));
+                $this->template->vars('response', 'yes');
+                $this->template->view('response');*/
+
             }
             else{
                 $this->template->vars('name', $name);
                 $this->template->vars('name_url', $name_url);
                 $this->template->vars('name_rus', $name_rus);
                 $this->template->vars('indikator', $indikator);
-                $this->template->view('add');
+                $this->template->vars('ssl', $ssl);
             }
         }
+        if($name == ""){
+            $this->template->view('add');
+        }
+
     }
 
 
@@ -153,29 +157,27 @@ Class Controller_Poddomain Extends Controller_Base {
 
     function operation() {
 
-        $ids_poddomain = empty($_POST['ids_poddomain']) ? '' : $_POST['ids_poddomain'];
+        $ids_poddomain = empty($_POST['ids_poddomain']) ? array() : $_POST['ids_poddomain'];
         $operation = empty($_POST['operation']) ? '' : $_POST['operation'];
 
+        //var_dump($ids_poddomain);
 
         if(self::$authentication["auth"] === true && self::$authentication["status"] == "admin"){
 
-
-                if($operation == "ssl"){
-                    //self::$contr->create_ssl_certificate();
-                }
 
 
 
                 $x = 0;
                 foreach ($ids_poddomain as $key => $value) {
 
-                    echo "value = ".$value."<br>\r\n";
+                    //echo "value = ".$value."<br>\r\n";
 
-                    $info_poddomain = self::$model->show_Poddomain($value);
+                    $info_poddomain[$x] = self::$model->show_Poddomain($value);
 
-                    $name = $info_poddomain[0]["name"];
-                    $address = $info_poddomain[0]["adress"];
-                    $paspisanie = $info_poddomain[0]["paspisanie"];
+                    $id = $info_poddomain[$x][0]["id"];
+                    $name = $info_poddomain[$x][0]["name"];
+                    $address = $info_poddomain[$x][0]["adress"];
+                    $paspisanie = $info_poddomain[$x][0]["paspisanie"];
 
                     if($operation == "ssl"){
                         self::$contr->installation_ssl_certificate($name, "yes");
@@ -183,38 +185,60 @@ Class Controller_Poddomain Extends Controller_Base {
                         self::$contr->replace_config($name, "yes", 2);
                         self::$contr->open_basedir($name, "yes", 2);
 
-                        $info_poddomain[0]["ssl_indikator"] = 1;
-                        self::$model->update_Poddomain($info_poddomain[0]);
+                        $info_poddomain[$x][0]["ssl_indikator"] = 1;
+                        self::$model->update_Poddomain($info_poddomain[$x][0]);
                     }
                     else if($operation == "http"){
                         self::$contr->replace_config($name, "no", 2);
 
-                        $info_poddomain[0]["ssl_indikator"] = 0;
-                        self::$model->update_Poddomain($info_poddomain[0]);
+                        $info_poddomain[$x][0]["ssl_indikator"] = 0;
+                        self::$model->update_Poddomain($info_poddomain[$x][0]);
                     }
                     else if($operation == "address"){
                         self::$contr->posted_adress($name, $address, $paspisanie);
-                        $info_poddomain[0]["posted_address"] = 1;
-                        self::$model->update_Poddomain($info_poddomain[0]);
+                        $info_poddomain[$x][0]["posted_address"] = 1;
+                        self::$model->update_Poddomain($info_poddomain[$x][0]);
                     }
                     else if($operation == "add_webmaster"){
                         $api = new Api_Webmaster();
                         $api->add_site_in_webmaster($name);
                     }
+                    else if($operation == "clear"){
+                        self::$contr->delete_domain($name);
+                        self::$contr->delete_database($name);
+
+                        $info_poddomain[$x][0]["posted_address"] = 0;
+                        $info_poddomain[$x][0]["indikator"] = 0;
+                        $info_poddomain[$x][0]["ssl_indikator"] = 0;
+
+                        self::$model->update_Poddomain($info_poddomain[$x][0]);
+                    }
+                    else if($operation == "delete"){
+                        self::$contr->delete_domain($name);
+                        //self::$contr->delete_database($name);
+                        //sleep(20);
+
+
+                        self::$model->delete_Poddomain($id);
+                    }
+
+
+
+                    //sleep(1);
                     $x++;
                 }
 
 
-
-                if($operation == "ssl"){
-                    self::$contr->service_httpd_restart();
-                }
+                //self::$contr->exit_connect();
 
 
-                $this->index();
-
+                //$this->layouts = "poddomain";
+                //$this->template = new Template($this->layouts, get_class($this));
+                //$this->template->vars('response', 'yes');
 
         }
+
+        //$this->template->view('response');
     }
 
 
@@ -242,7 +266,7 @@ Class Controller_Poddomain Extends Controller_Base {
                     $info = $cdek->find_cdek_adress($name);
                     $nomer_adress = rand(0, sizeof($info)-1);
 
-                    print_r($info);
+                    //print_r($info);
 
                     if($info[$nomer_adress]["adress"] != ""){
                         $adress = $info[$nomer_adress]["city"].", ".$info[$nomer_adress]["adress"];
@@ -261,10 +285,9 @@ Class Controller_Poddomain Extends Controller_Base {
                     $x++;
                 }
             }
-
-            $this->template->view('adress-cdek');
-
         }
+
+        $this->template->view('adress-cdek');
     }
 
 
@@ -308,16 +331,8 @@ Class Controller_Poddomain Extends Controller_Base {
                     $x++;
                 }
             }
-
-
-
-
-            $this->template->view('adress-pochta');
-
         }
-
-
-
+        $this->template->view('adress-pochta');
     }
 
 

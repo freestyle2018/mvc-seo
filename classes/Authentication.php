@@ -24,7 +24,7 @@ Class Authentication  extends \PHPUnit\Framework\TestCase
     public static $sess_email;
 
     function __construct() {
-        if(!isset($_SESSION)) session_start();
+        //if(!isset($_SESSION)) session_start();
 
         self::$dbh = new PDO("mysql:host=localhost;dbname=".DbConf::getDbName2(), DbConf::getDbUser(), DbConf::getDbPass());
         self::$config = new PHPAuth\Config(self::$dbh);
@@ -39,6 +39,8 @@ Class Authentication  extends \PHPUnit\Framework\TestCase
             $hash = self::$dbh->query("SELECT hash FROM phpauth_sessions WHERE uid = (SELECT id FROM phpauth_users WHERE email = '".self::$sess_email."');", PDO::FETCH_ASSOC)->fetch()['hash'];
 
             $yslovie = self::$auth->checkSession($hash);
+
+            //session_write_close();
 
             if($yslovie === false){
                 $result["auth"] =  false;
@@ -61,6 +63,8 @@ Class Authentication  extends \PHPUnit\Framework\TestCase
         }
 
 
+
+
     }
 
     function status() {
@@ -71,10 +75,14 @@ Class Authentication  extends \PHPUnit\Framework\TestCase
     }
 
     function out() {
+        session_start();
+
         $hash = self::$dbh->query("SELECT hash FROM phpauth_sessions WHERE uid = (SELECT id FROM phpauth_users WHERE email = '".self::$sess_email."');", PDO::FETCH_ASSOC)->fetch()['hash'];
 
         self::$auth->logout($hash);
 
+
+        session_unset();
         session_destroy();
 
         return true;

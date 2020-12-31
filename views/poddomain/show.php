@@ -1,8 +1,5 @@
-
-
-
-
-<form method="post" action="/poddomain/show/">
+<?php if($authentication === true){ ?>
+    <form method="post" action="/poddomain/show/">
     <p class="bold">Редактировать поддомен:</p>
     <p>
     <div class="boxer">
@@ -77,8 +74,14 @@
     <input type="hidden" name="id" value="<?php echo $domain["id"]; ?>">
 
     </p>
-    <p><input type="submit" value="Сохранить">
+    <p>
+        <input type="submit" value="Сохранить">
     </p>
-</form>
+    </form>
+<?php    }   ?>
+
+
+
+
 
 

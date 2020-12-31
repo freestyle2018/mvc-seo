@@ -215,6 +215,8 @@ Class Controller_User Extends Controller_Base {
     }
 
     function out() {
+        //echo $decawrgfr;
+
         $auth = new Authentication();
         $authentication = $auth->out();
 

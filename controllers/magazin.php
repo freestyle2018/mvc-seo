@@ -46,9 +46,8 @@ Class Controller_Magazin Extends Controller_Base
         if (self::$authentication["auth"] === true && self::$authentication["status"] == "admin") {
             $magazins = self::$magazin_model->show_Magazins();
             $this->template->vars('magazins', $magazins);
-
-            $this->template->view('index');
         }
+        $this->template->view('index');
     }
 
     function edit_magazin()
@@ -85,9 +84,9 @@ Class Controller_Magazin Extends Controller_Base
             } else {
                 $magazin = self::$magazin_model->show_Magazin($id_magazin);
                 $this->template->vars('magazin', $magazin);
-                $this->template->view('edit_magazin');
             }
         }
+        $this->template->view('edit_magazin');
     }
 
 
@@ -113,11 +112,9 @@ Class Controller_Magazin Extends Controller_Base
                 $this->index();
             } else {
                 $this->template->vars('domain_magazin', $domain_magazin);
-                $this->template->view('add_magazin');
             }
-
-
         }
+        $this->template->view('add_magazin');
     }
 
 
@@ -131,9 +128,8 @@ Class Controller_Magazin Extends Controller_Base
 
             $this->template->vars('magazin', $magazin);
             $this->template->vars('categories', $categories);
-
-            $this->template->view('show_magazin');
         }
+        $this->template->view('show_magazin');
     }
 
 
@@ -175,9 +171,9 @@ Class Controller_Magazin Extends Controller_Base
 
                 $this->template->vars('magazin', $magazin);
                 $this->template->vars('category', $category);
-                $this->template->view('add_category');
             }
         }
+        $this->template->view('add_category');
     }
 
 
@@ -234,9 +230,9 @@ Class Controller_Magazin Extends Controller_Base
 
                 $this->template->vars('magazin', $magazin);
                 $this->template->vars('category', $category);
-                $this->template->view('edit_category');
             }
         }
+        $this->template->view('edit_category');
     }
 
     function clone_category()
@@ -269,8 +265,8 @@ Class Controller_Magazin Extends Controller_Base
 
             $this->template->vars('magazin', $magazin);
             $this->template->vars('category', $category);
-            $this->template->view('load_category');
         }
+        $this->template->view('load_category');
     }
 
 

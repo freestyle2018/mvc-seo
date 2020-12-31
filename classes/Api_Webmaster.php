@@ -22,8 +22,8 @@ Class Api_Webmaster {
         $user_id = (int)$this->get_user();
         $host_id = $this->add_site($user_id, $domain);
 
-        echo "user = ".$user_id."<br>\r\n";
-        echo "host = ".$host_id."<br>\r\n";
+        //echo "user = ".$user_id."<br>\r\n";
+        //echo "host = ".$host_id."<br>\r\n";
 
         $code = $this->verification_site_get($user_id, $host_id);
 
@@ -31,7 +31,7 @@ Class Api_Webmaster {
 
         // закачиваем файл на поддомен
         $file = new File();
-        $file->load($name, $code);
+        $file->load_yandex($name, $code);
 
 
         // Непосредственно потверждаем регистрацию сайта
@@ -58,7 +58,7 @@ Class Api_Webmaster {
 
         $array = json_decode($info);
 
-        print_r($array);
+        //print_r($array);
 
         return $array->user_id;
     }
@@ -87,7 +87,7 @@ Class Api_Webmaster {
 
         $array = json_decode($info);
 
-        print_r($info);
+        //print_r($info);
 
         return $array->host_id;
     }
@@ -108,7 +108,7 @@ Class Api_Webmaster {
         $info = curl_exec($connection);
         curl_close($connection);
 
-        print_r($info);
+        //print_r($info);
 
         $array = json_decode($info);
 
@@ -136,7 +136,7 @@ Class Api_Webmaster {
 
         $array = json_decode($info);
 
-        print_r($info);
+        //print_r($info);
     }
 
 
@@ -155,7 +155,7 @@ Class Api_Webmaster {
 
         $array = json_decode($info);
 
-        print_r($info);
+        //print_r($info);
     }
 
 

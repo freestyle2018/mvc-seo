@@ -1,8 +1,8 @@
-
-<a href="/magazin/">Все магазины</a>
-<form method="post" action="/magazin/edit_magazin">
-    <p class="bold">Правим магазин: <span class="title"><?php echo $magazin["domain_magazin"]; ?></span></p>
-    <p>
+<?php if($authentication === true){ ?>
+    <a href="/magazin/">Все магазины</a>
+    <form method="post" action="/magazin/edit_magazin">
+        <p class="bold">Правим магазин: <span class="title"><?php echo $magazin["domain_magazin"]; ?></span></p>
+        <p>
         <div class="boxer">
             <div class="box-row">
                 <div class="box">Домен</div>
@@ -44,7 +44,10 @@
         </div>
         <input type="hidden" name="id_magazin" value="<?php echo $magazin["id_magazin"]; ?>">
 
-    </p>
-    <p><input type="submit">
-    </p>
-</form>
+        </p>
+        <p><input type="submit">
+        </p>
+    </form>
+<?php    }   ?>
+
+

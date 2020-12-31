@@ -8,7 +8,7 @@ Class Model_Opencart{
     public static function getConnection()
     {
         // Устанавливаем соединение
-        $dsn = "mysql:host=".DbConf::getDbHost().";dbname=".DbConf::getDbName_OPENCART();
+        $dsn = "mysql:host=".DbConf::getDbHost().";dbname=".DbConf::getDbOpencart();
         self::$db = new PDO($dsn, DbConf::getDbUser(), DbConf::getDbPass());
         // Задаем кодировку
         self::$db->exec("set names utf8");

@@ -38,6 +38,8 @@ Class Domain {
 
         $this->open_basedir($name, $https, 1);
         $this->delete_cache_and_archive($name, $https);
+
+        //$this->exit_connect();
     }
 
 
@@ -48,7 +50,9 @@ Class Domain {
 
 
 
-
+    function delete_domain($name) {
+        ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-delete-domain admin ".$name.".".DOMAIN.";");
+    }
 
 
 
@@ -59,7 +63,7 @@ Class Domain {
     function create_ssl_certificate($https = null) {
         $https = $https ? $https : CREATE_HTTPS_DOMAIN;
 
-        if($https == "yes"){
+        if($https == "yes" && SSL_WILDCARD == "no"){
             ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-generate-ssl-cert ".DOMAIN." *.".DOMAIN." troinfo@yandex.ru RU Moscow Orel HOME admin");
         }
     }
@@ -68,7 +72,17 @@ Class Domain {
         $https = $https ? $https : CREATE_HTTPS_DOMAIN;
 
         if($https == "yes"){
-            ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-letsencrypt-domain admin ".$name.".".DOMAIN);
+            $stream = ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-letsencrypt-domain admin ".$name.".".DOMAIN);
+            //$stream_out = ssh2_fetch_stream($stream, SSH2_STREAM_STDIO);
+            stream_set_blocking($stream, true);
+            $result_dio =@ stream_get_contents($stream);
+
+            $pos = strpos($result_dio, 'Error');
+
+            if($pos !== false){
+                echo $result_dio." - stop";
+                exit();
+            }
         }
     }
 
@@ -80,6 +94,15 @@ Class Domain {
 
 
 
+
+
+
+
+
+
+    function delete_database($name) {
+        ssh2_exec(self::$connect, "mysqladmin -u admin_".VpsConf::getVpsUser()." -p ".VpsConf::getVpsPass()." drop $name");
+    }
 
     function create_database($name) {
         ssh2_exec(self::$connect, "/usr/local/vesta/bin/v-add-database admin $name ".VpsConf::getVpsUser()." ".VpsConf::getVpsPass()." mysql localhost;");
@@ -377,7 +400,7 @@ Class Domain {
 
 
         if($raz == 1){
-            ssh2_exec(self::$connect, "sleep 230 ; service httpd restart");
+            //ssh2_exec(self::$connect, "sleep 230 ; service httpd restart");
         }
 
         
@@ -404,7 +427,7 @@ Class Domain {
 
 
     function service_httpd_restart() {
-        ssh2_exec(self::$connect, "sleep 240 ; service httpd restart");
+        //ssh2_exec(self::$connect, "sleep 240 ; service httpd restart");
     }
 
 
@@ -427,7 +450,9 @@ Class Domain {
 
 
 
-
+    function exit_connect() {
+        ssh2_exec(self::$connect, 'exit');
+    }
 
 
 

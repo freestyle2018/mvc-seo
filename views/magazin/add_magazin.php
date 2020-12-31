@@ -1,8 +1,8 @@
-
-<a href="/magazin/">Все магазины</a>
-<form method="post" action="/magazin/add_magazin/">
-    <p class="bold">Добавить магазин: </p>
-    <p>
+<?php if($authentication === true){ ?>
+    <a href="/magazin/">Все магазины</a>
+    <form method="post" action="/magazin/add_magazin/">
+        <p class="bold">Добавить магазин: </p>
+        <p>
         <div class="boxer">
             <div class="box-row">
                 <div class="box">Домен</div>
@@ -10,7 +10,10 @@
             </div>
         </div>
 
-    </p>
-    <p><input type="submit">
-    </p>
-</form>
+        </p>
+        <p><input type="submit">
+        </p>
+    </form>
+<?php    }   ?>
+
+
