@@ -2,66 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/classes/Translit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/XML_Parser.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classes/Yandex_Xml.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/expired.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/filter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/iframe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controllers/test.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files/filter/title.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/files/sape/names.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/filter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Model_Expired.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/Model_Filter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/expired/domains.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/expired/view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/filter/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/google/token.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/iframe/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/layouts/iframe.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/layouts/menu.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/layouts/poddomain.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/poddomain/response.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Api_Google.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Api_Google.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Api_Webmaster.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Api_Webmaster.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Authentication.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Authentication.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Cron.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Cron.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Domain.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Domain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Magazin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/Sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/classes/Sape.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/google.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/google.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/magazin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/poddomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/poddomain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/xpath.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/xpath.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/expired.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/expired.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Model_Opencart.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Opencart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Model_Poddomain.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Poddomain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/Model_Sape.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Sape.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/index/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/first_layouts.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/first_layouts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layouts/google.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layouts/google.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/add_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/add_category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/add_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/add_magazin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/edit_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/edit_category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/edit_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/edit_magazin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/load_category.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/load_category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/magazin/show_magazin.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/magazin/show_magazin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/poddomain/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/poddomain/add.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/poddomain/adress-cdek.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/poddomain/adress-cdek.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/poddomain/adress-pochta.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/poddomain/adress-pochta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/poddomain/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/poddomain/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/poddomain/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/poddomain/show.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user/out.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/out.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/xpath/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/xpath/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/Model_Expired.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Expired.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/expired/domains.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/expired/domains.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -902,6 +847,42 @@
       <workItem from="1609420416427" duration="690000" />
       <workItem from="1609421121372" duration="1361000" />
       <workItem from="1609422500066" duration="353000" />
+      <workItem from="1609422866798" duration="807000" />
+      <workItem from="1609877986364" duration="601000" />
+      <workItem from="1610115239132" duration="621000" />
+      <workItem from="1610138047482" duration="612000" />
+      <workItem from="1610294345195" duration="1788000" />
+      <workItem from="1610296148122" duration="1347000" />
+      <workItem from="1610299848319" duration="842000" />
+      <workItem from="1610301660351" duration="1314000" />
+      <workItem from="1610303602105" duration="616000" />
+      <workItem from="1610306907548" duration="1792000" />
+      <workItem from="1610308714113" duration="2029000" />
+      <workItem from="1610313136862" duration="1791000" />
+      <workItem from="1610314946300" duration="1710000" />
+      <workItem from="1610317002720" duration="1792000" />
+      <workItem from="1610318828451" duration="1790000" />
+      <workItem from="1610320633275" duration="2038000" />
+      <workItem from="1610347595610" duration="1795000" />
+      <workItem from="1610349413006" duration="1640000" />
+      <workItem from="1610351231108" duration="1456000" />
+      <workItem from="1610353066703" duration="1508000" />
+      <workItem from="1610354892982" duration="1620000" />
+      <workItem from="1610357310911" duration="1445000" />
+      <workItem from="1610359179106" duration="599000" />
+      <workItem from="1610365874754" duration="1293000" />
+      <workItem from="1610367927500" duration="855000" />
+      <workItem from="1610370261168" duration="1788000" />
+      <workItem from="1610373627666" duration="1213000" />
+      <workItem from="1610378111552" duration="1789000" />
+      <workItem from="1610379933950" duration="663000" />
+      <workItem from="1610382393544" duration="1813000" />
+      <workItem from="1610384231162" duration="870000" />
+      <workItem from="1610437429657" duration="672000" />
+      <workItem from="1610439496622" duration="1413000" />
+      <workItem from="1610444663809" duration="1790000" />
+      <workItem from="1610446503615" duration="758000" />
+      <workItem from="1610447965005" duration="382000" />
     </task>
     <servers />
   </component>
@@ -958,14 +939,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609238014722" />
-    <state x="782" y="231" key="RollbackChangesDialog" timestamp="1606216875400">
+    <state x="782" y="231" key="RollbackChangesDialog" timestamp="1610448308426">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="782" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606216875400" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1609422500023">
+    <state x="782" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610448308426" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1610447965095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609422500023" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610447965095" />
     <state x="658" y="252" width="825" height="659" key="find.popup" timestamp="1607941816824">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

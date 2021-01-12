@@ -207,7 +207,9 @@ p.bold {
     border: 3px solid #ff8f00;
 }
 
-
+span#stop {
+    cursor: pointer;
+}
 
 
 
