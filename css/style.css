@@ -116,6 +116,10 @@ p.bold {
     color: #00850a;
 }
 
+.yellow {
+    color: #d4ae0a;
+}
+
 .red {
     color: #de0003 !important;
 }
@@ -214,7 +218,9 @@ span#stop {
 
 
 
-
+.expired a:visited {
+    color: #180d80;
+}
 
 
 

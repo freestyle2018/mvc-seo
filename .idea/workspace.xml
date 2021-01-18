@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9a436ff-c402-4d50-879c-bfb2b26607eb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/classes/Expired.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/expired.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/expired.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/Model_Expired.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/Model_Expired.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvc-seo.rar" beforeDir="false" afterPath="$PROJECT_DIR$/mvc-seo.rar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/expired/domains.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/expired/domains.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/expired/view.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/expired/view.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -882,7 +885,74 @@
       <workItem from="1610439496622" duration="1413000" />
       <workItem from="1610444663809" duration="1790000" />
       <workItem from="1610446503615" duration="758000" />
-      <workItem from="1610447965005" duration="382000" />
+      <workItem from="1610447965005" duration="1030000" />
+      <workItem from="1610452125499" duration="1508000" />
+      <workItem from="1610453933823" duration="1532000" />
+      <workItem from="1610455795765" duration="957000" />
+      <workItem from="1610457794417" duration="1839000" />
+      <workItem from="1610460018457" duration="1790000" />
+      <workItem from="1610461828201" duration="1327000" />
+      <workItem from="1610463175035" duration="1705000" />
+      <workItem from="1610475986512" duration="721000" />
+      <workItem from="1610478112574" duration="1065000" />
+      <workItem from="1610479920246" duration="1737000" />
+      <workItem from="1610482489956" duration="1810000" />
+      <workItem from="1610484316828" duration="1804000" />
+      <workItem from="1610486133877" duration="1740000" />
+      <workItem from="1610524221535" duration="1917000" />
+      <workItem from="1610526487410" duration="1647000" />
+      <workItem from="1610529291101" duration="1016000" />
+      <workItem from="1610531120904" duration="1861000" />
+      <workItem from="1610533648764" duration="940000" />
+      <workItem from="1610537009319" duration="604000" />
+      <workItem from="1610541950880" duration="1908000" />
+      <workItem from="1610544449465" duration="639000" />
+      <workItem from="1610548093787" duration="1812000" />
+      <workItem from="1610549950335" duration="1211000" />
+      <workItem from="1610558807822" duration="1537000" />
+      <workItem from="1610560627870" duration="1106000" />
+      <workItem from="1610562441695" duration="1756000" />
+      <workItem from="1610564359979" duration="1441000" />
+      <workItem from="1610566198784" duration="1560000" />
+      <workItem from="1610568015685" duration="1517000" />
+      <workItem from="1610570519749" duration="1794000" />
+      <workItem from="1610572325999" duration="1853000" />
+      <workItem from="1610574191475" duration="1623000" />
+      <workItem from="1610605191074" duration="1504000" />
+      <workItem from="1610607489072" duration="599000" />
+      <workItem from="1610609508729" duration="697000" />
+      <workItem from="1610611325127" duration="1762000" />
+      <workItem from="1610613133878" duration="1878000" />
+      <workItem from="1610616166593" duration="1304000" />
+      <workItem from="1610619039474" duration="919000" />
+      <workItem from="1610621596224" duration="1903000" />
+      <workItem from="1610627046201" duration="2270000" />
+      <workItem from="1610629340560" duration="1824000" />
+      <workItem from="1610631182132" duration="1833000" />
+      <workItem from="1610633039212" duration="1925000" />
+      <workItem from="1610635584465" duration="1391000" />
+      <workItem from="1610637481315" duration="615000" />
+      <workItem from="1610645389196" duration="1706000" />
+      <workItem from="1610647335972" duration="1656000" />
+      <workItem from="1610696346564" duration="1579000" />
+      <workItem from="1610700796984" duration="1971000" />
+      <workItem from="1610702781770" duration="342000" />
+      <workItem from="1610711362207" duration="772000" />
+      <workItem from="1610714020345" duration="1342000" />
+      <workItem from="1610715396447" duration="1797000" />
+      <workItem from="1610722233439" duration="1195000" />
+      <workItem from="1610728264174" duration="69000" />
+      <workItem from="1610739011133" duration="1702000" />
+      <workItem from="1610741063250" duration="1955000" />
+      <workItem from="1610866068704" duration="824000" />
+      <workItem from="1610875192554" duration="607000" />
+      <workItem from="1610957720457" duration="603000" />
+      <workItem from="1610959523906" duration="1820000" />
+      <workItem from="1610961362088" duration="1794000" />
+      <workItem from="1610964296586" duration="1799000" />
+      <workItem from="1610966556581" duration="747000" />
+      <workItem from="1610967319383" duration="1823000" />
+      <workItem from="1610969159490" duration="1086000" />
     </task>
     <servers />
   </component>
@@ -935,22 +1005,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="262" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605167806012" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1609238014722">
+    <state x="751" y="334" key="NewPhpClassDialog" timestamp="1610452257307">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609238014722" />
+    <state x="751" y="334" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610452257307" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1610452270358">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610452270358" />
     <state x="782" y="231" key="RollbackChangesDialog" timestamp="1610448308426">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="782" y="231" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610448308426" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1610447965095">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1610970627021">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610447965095" />
-    <state x="658" y="252" width="825" height="659" key="find.popup" timestamp="1607941816824">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1610970627021" />
+    <state x="658" y="252" width="825" height="659" key="find.popup" timestamp="1610567754876">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="658" y="252" width="825" height="659" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607941816824" />
+    <state x="658" y="252" width="825" height="659" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1610567754876" />
     <state x="765" y="384" key="git4idea.rebase.GitRebaseDialog" timestamp="1606216487169">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

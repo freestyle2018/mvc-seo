@@ -16,6 +16,7 @@
             while ($i < sizeof($domains)) {
 
                 echo "<input type='checkbox' name='domains[]' value=".$domains[$i]["id"]."> - ";
+                echo "<a href='/iframe/?url=https://web.archive.org/web/*/".$domains[$i]["name"]."&domain=".$domains[$i]["name"]."' target='_blank'>архив</a> - ";
                 echo $domains[$i]["id"]." - ";
                 echo "<a target='_blank' href='http://".$domains[$i]["name"]."'>".$domains[$i]["name"]."</a>";
 
@@ -28,6 +29,46 @@
                 else{
                     echo "<span id='pole".$domains[$i]["id"]."'></span>";
                 }
+
+
+
+
+
+                if($domains[$i]["status"] == "Ожидание"){
+                    echo " <i class='fa fa-question grey' title='ожидание'></i>";
+                }
+                else if($domains[$i]["status"] == "Обрабатывается"){
+                    echo " <i class='fa fa-cogs grey' title='обрабатывается'></i>";
+                }
+                else if($domains[$i]["status"] == "Заявка активна"){
+                    echo " <i class='fa fa-check green' title='заявка активна'></i>";
+                }
+                else if($domains[$i]["status"] == "Заявка перебита"){
+                    echo " <i class='fa fa-arrow-down grey' title='заявка перебита'></i>";
+                }
+                else if($domains[$i]["status"] == "Удалена"){
+                    echo " <i class='fa fa-minus grey' title='удалена'></i>";
+                }
+                else if($domains[$i]["status"] == "Зарегистрирован"){
+                    echo " <i class='fa fa-trophy green' title='зарегистрирован'></i>";
+                }
+                else if($domains[$i]["status"] == "Продлен"){
+                    echo " <i class='fa fa-shopping-cart grey' title='продлен'></i>";
+                }
+
+
+
+
+                if(isset($domains[$i]["time_expired"])){
+                    echo " <i class='fa fa-circle ".$domains[$i]["time_expired"]."' title='".$domains[$i]["freedate"]."'></i>";
+                }
+                
+
+
+
+
+
+
 
                 echo "<br>\r\n";
 
@@ -47,6 +88,8 @@
             <option value="delete">удалить</option>
             <option value="clear">очистить</option>
             <option value="load_out_webarchive">скачать из вебархива</option>
+            <option value="zayavka_199">регистрация - за 199 руб.</option>
+            <option value="delete_zayavka">удалить регистрацию</option>
         </select>
 
         <button id="submit" type="submit" value="Выполнить">Выполнить</button>

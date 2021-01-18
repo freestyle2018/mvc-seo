@@ -1,8 +1,9 @@
 
 <?php if($authentication === true){ ?>
 
-    <?php
 
+    <div class="expired">
+    <?php
 
     $i = 0;
     while ($i <= sizeof($name)-1) {
@@ -17,7 +18,7 @@
     }
 
     ?>
-
+    </div>
 
 
     <div class="expired_filter">
